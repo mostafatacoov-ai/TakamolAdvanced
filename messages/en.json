@@ -1,0 +1,1028 @@
+{
+  "Header": {
+    "home": "Home",
+    "about": "About Takamol",
+    "services": "Services",
+    "platforms": "Platforms",
+    "partners": "Partners",
+    "knowledge": "Knowledge Center",
+    "join": "Join Now"
+  },
+  "Hero": {
+    "tagline": "Real estate expertise. Smart platforms. Informed decisions.",
+    "title": "From land to opportunity, and from knowledge to decision.",
+    "description": "We help landowners, investors, and developers in Saudi Arabia understand the potential of their projects and evaluate their options, through specialized consulting, the Real Forsa platform, and the Real Invest studies engine built into it.",
+    "ctaForsa": "Explore Real Forsa",
+    "ctaConsultant": "Talk to a consultant",
+    "ctaInvest": "Discover the Real Invest engine",
+    "visLabel": "Concept visualization",
+    "scrollDown": "Scroll down",
+    "goToSlide": "Go to slide"
+  },
+  "OurProducts": {
+    "title": "Our Products",
+    "subtitle": "Explore our platforms and investment tools",
+    "realForsaTitle": "Real Forsa Platform",
+    "realForsaDesc": "Real Forsa is an integrated platform providing advanced real estate solutions, helping you explore opportunities and analyze the market professionally.",
+    "realInvestTitle": "Real Invest Tool",
+    "realInvestDesc": "A smart tool for analyzing plots and layouts, providing feasibility studies, and assessing risks to ensure the best return on investment.",
+    "viewAll": "View platforms",
+    "realForsaTag": "Smart real-estate opportunity platform",
+    "realInvestTag": "Plot analysis & feasibility tool"
+  },
+  "InteractiveVision": {
+    "playScene": "Play Scene",
+    "stage1Desc": "From raw land",
+    "stage2Desc": "Construction phase",
+    "stage3Desc": "Vision turning into reality",
+    "stage1Title": "The land is the beginning.",
+    "stage2Title": "Development is ongoing.",
+    "stage3Title": "The vision is complete.",
+    "stageSubtitle": "Locations hold endless potential",
+    "controlScene": "Control Scene",
+    "land": "Land",
+    "development": "Development",
+    "vision": "Vision",
+    "mainTitle1": "Behind every land, potential",
+    "mainTitle2": "worth understanding.",
+    "mainDesc": "From site boundaries to project vision. Move the slider to see the story unfold."
+  },
+  "Services": {
+    "prev": "Previous",
+    "next": "Next",
+    "headerSub1": "Integrated services to support your real estate ambitions",
+    "headerSub2": "Our tech products in the real estate sector",
+    "headerTitle1": "Our Services",
+    "headerTitle2": "Our Products",
+    "svc1Title": "Investment and Real Estate Development Consulting",
+    "svc1Desc": "Smart investment decisions based on accurate analysis and integrated feasibility studies",
+    "svc2Title": "Innovative Engineering Consulting",
+    "svc2Desc": "Futuristic designs and effective engineering solutions that achieve the highest standards of quality and sustainability",
+    "svc3Title": "Digital Real Estate Marketing",
+    "svc3Desc": "Advanced marketing strategies to reach your target audience with the latest technical tools",
+    "svc4Title": "Professional Real Estate Brokerage",
+    "svc4Desc": "Building strategic partnerships that benefit everyone with transparency and efficiency",
+    "prod1Title": "Real Forsa",
+    "prod1Desc": "The innovative real estate platform to connect investors with promising opportunities in the Saudi real estate market in easy, safe, and reliable steps.",
+    "prod1Action": "Explore Platform",
+    "prod2Title": "Real Invest",
+    "prod2Desc": "Advanced feasibility studies and real estate analytics engine to enable investors to make accurate decisions based on live data.",
+    "prod2Action": "Explore Tool"
+  },
+  "Knowledge": {
+    "title": "Knowledge Center",
+    "viewMore": "View More",
+    "readMore": "Read More",
+    "r1Title": "Promising Saudi Cities",
+    "r1Question": "Where is the new real estate investment compass pointing?",
+    "r1Desc": "A comparative analysis of (Riyadh, Jeddah, Dammam, and emerging cities)",
+    "r2Title": "Takamol Real Estate Index",
+    "r2Question": "Saudi market trends for Q3 2025",
+    "r2Desc": "A periodic report analyzing (supply and demand, and performance of various sectors)",
+    "r3Title": "Impact of Mega Projects",
+    "r3Question": "On the dynamics of the surrounding real estate market",
+    "r3Desc": "(NEOM, Red Sea, Diriyah, Khobar...)",
+    "r4Title": "PropTech Revolution in Saudi Arabia",
+    "r4Question": "How did technology change the face of the real estate sector?",
+    "r4Desc": "Takamol Advanced's vision on the future of real estate tech"
+  },
+  "Partners": {
+    "title": "Our Partners",
+    "partnerAlt": "Partner"
+  },
+  "Participations": {
+    "title": "A presence that brings us closer to the market and its partners.",
+    "description": "Explore Takamol's participations in Cityscape, professional events and meetings, and the solutions and knowledge we share with investors, developers, and partners.",
+    "p1Text": "Signing a strategic partnership agreement with Red Sea",
+    "p2Text": "Fruitful professional meetings to enhance mutual cooperation",
+    "p3Text": "Exploring investment opportunities with partners",
+    "p4Text": "Takamol Advanced pavilion during its participation in Cityscape"
+  },
+  "Footer": {
+    "address": "Address",
+    "locationOnMap": "Location on Map",
+    "workingHours": "Working Hours",
+    "days": "Sunday - Thursday",
+    "email": "Email",
+    "phoneWhatsapp": "Phone & Whatsapp",
+    "detailedAddress": "Al Yasmin District, Abu Bakr Al Siddiq Road, Riyadh 13326"
+  },
+  "Meta": {
+    "siteTitle": "Takamol Advanced | تكامل المتقدمة",
+    "siteDescription": "At Takamol Advanced, we redefine the standards of the Saudi real estate market through digital innovation and strategic consulting, to empower your investments and achieve your vision.",
+    "about": "About Takamol | Takamol Advanced",
+    "join": "Join Us | Takamol Advanced",
+    "services": "Our Services - Takamol Advanced",
+    "servicesDesc": "Discover Takamol Advanced's services",
+    "partners": "Our Partners - Takamol Advanced",
+    "partnersDesc": "Takamol Advanced's partners in success",
+    "platforms": "Our Products - Takamol Advanced",
+    "platformsDesc": "Discover Takamol Advanced's products",
+    "knowledge": "Knowledge Center - Takamol Advanced",
+    "knowledgeDesc": "Discover the latest articles and insights in the Knowledge Center"
+  },
+  "Common": {
+    "home": "Home",
+    "menu": "Menu",
+    "switchLanguage": "عربي"
+  },
+  "AboutHero": {
+    "breadcrumb": "About Takamol",
+    "titleLine1": "Building the Future",
+    "titleLine2": "of the Real Estate Market",
+    "subtitle": "With innovative technologies and an ambitious vision",
+    "subtitleLine1": "With innovative technologies",
+    "subtitleLine2": "and an ambitious vision"
+  },
+  "Story": {
+    "heading1": "Who We Are",
+    "heading2": "Our Story and Mission",
+    "p1": "Takamol Advanced is a Saudi company specializing in real estate solutions and property technology, offering integrated solutions that serve every segment of the real estate market.",
+    "p2": "It is driven by a modern vision that combines expertise with advanced technology, supporting the sector's growth through smart services that keep pace with digital transformation.",
+    "p3": "It focuses on developing the market ecosystem with tools and solutions that make decisions more effective and speed up development, with the aim of building real, lasting value in the Saudi real estate market.",
+    "imgAlt": "Takamol Advanced",
+    "line1": "Our Story",
+    "line2": "& Mission"
+  },
+  "VisionMission": {
+    "visionLabel": "Our Vision",
+    "visionTitle": "Our Vision",
+    "visionText": "For Takamol Advanced to be the leading provider of integrated real estate solutions, developing the real estate market through innovation and advanced technology.",
+    "missionLabel": "Our Mission",
+    "missionTitle": "Our Mission",
+    "missionText": "We deliver smart technology solutions that shape the future of the real estate market, and we strive to turn it into an integrated digital ecosystem.",
+    "valuesLabel": "Our Values",
+    "valuesTitle": "Our Values",
+    "valuesText": "Innovation, responsibility, excellence, integrity: principles we work by every day to build a sustainable digital real estate environment."
+  },
+  "Values": {
+    "title": "Our Values",
+    "items": [
+      {
+        "title": "Innovation",
+        "desc": "We keep embracing creativity and developing smart solutions that support the digitization of the real estate sector, allowing us to keep pace with change and achieve excellence"
+      },
+      {
+        "title": "Responsibility",
+        "desc": "We make a positive impact on the investment community a priority, and help create a responsible, sustainable digital real estate environment"
+      },
+      {
+        "title": "Excellence",
+        "desc": "We raise performance standards in everything we deliver, and continuously improve our technology tools and services to ensure real, real-time support for everyone we serve"
+      },
+      {
+        "title": "Integrity",
+        "desc": "We are committed to honesty and transparency in all our dealings, and we share participation and results openly"
+      }
+    ]
+  },
+  "WhyUs": {
+    "title": "What Makes Us Different?",
+    "items": [
+      {
+        "line1": "A Focus on",
+        "line2": "Integration",
+        "desc": "We offer an integrated package of services, platforms, and technologies that covers the entire life cycle of a real estate project"
+      },
+      {
+        "line1": "Leadership in",
+        "line2": "Saudi PropTech",
+        "desc": "We are at the forefront of companies adopting and developing advanced PropTech solutions tailored to the needs of the Saudi market"
+      },
+      {
+        "line1": "A Client-Centered",
+        "line2": "Approach",
+        "desc": "We put our clients' needs and goals first, and work as a strategic partner to achieve shared success"
+      }
+    ]
+  },
+  "JoinHero": {
+    "breadcrumb": "Join Us",
+    "title": "Join the Takamol Team",
+    "description": "We are always looking for talented people who are passionate about technology and real estate to join our team and help build a smart real estate future. If you are looking for a stimulating work environment and room to grow, Takamol Advanced is the place for you."
+  },
+  "Benefits": {
+    "title": "Why Work at Takamol?",
+    "subtitle": "Innovation at Takamol Advanced",
+    "items": [
+      {
+        "line1": "A Workplace That",
+        "line2": "Encourages Innovation",
+        "desc": "We believe great ideas are born in a stimulating environment, so we make room for experimentation and creativity"
+      },
+      {
+        "line1": "A Diverse,",
+        "line2": "Inspiring Team",
+        "desc": "We work with top talent from diverse backgrounds that we learn from every day"
+      },
+      {
+        "line1": "Commitment to Employee",
+        "line2": "Growth and Wellbeing",
+        "desc": "Continuous training programs and comprehensive benefits that support you throughout your career with us"
+      },
+      {
+        "line1": "A Real Opportunity",
+        "line2": "to Shape the Market",
+        "desc": "Be part of a team that is reshaping the future of the Saudi real estate sector with technology"
+      }
+    ]
+  },
+  "Jobs": {
+    "title": "Open Positions",
+    "subtitle": "Join the Takamol Advanced team"
+  },
+  "SubmitCV": {
+    "title": "Didn't find your role?",
+    "description": "If no current opening matches your qualifications, you can send us your CV and we will contact you when a suitable opportunity comes up.",
+    "button": "Email us your CV",
+    "hint": "Attach your CV (PDF or Word) and send it to",
+    "mailSubject": "Job application - CV",
+    "mailBody": "Name:\nDesired position:\nMobile number:\n\nPlease find my CV attached.\n"
+  },
+  "PlatformShowcase": {
+    "eyebrow": "Real Forsa Platform",
+    "title": "From exploring the land to the study.",
+    "description": "Real Invest is one of the platform's tools for studies and analysis. Browse the references that show each step of the journey and what the outputs look like.",
+    "tabLand": "Land Journey",
+    "tabStudy": "Creating the Study",
+    "tabOutputs": "Analysis & Outputs",
+    "screenshot": "Screenshot from the platform",
+    "next": "Next slide",
+    "prev": "Previous slide",
+    "screens": [
+      {
+        "title": "General Map",
+        "desc": "An overview of the map and the locations available to explore."
+      },
+      {
+        "title": "Step One",
+        "desc": "Explore the map and choose the right plot for investment."
+      },
+      {
+        "title": "Step Two",
+        "desc": "Analyze the selected plot's data in detail, from dimensions to terrain."
+      },
+      {
+        "title": "Step Three",
+        "desc": "Read the market indicators and current prices in the area."
+      },
+      {
+        "title": "Step Four",
+        "desc": "Test the investment indicators and determine the best use."
+      },
+      {
+        "title": "Step Five",
+        "desc": "Assess strengths and risks to ensure the project's success."
+      },
+      {
+        "title": "Complete Study",
+        "desc": "Review the full study and the final feasibility outputs."
+      },
+      {
+        "title": "Complete Study with Subdivision",
+        "desc": "The final, detailed feasibility report with subdivision data."
+      }
+    ]
+  },
+  "Social": {
+    "title": "Learn More",
+    "cardTitle": "Takamol Advanced",
+    "cardTagline": "A step into the future",
+    "postAlt": "Post",
+    "goToSlide": "Go to slide"
+  },
+  "Pages": {
+    "consulting": {
+      "metaTitle": "Integrated Real Estate Development Consulting | Our Services | Takamol Advanced"
+    },
+    "digitalMarketing": {
+      "metaTitle": "Real Estate Marketing Services | Our Services | Takamol Advanced",
+      "metaDescription": "Advanced marketing strategies that bring your project to its target audience with the latest technical tools and digital platforms.",
+      "metaKeywords": "digital real estate marketing, real estate project marketing, digital marketing, Takamol Advanced"
+    },
+    "engineeringDesign": {
+      "metaTitle": "Engineering Consulting | Our Services | Takamol Advanced"
+    },
+    "financing": {
+      "metaTitle": "Financing & Lender Connections | Takamol Advanced",
+      "badge": "Our Services",
+      "title": "Financing & Lender Connections",
+      "subtitle": "Innovative financing solutions that support your investments",
+      "intro": "We make it easier for our clients to obtain the real estate and commercial financing they need by connecting them with a wide network of lenders and banks, and advising them to secure the best terms and returns.",
+      "comingSoon": "We are currently expanding this page with more details on the full scope of our services. Please visit us again soon."
+    },
+    "highestBestUse": {
+      "metaTitle": "Highest and Best Use | Takamol Advanced",
+      "badge": "Our Services",
+      "title": "Highest and Best Use",
+      "subtitle": "Maximizing the value of real estate assets",
+      "intro": "Highest and Best Use studies help you determine the optimal use of land and real estate assets, ensuring the highest return on investment while reducing risk.",
+      "comingSoon": "We are currently expanding this page with more details on the full scope of our services. Please visit us again soon."
+    },
+    "investmentPortfolio": {
+      "metaTitle": "Real Estate Investment & Development Consulting | Our Services | Takamol Advanced"
+    },
+    "brokerage": {
+      "metaTitle": "Smart Real Estate Brokerage | Our Services | Takamol Advanced",
+      "metaDescription": "Building strategic partnerships that benefit everyone, with transparency and efficiency, through professional real estate brokerage services.",
+      "metaKeywords": "real estate brokerage, real estate agent, buying and selling property, Takamol Advanced, real estate investment"
+    },
+    "valuation": {
+      "metaTitle": "Real Estate Valuation | Takamol Advanced",
+      "badge": "Our Services",
+      "title": "Real Estate Valuation",
+      "subtitle": "Accuracy and reliability in asset valuation",
+      "intro": "Our accredited experts provide professional real estate valuation services based on the latest international and local standards, giving you an accurate and reliable picture of your assets' true market value.",
+      "comingSoon": "We are currently expanding this page with more details on the full scope of our services. Please visit us again soon."
+    },
+    "realFursa": {
+      "metaTitle": "Real Forsa – The Real Estate Platform | Takamol Advanced",
+      "badge": "Our Products",
+      "title": "Real Forsa – The Real Estate Platform",
+      "subtitle": "Your guide to seizing real estate opportunities",
+      "intro": "A leading digital platform that connects property seekers with the best opportunities on the market in an innovative, easy-to-use way, powered by modern search and analytics technology.",
+      "comingSoon": "We are currently expanding this page with more details. Please visit us again soon."
+    },
+    "realInvest": {
+      "metaTitle": "Real Invest – The Studies Engine | Takamol Advanced",
+      "badge": "Our Products",
+      "title": "Real Invest – The Studies Engine",
+      "subtitle": "A smart engine for investment analysis",
+      "intro": "Real Invest is an advanced engine that delivers in-depth real estate analyses and studies, helping investors and decision-makers build strong strategies based on reliable, continuously updated data.",
+      "comingSoon": "We are currently expanding this page with more details. Please visit us again soon."
+    },
+    "promisingCities": {
+      "metaTitle": "Promising Saudi Cities | Knowledge Center | Takamol Advanced",
+      "metaDescription": "Where is the new real estate investment compass pointing? A comprehensive analysis by Takamol Advanced of promising Saudi cities and emerging real estate investment opportunities.",
+      "metaKeywords": "real estate investment, Takamol Advanced, promising Saudi cities, Saudi real estate, Riyadh, Jeddah, Dammam, Vision 2030",
+      "badge": "Real Estate Report",
+      "title": "Promising Saudi Cities",
+      "subtitle": "Where is the new real estate investment compass pointing?",
+      "intro": "Amid the major transformations Saudi Arabia is undergoing to achieve the goals of Vision 2030, the real estate sector stands out as one of the most important economic drivers. At <b>Takamol Advanced</b>, this report highlights the leading emerging destinations shaping the next wave of investment.",
+      "sections": [
+        {
+          "heading": "Riyadh: The Economic Center of Gravity",
+          "body": "The capital, Riyadh, continues to lead as the largest hub for mega projects and the regional headquarters of global companies. This momentum is generating unprecedented demand for office and commercial space, as well as high-quality residential solutions."
+        },
+        {
+          "heading": "Jeddah and Dammam: Balanced Expansion",
+          "body": "Jeddah maintains its position as a main gateway for tourism and trade on the Red Sea, while Dammam strengthens its industrial and logistics role, creating promising investment opportunities in logistics real estate and smart warehouses."
+        },
+        {
+          "heading": "Emerging Cities and Mega Projects",
+          "body": "Beyond the traditional centers, giga-projects such as NEOM and the Red Sea are creating entirely new destinations with unprecedented real estate requirements built on sustainability and smart-city technologies, a golden opportunity for forward-looking investors."
+        }
+      ],
+      "note": "* This content was prepared by the strategic studies team at <b>Takamol Advanced</b>. We are committed to providing the most accurate data and the best solutions to empower your real estate investments."
+    },
+    "realEstateIndex": {
+      "metaTitle": "Takamol Real Estate Index | Knowledge Center | Takamol Advanced",
+      "metaDescription": "Saudi market trends for Q3 2025. A periodic report by Takamol Advanced analyzing supply and demand and the performance of various sectors.",
+      "metaKeywords": "Takamol Real Estate Index, Saudi real estate market, supply and demand, real estate trends 2025, Takamol Advanced",
+      "badge": "Report",
+      "title": "Takamol Real Estate Index",
+      "subtitle": "Saudi market trends for Q3 2025",
+      "intro": "The <b>Takamol Real Estate Index</b> provides a precise analytical reading of real estate market performance in Saudi Arabia, based on the latest data and on actual supply and demand across key sectors.",
+      "sections": [
+        {
+          "heading": "Sustained Growth in the Commercial Sector",
+          "body": "Q3 data showed positive stability in occupancy rates for Grade A offices and commercial complexes, driven by new international companies entering the local market to meet regional headquarters requirements."
+        },
+        {
+          "heading": "Shifts in the Residential Sector",
+          "body": "The index notes a shift in residential demand toward compact units and gated communities that offer a higher quality of life and integrated amenities, in line with the Quality of Life programs under Vision 2030."
+        },
+        {
+          "heading": "Next Quarter Outlook",
+          "body": "Based on current market data, <b>Takamol Advanced</b> expects foreign direct investment to keep flowing into the real estate sector, with a particular focus on hospitality and mixed-use development projects."
+        }
+      ],
+      "note": "* All data and analyses in this index are the intellectual property of <b>Takamol Advanced</b>. We provide numbers-driven consulting to support your investment decisions."
+    },
+    "megaProjects": {
+      "metaTitle": "Impact of Mega Projects on the Real Estate Market | Takamol Advanced",
+      "metaDescription": "A comprehensive study by Takamol Advanced on how mega projects (NEOM, Red Sea, Diriyah) affect the dynamics of the surrounding real estate market.",
+      "metaKeywords": "mega projects, NEOM, Red Sea, Diriyah, Qiddiya, real estate investment, Takamol Advanced, real estate study",
+      "badge": "Study",
+      "title": "Impact of Mega Projects",
+      "subtitle": "On the dynamics of the surrounding real estate market (NEOM, Red Sea, Diriyah...)",
+      "intro": "The giga-projects launched by the Saudi government are the cornerstone of the Kingdom's economic transformation. In this study, <b>Takamol Advanced</b> reviews their direct and indirect effects on the wider real estate landscape.",
+      "sections": [
+        {
+          "heading": "Creating New Real Estate Markets",
+          "body": "Projects such as NEOM and the Red Sea Project don't just develop land; they create complete local markets and economies. This stimulates real estate development in surrounding areas and rapidly raises the value of neighboring land."
+        },
+        {
+          "heading": "The Domino Effect on Infrastructure",
+          "body": "The scale of these projects calls for massive logistics networks and infrastructure. This development lifts the valuation of industrial property, warehouses, and the logistics zones that serve these destinations."
+        },
+        {
+          "heading": "Raising Quality and Sustainability Standards",
+          "body": "The strict commitment to sustainability and environmental standards in projects such as Diriyah and Qiddiya sets a new benchmark for private-sector developers. Green technologies and sustainability certifications (such as LEED) have become a core requirement rather than a luxury."
+        }
+      ],
+      "note": "* A study prepared by the consultants of <b>Takamol Advanced</b>. We support your investment vision with a deep understanding of how major national projects affect your real estate portfolio."
+    },
+    "proptech": {
+      "metaTitle": "The PropTech Revolution in Saudi Arabia | Takamol Advanced",
+      "metaDescription": "How did technology change the face of the real estate sector? Takamol Advanced's vision for the future of PropTech in the Kingdom.",
+      "metaKeywords": "real estate technology, PropTech, future of real estate, digital real estate investment, blockchain, Takamol Advanced",
+      "badge": "Tech Report",
+      "title": "The PropTech Revolution in Saudi Arabia",
+      "subtitle": "How did technology change the face of the real estate sector?",
+      "intro": "The Kingdom's real estate sector is going through an unprecedented digital revolution led by PropTech. <b>Takamol Advanced</b> believes that investing in technology is the strongest guarantee for the sustainability and growth of modern real estate portfolios.",
+      "sections": [
+        {
+          "heading": "Automating Property and Facility Management",
+          "body": "Cloud platforms and the Internet of Things (IoT) have turned traditional buildings into smart buildings capable of self-diagnosis and lower energy consumption, noticeably reducing operating costs and improving facility management."
+        },
+        {
+          "heading": "Big Data Analytics",
+          "body": "Big data and AI have given investors unprecedented accuracy in forecasting price swings, identifying the best times to buy or sell, and measuring risk precisely instead of relying on intuition."
+        },
+        {
+          "heading": "Digitizing Finance and Investment (FinTech & PropTech)",
+          "body": "Through real estate crowdfunding platforms and digital investment funds, access to real estate opportunities has become more flexible, broadening the investor base and noticeably boosting market liquidity."
+        }
+      ],
+      "note": "* <b>Takamol Advanced</b> provides leading consulting on integrating PropTech solutions into real estate development projects. We build smart real estate environments that support your decisions."
+    }
+  },
+  "ServicesOverview": {
+    "badge": "Our Services",
+    "heading": "At Takamol Advanced",
+    "p1": "We offer an integrated ecosystem of real estate solutions that blends deep human expertise with the power of artificial intelligence. We empower your investment and development decisions with innovative tools and strategic insight, turn your engineering vision into tangible reality, and make marketing your projects a unique experience that takes them to the top.",
+    "p2": "Discover how our specialized services can drive your business to new heights of success in the Saudi real estate market.",
+    "imgAlt": "Takamol Advanced services",
+    "items": [
+      {
+        "title": "Real Estate Investment & Development Consulting",
+        "tagline": "From studying the opportunity to achieving the return"
+      },
+      {
+        "title": "Engineering Consulting",
+        "tagline": "Creativity meets technology to build tomorrow's landmarks"
+      },
+      {
+        "title": "Integrated Real Estate Development Consulting",
+        "tagline": "From strategy to the foundation stone"
+      },
+      {
+        "title": "Real Estate Marketing Services",
+        "tagline": "Innovation that takes your project global"
+      },
+      {
+        "title": "Smart Real Estate Brokerage",
+        "tagline": "Professional deals with optimal investment returns"
+      }
+    ]
+  },
+  "ServiceBlocks": {
+    "result": "The Result",
+    "inTakamol": "At Takamol Advanced"
+  },
+  "Marketing": {
+    "title": "Real Estate Marketing Services",
+    "tagline": "Innovation that takes your project global",
+    "intro": "We market your vision creatively and carry it to every potential client. In today's highly competitive market, we give your real estate project the voice and image it deserves. We combine the latest digital marketing technologies, the power of compelling visual content, and immersive virtual experiences to deliver your message effectively to your target audience and turn interest into successful sales.",
+    "steps": [
+      "Comprehensive Digital Marketing",
+      "Creative Visual Content Production",
+      "Virtual Tours & 3D Model Design",
+      "Integrated Marketing Campaign Management",
+      "Real Estate Branding & Visual Identity"
+    ],
+    "brand": {
+      "title": "Real Estate Branding & Visual Identity",
+      "desc1": "We help you build a strong, distinctive real estate brand that reflects your project's values and ambitions.",
+      "desc2": "We design a complete visual identity (logo, colors, typography) and professional marketing materials that leave a lasting impression on your clients.",
+      "hub": "Building an unforgettable identity",
+      "items": [
+        {
+          "title": "Brand Strategy",
+          "desc": "We define the essence of your brand and the story that sets it apart from competitors."
+        },
+        {
+          "title": "Complete Visual Identity Design",
+          "desc": "We design a unique logo and choose a color palette and typography that express your project's identity."
+        },
+        {
+          "title": "Unified Marketing Materials",
+          "desc": "We apply the visual identity across all marketing materials (print and digital) to create a consistent, professional image."
+        }
+      ],
+      "resultTitle": "A strong brand and a distinctive visual identity",
+      "resultText": "That leave a lasting impression, raise your project's marketing value, and build customer loyalty."
+    },
+    "campaigns": {
+      "title": "Integrated Marketing Campaign Management",
+      "desc": "We plan, execute, and manage your marketing campaigns end to end, from defining goals and audience segments to choosing the right channels, tracking performance, and continuously improving it to ensure the best return on your marketing investment.",
+      "hub": "Your partner at every step toward success",
+      "items": [
+        {
+          "title": "Comprehensive Strategic Planning",
+          "desc": "We build an integrated marketing plan that sets the goals, messages, channels, and budget."
+        },
+        {
+          "title": "Professional Execution",
+          "desc": "We manage campaign execution across all channels so your message lands consistently."
+        },
+        {
+          "title": "Transparent Performance Reports",
+          "desc": "We provide regular reports that show campaign performance and success indicators with full transparency."
+        }
+      ],
+      "resultTitle": "Organized, effective marketing campaigns",
+      "resultText": "That achieve your goals efficiently, with transparent reporting, saving you time and effort to focus on your core business."
+    },
+    "why": {
+      "title": "Why choose Takamol Advanced to market your real estate project?",
+      "items": [
+        {
+          "title": "Deep, specialized expertise",
+          "desc": "We understand the complexities of the Saudi real estate market and have a strong track record of success."
+        },
+        {
+          "title": "Smart, well-studied strategies",
+          "desc": "We build our strategies on data analysis and market insight to reach your target audience as efficiently as possible."
+        },
+        {
+          "title": "Proven results with successful developers",
+          "desc": "Our partners attest to our ability to deliver tangible results."
+        },
+        {
+          "title": "Transparent reporting and continuous improvement",
+          "desc": "We believe in full transparency and continuously optimize your campaigns based on actual performance."
+        },
+        {
+          "title": "An integrated team that handles everything for you",
+          "desc": "From the first idea through execution and follow-up, we are your partner at every step."
+        },
+        {
+          "title": "Advanced technology at your service",
+          "desc": "We use the latest AI and automation tools to maximize the efficiency and effectiveness of your campaigns."
+        }
+      ]
+    },
+    "digital": {
+      "heading": "Comprehensive Digital Marketing",
+      "desc": "We place your project at the heart of the digital scene through search engine optimization (SEO) strategies to secure top visibility, paid advertising campaigns (PPC) that reach your customers precisely, and influencer marketing on the Kingdom's most popular social platforms.",
+      "hub": "Our strategy for precise reach",
+      "items": [
+        {
+          "title": "Target Audience Analysis",
+          "desc": "We start by drawing a detailed picture of your audience (age, income, interests, purchase intent) to design tailored marketing messages."
+        },
+        {
+          "title": "Multi-Platform Ad Campaigns",
+          "desc": "We launch targeted campaigns across the influential digital platforms: Google Ads to reach searchers effectively, Meta (Facebook & Instagram) for compelling visual ads, and LinkedIn for commercial and office real estate."
+        },
+        {
+          "title": "High-Conversion Landing Pages",
+          "desc": "We design professional, optimized landing pages linked directly to your campaigns, turning every visitor into an interested lead."
+        },
+        {
+          "title": "Continuous Monitoring & Optimization",
+          "desc": "We monitor your campaigns daily through professional dashboards and make real-time adjustments to ensure the best return on ad spend (ROAS)."
+        }
+      ],
+      "resultTitle": "A strong digital presence with wide, effective reach to the target audience",
+      "resultText": "And a continuous flow of potential customers."
+    },
+    "content": {
+      "heading": "Creative Visual Content Production",
+      "desc": "A picture is worth a thousand words, and a video tells a whole story. Our team produces professional photography, cinematic promotional videos, and motion graphics that showcase your project's beauty and details in an unforgettable way.",
+      "hub": "Our tools for telling your project's story",
+      "items": [
+        {
+          "title": "Professional Photography & Video",
+          "desc": "We highlight your project's details and aesthetics with professional lenses, producing high-quality promotional photos and videos."
+        },
+        {
+          "title": "Aerial Photography",
+          "desc": "We capture aerial footage that presents the site and its surroundings in an attractive panoramic view, highlighting the project's strategic advantages."
+        },
+        {
+          "title": "Motion Graphics",
+          "desc": "We use motion graphics to explain the project's advantages in an innovative, easy-to-grasp way."
+        }
+      ],
+      "resultTitle": "Compelling, high-quality visual content that reflects your project's luxury",
+      "resultText": "Capturing buyers' attention and creating an emotional connection with your brand."
+    },
+    "vr": {
+      "heading": "Virtual Tours & 3D Model Design",
+      "desc": "Transform how you present your projects with our advanced technologies and interactive platforms. We offer immersive 360° VR tours and realistic 3D mockups and renderings of projects before and during construction, powering early marketing campaigns and giving customers a precise picture of the final product.",
+      "hub": "Experience the future today",
+      "items": [
+        {
+          "title": "Immersive Virtual Tours",
+          "desc": "We let customers walk through the project and explore its details as if they were really there, from anywhere in the world."
+        },
+        {
+          "title": "Realistic 3D Models",
+          "desc": "We design realistic 3D models that showcase the project's architectural and interior design, helping customers picture their dream home."
+        },
+        {
+          "title": "Effective Off-Plan Marketing",
+          "desc": "We use these tools to market projects before completion, accelerating the pace of sales."
+        }
+      ],
+      "resultTitle": "A unique viewing experience that breaks the distance barrier",
+      "resultText": "Reducing the need for site visits and noticeably speeding up the buying decision."
+    }
+  },
+  "Brokerage": {
+    "title": "Smart Real Estate Brokerage",
+    "tagline": "Professional deals with optimal investment returns",
+    "intro": "At Takamol Advanced, we turn the traditional buying and selling process into a transparent, highly efficient investment experience. We don't work as traditional brokers but as strategic partners, using our data analytics and deep market expertise to achieve the best results for our clients, whether they are sellers or buyers.",
+    "hub": "Our approach to achieving the best deals",
+    "items": [
+      {
+        "title": "Connecting clients with qualified opportunities",
+        "desc": "Using our platforms and data analytics, we analyze the market precisely and connect our clients with exclusive, qualified opportunities that fully match their investment goals."
+      },
+      {
+        "title": "Professional negotiation management",
+        "desc": "Our team manages negotiations professionally to maximize returns for all parties, while keeping full transparency throughout every stage."
+      },
+      {
+        "title": "Ensuring sound procedures",
+        "desc": "We make sure all legal procedures for the deal are completed smoothly and securely, saving you time and effort and giving you peace of mind."
+      },
+      {
+        "title": "Relationship management and behavior analysis",
+        "desc": "We manage relationships with clients and prospective investors and analyze their buying behavior to offer the most suitable deals and build long-term partnerships that benefit everyone."
+      }
+    ],
+    "resultTitle": "A successful, reliable real estate deal, done efficiently and transparently",
+    "resultText": "That achieves the best possible investment return for all parties."
+  },
+  "SvcInvest": {
+    "title": "Real Estate Investment & Development Consulting",
+    "tagline": "From studying the opportunity to achieving the return",
+    "intro": "In a dynamic and complex real estate market, the right investment decision is not built on intuition but on precise knowledge. At Takamol Advanced, we combine the depth of our human expertise with the power of our smart data, gathered from multiple sources, to give you a clear compass that guides you through the world of real estate investment and development, turning numbers into winning strategic decisions.",
+    "method": [
+      "In-Depth Real Estate Market Research",
+      "Integrated Real Estate Feasibility Studies",
+      "Advanced Financial & Investment Analysis",
+      "Real Estate Valuation",
+      "Rapid Smart Consulting",
+      "Preparing the Project Investment File"
+    ],
+    "sections": [
+      {
+        "heading": "In-Depth Real Estate Market Research",
+        "desc": "A service focused on analyzing market dynamics using our predictive models, uncovering hidden opportunities and assessing their potential precisely before any investment steps are taken.",
+        "hub": "What sets our research apart",
+        "items": [
+          {
+            "title": "Smart Multi-Source Data",
+            "desc": "We feed our AI-powered predictive models with exclusive, up-to-date data from multiple sources, including open government data and real-time market data, to give you unmatched insight."
+          },
+          {
+            "title": "Deep Supply & Demand Analysis",
+            "desc": "We precisely analyze current and expected supply against demand, using advanced algorithms to identify market gaps that represent real opportunities."
+          },
+          {
+            "title": "Location Value Study",
+            "desc": "We provide interactive analysis linking location data, surrounding services, and population trends to assess the attractiveness of each site precisely."
+          }
+        ],
+        "resultTitle": "An investment decision built on unmatched precision",
+        "resultText": "And complete confidence in understanding the market."
+      },
+      {
+        "heading": "Integrated Real Estate Feasibility Studies",
+        "desc": "We deliver comprehensive studies that assess every dimension of the proposed project (market, financial, and technical), providing a clear picture of its viability, potential risks, and expected returns.",
+        "hub": "Our integrated methodology",
+        "items": [
+          {
+            "title": "Financial & Investment Assessment",
+            "desc": "Precise analysis of expected revenues, costs, profitability, and return-on-investment indicators."
+          },
+          {
+            "title": "Market Analysis",
+            "desc": "A comprehensive assessment of the market, competitors, and target audience based on our smart data."
+          },
+          {
+            "title": "Initial Engineering Concept",
+            "desc": "We provide an initial design concept for the project to assess its potential on the ground."
+          },
+          {
+            "title": "Strategic Recommendations",
+            "desc": "Clear, well-founded recommendations for a go-ahead decision or reconsidering the project."
+          }
+        ],
+        "resultTitle": "A full-dimensional view of your project",
+        "resultText": "Enabling you to reduce risk and strengthen your credibility with investors and lenders."
+      },
+      {
+        "heading": "Advanced Financial & Investment Analysis",
+        "desc": "We build precise financial models, analyze the best use of assets, and provide investment recommendations aimed at maximizing return on investment and protecting capital.",
+        "hub": "Our financial empowerment tools",
+        "items": [
+          {
+            "title": "Professional Financial Modeling",
+            "desc": "Building dynamic financial models that forecast the project's performance under different scenarios."
+          },
+          {
+            "title": "Financing Structuring",
+            "desc": "We help you study financing feasibility and structure the optimal funding sources for your project."
+          }
+        ],
+        "resultTitle": "Financial and investment decisions built on solid analytical foundations",
+        "resultText": "Giving you the power to negotiate confidently with investors and financiers."
+      },
+      {
+        "heading": "Real Estate Valuation",
+        "desc": "We provide precise valuation of assets and projects under development, whether the goal is obtaining financing or measuring investment viability against costs, giving you a reliable numerical basis for financial decisions.",
+        "hub": "The precision of our valuation",
+        "items": [
+          {
+            "title": "Highest & Best Use Analysis",
+            "desc": "We determine the optimal use of the land that achieves the highest possible value based on comprehensive analysis."
+          },
+          {
+            "title": "Realistic Pricing Recommendations",
+            "desc": "We provide sale or lease pricing recommendations based on comparative analysis and up-to-date market data."
+          },
+          {
+            "title": "Grounded in Fresh Data",
+            "desc": "Our valuations rely on real-time market data gathered from our multiple sources to ensure accuracy and objectivity."
+          },
+          {
+            "title": "Comprehensive Valuation",
+            "desc": "We value real estate assets for financing purposes, mergers and acquisitions, and projects under development to determine their future value."
+          }
+        ],
+        "resultTitle": "Knowing the true value of your assets",
+        "resultText": "Enabling more profitable buying, selling, and financing decisions."
+      },
+      {
+        "heading": "Rapid Smart Consulting",
+        "desc": "We provide fast assessment of investment opportunities based on fresh data indicators, helping you filter the available options efficiently and speed up the initial decision.",
+        "hub": "Speed and precision",
+        "items": [
+          {
+            "title": "Quick Market Assessments",
+            "desc": "For a fast, concise snapshot of a specific investment opportunity's potential."
+          },
+          {
+            "title": "Initial Pre-Feasibility Studies",
+            "desc": "A rapid report giving you early indicators of the project's viability before committing large budgets."
+          },
+          {
+            "title": "Development Scenario Analysis",
+            "desc": "We compare the possible development scenarios for your project to choose the best strategy."
+          },
+          {
+            "title": "Investment Second Opinion",
+            "desc": "An independent assessment of your major investment decisions, giving you an extra layer of confidence."
+          }
+        ],
+        "resultTitle": "The ability to seize promising opportunities efficiently and without delay",
+        "resultText": "Building on a strong foundation of knowledge."
+      },
+      {
+        "heading": "Preparing the Project Investment File",
+        "desc": "A professional service preparing a complete investment file that includes comprehensive analyses (market, technical, financial), a design concept, and supporting architectural plans, in an institutional format designed to attract lenders and strategic partners.",
+        "hub": "What the success file contains",
+        "items": [
+          {
+            "title": "Professional Concept",
+            "desc": "Includes a design concept and architectural plans that reflect the project's quality."
+          },
+          {
+            "title": "A Convincing Investment Story",
+            "desc": "We present your project's story in a way that highlights its strengths and investment appeal."
+          },
+          {
+            "title": "Reliable Data",
+            "desc": "We back the file with all the analyses and feasibility studies that were prepared."
+          }
+        ],
+        "resultTitle": "Greater chances of obtaining financing or strategic partnerships",
+        "resultText": "Through a professional, convincing presentation of your project."
+      }
+    ]
+  },
+  "SvcEng": {
+    "title": "Engineering Consulting",
+    "tagline": "Creativity meets technology to build tomorrow's landmarks",
+    "intro": "We don't just build structures; we design vibrant, sustainable environments for the future. At Takamol Advanced, we turn your engineering aspirations into a reality that combines creativity, efficiency, and sustainability. Our team of engineers and designers draws on your vision and uses the latest digital modeling tools and advanced technologies to deliver design and planning solutions that exceed expectations, raise the building's operational efficiency, and enhance its future value.",
+    "method": [
+      "Initial Concepts & Architectural Feasibility Studies",
+      "Integrated Engineering & Architectural Designs",
+      "Urban Design & Site Planning",
+      "Interior Space Design",
+      "Quantity Surveying & Cost Estimation",
+      "Technical Support & Project Supervision"
+    ],
+    "sections": [
+      {
+        "heading": "Initial Concepts & Architectural Feasibility Studies",
+        "desc": "A service focused on turning the initial idea into an executable architectural concept. We found your project on a solid base of innovation and precise analysis.",
+        "hub": "What sets our concepts apart",
+        "items": [
+          {
+            "title": "Data-Backed Analysis",
+            "desc": "We support every concept with precise analysis of site data and market requirements, ensuring the idea has what it takes to succeed and represents the best possible use of the land."
+          },
+          {
+            "title": "Innovative Design Options",
+            "desc": "We use advanced generative design tools to produce multiple innovative design options, giving you a wider range for creativity."
+          },
+          {
+            "title": "Immersive Virtual Preview",
+            "desc": "We provide 3D visualizations and VR tours that present the idea in a realistic, immersive way, helping you make early decisions efficiently."
+          }
+        ],
+        "resultTitle": "Innovative, rapid design concepts",
+        "resultText": "That set your project up for success from day one, before any costly execution work begins."
+      },
+      {
+        "heading": "Integrated Engineering & Architectural Designs",
+        "desc": "We deliver a comprehensive design package (architectural, structural, electromechanical) using advanced digital modeling tools to ensure maximum precision and systems integration, raising project efficiency and reducing costs and risks during execution.",
+        "hub": "Our design methodology",
+        "items": [
+          {
+            "title": "Design Comprehensiveness",
+            "desc": "An integrated design package covering architectural and structural plans and all electromechanical systems."
+          },
+          {
+            "title": "Building Information Modeling (BIM)",
+            "desc": "We use the latest BIM systems to create an integrated digital model of the project, ensuring precise coordination across all engineering disciplines."
+          },
+          {
+            "title": "Advanced Technology Integration",
+            "desc": "We embed smart building solutions (IoT, BMS), sustainable materials, and renewable energy into our designs, in line with Saudi Vision 2030."
+          }
+        ],
+        "resultTitle": "An integrated, coherent project",
+        "resultText": "That reduces execution errors, saves cost and time, and raises the asset's long-term value."
+      },
+      {
+        "heading": "Urban Design & Site Planning",
+        "desc": "We design outdoor spaces and master plans that enhance the project's value and ensure its harmony with the surrounding urban fabric, creating vibrant, sustainable environments aligned with the aspirations of the future.",
+        "hub": "Our vision for vibrant environments",
+        "items": [
+          {
+            "title": "Design Comprehensiveness",
+            "desc": "An integrated design package covering architectural and structural plans and all electromechanical systems."
+          },
+          {
+            "title": "Building Information Modeling (BIM)",
+            "desc": "We use the latest BIM systems to create an integrated digital model of the project, ensuring precise coordination across all engineering disciplines."
+          },
+          {
+            "title": "Advanced Technology Integration",
+            "desc": "We embed smart building solutions (IoT, BMS), sustainable materials, and renewable energy into our designs, in line with Saudi Vision 2030."
+          }
+        ],
+        "resultTitle": "Projects in harmony with their urban surroundings",
+        "resultText": "Contributing to vibrant, sustainable environments with added value for the community."
+      },
+      {
+        "heading": "Interior Space Design",
+        "desc": "We create interior design solutions that combine aesthetics and function, crafting unique spatial experiences for the end user and adding human and marketing value to the project.",
+        "hub": "Our creative touch in every corner",
+        "items": [
+          {
+            "title": "Experience-Focused Design",
+            "desc": "We design spaces that meet functional needs and provide a comfortable, attractive emotional experience for residents and users."
+          },
+          {
+            "title": "Innovation in Materials & Solutions",
+            "desc": "We carefully select materials, colors, lighting, and furniture to create a unique identity for every space."
+          },
+          {
+            "title": "Balancing Beauty & Cost",
+            "desc": "We deliver creative design solutions that fit the project's set budget."
+          }
+        ],
+        "resultTitle": "A unique spatial experience for the end user",
+        "resultText": "That raises the project's marketing and human value."
+      },
+      {
+        "heading": "Quantity Surveying & Cost Estimation",
+        "desc": "We provide detailed, precise bills of quantities with initial financial estimates, helping you prepare budgets, price works, and organize tenders with efficiency and clarity.",
+        "hub": "Precise numbers serving your budget",
+        "items": [
+          {
+            "title": "Bills of Quantities (BoQ)",
+            "desc": "We prepare detailed, precise schedules of the required materials and elements as a solid basis for the tendering process."
+          },
+          {
+            "title": "Fast, Technology-Backed Estimates",
+            "desc": "We use advanced databases and technology-backed analysis tools to produce fast, accurate initial estimates of construction costs in early planning stages."
+          },
+          {
+            "title": "Budget Decision Support",
+            "desc": "Our estimates help you assess the project's initial financial viability and set the required budget precisely."
+          }
+        ],
+        "resultTitle": "Full control of the project budget from the start",
+        "resultText": "Making procurement and tendering smooth, efficient, and clear."
+      },
+      {
+        "heading": "Technical Support & Project Supervision",
+        "desc": "We provide the technical support needed throughout execution to ensure the designs are applied to the highest quality standards and approved specifications, so reality matches the vision.",
+        "hub": "Our commitment to quality on site",
+        "items": [
+          {
+            "title": "Precise Engineering Supervision",
+            "desc": "We conduct regular site visits to follow up on progress and verify conformity with the plans."
+          },
+          {
+            "title": "Quality Assurance",
+            "desc": "We review the quality of the materials used and verify compliance with the approved technical specifications."
+          },
+          {
+            "title": "Technical Problem Solving",
+            "desc": "We provide fast, effective solutions to any technical challenges that arise during execution."
+          }
+        ],
+        "resultTitle": "Designs applied to the highest quality standards",
+        "resultText": "Turning the vision into tangible reality, without surprises."
+      }
+    ]
+  },
+  "SvcIntegrated": {
+    "title": "Integrated Real Estate Development Consulting",
+    "tagline": "From strategy to the foundation stone",
+    "intro": "At Takamol Advanced, we believe successful real estate projects are not built on concrete foundations alone, but on well-crafted investment strategies and innovative engineering designs. That is why we merged our strategic and engineering consulting into one integrated service that accompanies you from defining feasibility and shaping the investment, through preparing designs and securing financing, to supervising execution — ensuring your vision becomes a tangible reality that exceeds expectations.",
+    "method": [
+      "Developing Real Estate Investment Strategies",
+      "Structuring Investment Deals & Attracting Capital",
+      "Initial Concepts & Architectural Feasibility Studies",
+      "Integrated Engineering & Architectural Designs",
+      "Real Estate Mergers & Acquisitions Consulting"
+    ],
+    "sections": [
+      {
+        "heading": "Developing Real Estate Investment Strategies",
+        "desc": "We draw the outlines of your investment future with you, developing tailored strategies that match your ambitions, risk appetite, and available capital.",
+        "hub": "Our strategy-building methodology",
+        "items": [
+          {
+            "title": "Defining Your Investment Fingerprint",
+            "desc": "Together we define your acceptable risk level and investment horizon to design a strategy that reflects your investment personality."
+          },
+          {
+            "title": "Starting from Market Data",
+            "desc": "Building on in-depth market research and feasibility studies, we identify the promising sectors and sub-markets that fit your goals."
+          },
+          {
+            "title": "Smart Portfolio Diversification",
+            "desc": "We provide recommendations on diversifying your investment portfolio to achieve the optimal balance between growth and safety."
+          }
+        ],
+        "resultTitle": "A clear, tailored roadmap",
+        "resultText": "To achieve your investment goals with efficiency and effectiveness."
+      },
+      {
+        "heading": "Structuring Investment Deals & Attracting Capital",
+        "desc": "We have the expertise to design and structure complex real estate investment deals, whether development projects, acquisitions, or partnerships.",
+        "hub": "What sets our deal structuring apart",
+        "items": [
+          {
+            "title": "Digital Investment Showcase",
+            "desc": "We use our platforms and technologies to present your project to a wide network of qualified investors, increasing the chances of securing financing or quality partnerships."
+          },
+          {
+            "title": "Convincing Investment Files",
+            "desc": "We turn financial analyses and feasibility studies into an attractive, convincing investment story."
+          },
+          {
+            "title": "Access to the Investor Network",
+            "desc": "We support you in reaching our wide network of potential investors and financing bodies."
+          }
+        ],
+        "resultTitle": "Well-crafted investment structures",
+        "resultText": "That make your project more attractive to investors and ease the capital-raising process."
+      },
+      {
+        "heading": "Initial Concepts & Architectural Feasibility Studies",
+        "desc": "A service focused on turning the initial idea into an executable architectural concept. We found your project on a solid base of innovation and precise analysis.",
+        "hub": "What sets our concepts apart",
+        "items": [
+          {
+            "title": "Immersive Virtual Preview",
+            "desc": "We provide 3D visualizations and VR tours that present the idea in a realistic, immersive way, helping you make early decisions efficiently."
+          },
+          {
+            "title": "Innovative Design Options",
+            "desc": "We use advanced generative design tools to produce multiple innovative design options, giving you a wider range for creativity."
+          },
+          {
+            "title": "Data-Backed Analysis",
+            "desc": "We support every concept with precise analysis of site data and market requirements, ensuring the idea has what it takes to succeed and represents the best possible use of the land."
+          }
+        ],
+        "resultTitle": "Innovative, rapid design concepts",
+        "resultText": "That set your project up for success from day one, before any costly execution work begins."
+      }
+    ]
+  }
+}
