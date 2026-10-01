@@ -77,7 +77,7 @@ export default function Footer() {
             
             <div className="flex flex-col gap-1.5">
               <span className="text-[13px] text-white/90">{t("address")}</span>
-              <a href="https://maps.app.goo.gl/Kz37xUzfkvfuVivp8" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 font-bold text-white transition-colors hover:text-white/80 text-[14px] ${locale === 'en' ? 'flex-row' : ''}`}>
+              <a href="https://maps.app.goo.gl/YJWS9uMKLYA21ZDb8" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 font-bold text-white transition-colors hover:text-white/80 text-[14px] ${locale === 'en' ? 'flex-row' : ''}`}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`h-[14px] w-[14px] ${locale === 'ar' ? '-scale-x-100 rotate-45' : ''}`}>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
