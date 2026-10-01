@@ -20,17 +20,11 @@ export async function generateMetadata({ params: { locale } }: Params): Promise<
   const description = t("siteDescription");
   return {
     metadataBase: new URL(SITE_URL),
-    title: { default: title, template: `%s | Takamol Advanced` },
+    title: { default: title, template: locale === "ar" ? "%s | تكامل المتقدمة" : "%s | Takamol Advanced" },
     description,
-    alternates: {
-      canonical: locale === routing.defaultLocale ? "/" : `/${locale}`,
-      languages: { ar: "/", en: "/en" },
-    },
     openGraph: {
       type: "website",
       siteName: "Takamol Advanced",
-      title,
-      description,
       locale: locale === "ar" ? "ar_SA" : "en_US",
       images: [{ url: "/assets/about/hero.jpg", width: 1920, height: 1222 }],
     },

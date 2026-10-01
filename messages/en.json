@@ -92,15 +92,15 @@
   "Meta": {
     "siteTitle": "Takamol Advanced | تكامل المتقدمة",
     "siteDescription": "At Takamol Advanced, we redefine the standards of the Saudi real estate market through digital innovation and strategic consulting, to empower your investments and achieve your vision.",
-    "about": "About Takamol | Takamol Advanced",
-    "join": "Join Us | Takamol Advanced",
-    "services": "Our Services - Takamol Advanced",
+    "about": "About Takamol",
+    "join": "Join Us",
+    "services": "Our Services",
     "servicesDesc": "Discover Takamol Advanced's services",
-    "partners": "Our Partners - Takamol Advanced",
+    "partners": "Our Partners",
     "partnersDesc": "Takamol Advanced's partners in success",
-    "platforms": "Our Products - Takamol Advanced",
+    "platforms": "Our Products",
     "platformsDesc": "Discover Takamol Advanced's products",
-    "knowledge": "Knowledge Center - Takamol Advanced",
+    "knowledge": "Knowledge Center",
     "knowledgeDesc": "Discover the latest articles and insights in the Knowledge Center"
   },
   "Common": {
@@ -268,18 +268,18 @@
   },
   "Pages": {
     "consulting": {
-      "metaTitle": "Integrated Real Estate Development Consulting | Our Services | Takamol Advanced"
+      "metaTitle": "Integrated Real Estate Development Consulting | Our Services"
     },
     "digitalMarketing": {
-      "metaTitle": "Real Estate Marketing Services | Our Services | Takamol Advanced",
+      "metaTitle": "Real Estate Marketing Services | Our Services",
       "metaDescription": "Advanced marketing strategies that bring your project to its target audience with the latest technical tools and digital platforms.",
       "metaKeywords": "digital real estate marketing, real estate project marketing, digital marketing, Takamol Advanced"
     },
     "engineeringDesign": {
-      "metaTitle": "Engineering Consulting | Our Services | Takamol Advanced"
+      "metaTitle": "Engineering Consulting | Our Services"
     },
     "financing": {
-      "metaTitle": "Financing & Lender Connections | Takamol Advanced",
+      "metaTitle": "Financing & Lender Connections",
       "badge": "Our Services",
       "title": "Financing & Lender Connections",
       "subtitle": "Innovative financing solutions that support your investments",
@@ -287,7 +287,7 @@
       "comingSoon": "We are currently expanding this page with more details on the full scope of our services. Please visit us again soon."
     },
     "highestBestUse": {
-      "metaTitle": "Highest and Best Use | Takamol Advanced",
+      "metaTitle": "Highest and Best Use",
       "badge": "Our Services",
       "title": "Highest and Best Use",
       "subtitle": "Maximizing the value of real estate assets",
@@ -295,15 +295,15 @@
       "comingSoon": "We are currently expanding this page with more details on the full scope of our services. Please visit us again soon."
     },
     "investmentPortfolio": {
-      "metaTitle": "Real Estate Investment & Development Consulting | Our Services | Takamol Advanced"
+      "metaTitle": "Real Estate Investment & Development Consulting | Our Services"
     },
     "brokerage": {
-      "metaTitle": "Smart Real Estate Brokerage | Our Services | Takamol Advanced",
+      "metaTitle": "Smart Real Estate Brokerage | Our Services",
       "metaDescription": "Building strategic partnerships that benefit everyone, with transparency and efficiency, through professional real estate brokerage services.",
       "metaKeywords": "real estate brokerage, real estate agent, buying and selling property, Takamol Advanced, real estate investment"
     },
     "valuation": {
-      "metaTitle": "Real Estate Valuation | Takamol Advanced",
+      "metaTitle": "Real Estate Valuation",
       "badge": "Our Services",
       "title": "Real Estate Valuation",
       "subtitle": "Accuracy and reliability in asset valuation",
@@ -311,15 +311,15 @@
       "comingSoon": "We are currently expanding this page with more details on the full scope of our services. Please visit us again soon."
     },
     "realFursa": {
-      "metaTitle": "Real Forsa – The Real Estate Platform | Takamol Advanced",
+      "metaTitle": "Real Forsa – The Real Estate Platform",
       "metaDescription": "Real Forsa platform: the investment opportunity map, market analytics, property assessment, and project and portfolio dashboards for the Saudi real estate market."
     },
     "realInvest": {
-      "metaTitle": "Real Invest – The Studies Engine | Takamol Advanced",
+      "metaTitle": "Real Invest – The Studies Engine",
       "metaDescription": "Real Invest engine: from a plot of land to a complete feasibility study — plot analysis, market indicators, best use, risks and the final report."
     },
     "promisingCities": {
-      "metaTitle": "Promising Saudi Cities | Knowledge Center | Takamol Advanced",
+      "metaTitle": "Promising Saudi Cities | Knowledge Center",
       "metaDescription": "Where is the new real estate investment compass pointing? A comprehensive analysis by Takamol Advanced of promising Saudi cities and emerging real estate investment opportunities.",
       "metaKeywords": "real estate investment, Takamol Advanced, promising Saudi cities, Saudi real estate, Riyadh, Jeddah, Dammam, Vision 2030",
       "badge": "Real Estate Report",
@@ -343,7 +343,7 @@
       "note": "* This content was prepared by the strategic studies team at <b>Takamol Advanced</b>. We are committed to providing the most accurate data and the best solutions to empower your real estate investments."
     },
     "realEstateIndex": {
-      "metaTitle": "Takamol Real Estate Index | Knowledge Center | Takamol Advanced",
+      "metaTitle": "Takamol Real Estate Index | Knowledge Center",
       "metaDescription": "Saudi market trends for Q3 2025. A periodic report by Takamol Advanced analyzing supply and demand and the performance of various sectors.",
       "metaKeywords": "Takamol Real Estate Index, Saudi real estate market, supply and demand, real estate trends 2025, Takamol Advanced",
       "badge": "Report",
@@ -367,7 +367,7 @@
       "note": "* All data and analyses in this index are the intellectual property of <b>Takamol Advanced</b>. We provide numbers-driven consulting to support your investment decisions."
     },
     "megaProjects": {
-      "metaTitle": "Impact of Mega Projects on the Real Estate Market | Takamol Advanced",
+      "metaTitle": "Impact of Mega Projects on the Real Estate Market",
       "metaDescription": "A comprehensive study by Takamol Advanced on how mega projects (NEOM, Red Sea, Diriyah) affect the dynamics of the surrounding real estate market.",
       "metaKeywords": "mega projects, NEOM, Red Sea, Diriyah, Qiddiya, real estate investment, Takamol Advanced, real estate study",
       "badge": "Study",
@@ -391,7 +391,7 @@
       "note": "* A study prepared by the consultants of <b>Takamol Advanced</b>. We support your investment vision with a deep understanding of how major national projects affect your real estate portfolio."
     },
     "proptech": {
-      "metaTitle": "The PropTech Revolution in Saudi Arabia | Takamol Advanced",
+      "metaTitle": "The PropTech Revolution in Saudi Arabia",
       "metaDescription": "How did technology change the face of the real estate sector? Takamol Advanced's vision for the future of PropTech in the Kingdom.",
       "metaKeywords": "real estate technology, PropTech, future of real estate, digital real estate investment, blockchain, Takamol Advanced",
       "badge": "Tech Report",
