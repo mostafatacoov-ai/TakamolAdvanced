@@ -10,13 +10,18 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   whatsapp: "966508944460",
   mapUrl: "https://maps.app.goo.gl/YJWS9uMKLYA21ZDb8",
   hours: "10:00 AM - 6:00 PM",
-  socials: {
-    linkedin:
-      "https://www.linkedin.com/company/takamol-advanced-%D8%AA%D9%83%D8%A7%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%AA%D9%82%D8%AF%D9%85%D8%A9/",
-    instagram: "https://www.instagram.com/takamoladvanced/",
-    x: "https://x.com/TakamolAdvanced",
-    facebook: "https://www.facebook.com/Takamoladvanced",
-  },
+  social: [
+    {
+      id: "linkedin",
+      network: "linkedin",
+      url: "https://www.linkedin.com/company/takamol-advanced-%D8%AA%D9%83%D8%A7%D9%85%D9%84-%D8%A7%D9%84%D9%85%D8%AA%D9%82%D8%AF%D9%85%D8%A9/",
+      label: "",
+      icon: "",
+    },
+    { id: "instagram", network: "instagram", url: "https://www.instagram.com/takamoladvanced/", label: "", icon: "" },
+    { id: "x", network: "x", url: "https://x.com/TakamolAdvanced", label: "", icon: "" },
+    { id: "facebook", network: "facebook", url: "https://www.facebook.com/Takamoladvanced", label: "", icon: "" },
+  ],
 };
 
 /** Pages of the site that a menu tab or button can link to. */

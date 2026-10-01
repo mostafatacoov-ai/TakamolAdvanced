@@ -1,3 +1,5 @@
+import type { SocialLink } from "./social";
+
 export type Locale = "ar" | "en";
 export type Localized = { ar: string; en: string };
 
@@ -18,7 +20,8 @@ export type SiteSettings = {
   whatsapp: string;
   mapUrl: string;
   hours: string;
-  socials: { linkedin: string; instagram: string; x: string; facebook: string };
+  /** footer icons, in display order */
+  social: SocialLink[];
 };
 
 export type JobStatus = "open" | "closed";

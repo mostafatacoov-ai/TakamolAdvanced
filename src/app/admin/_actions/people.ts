@@ -9,6 +9,8 @@ import { logActivity } from "@/server/activity";
 import { run } from "@/server/db";
 import { generatePassword, MIN_PASSWORD } from "@/server/passwords";
 import { getSiteSettings, saveSiteSettings } from "@/server/site";
+import { isAllowedImage } from "@/lib/blocks";
+import { isSocialNetwork, validSocialUrl, type SocialLink } from "@/lib/social";
 import {
   createRole, createUser, deleteRole, deleteUser, emailTaken, getRole, getUser, otherActiveAdmins,
   setUserPassword, updateRole, updateUser,
@@ -135,12 +137,6 @@ export async function saveSettingsAction(_state: ActionState, form: FormData): P
       whatsapp: text(form, "whatsapp", 20),
       mapUrl: text(form, "mapUrl", 500),
       hours: text(form, "hours", 60),
-      socials: {
-        linkedin: text(form, "linkedin", 500),
-        instagram: text(form, "instagram", 500),
-        x: text(form, "x", 500),
-        facebook: text(form, "facebook", 500),
-      },
     };
     const errors: Record<string, AdminKey> = {};
     if (!EMAIL.test(settings.footerEmail)) errors.footerEmail = "err.emailInvalid";
@@ -148,13 +144,34 @@ export async function saveSettingsAction(_state: ActionState, form: FormData): P
     if (!settings.phone) errors.phone = "err.required";
     if (!/^\d{8,15}$/.test(settings.whatsapp)) errors.whatsapp = "err.whatsapp";
     if (!url(settings.mapUrl)) errors.mapUrl = "err.urlInvalid";
-    for (const [key, value] of Object.entries(settings.socials)) {
-      if (value && !url(value)) errors[key] = "err.urlInvalid";
-    }
+    const social = readSocial(form, errors);
     if (Object.keys(errors).length) return failed("msg.invalid", errors);
-    saveSiteSettings({ ...getSiteSettings(), ...settings });
+    saveSiteSettings({ ...getSiteSettings(), ...settings, social });
     logActivity(actor, "settings.update");
     refreshSite();
     return done();
+  });
+}
+
+/** The footer's social links, sent by the settings form as JSON. */
+function readSocial(form: FormData, errors: Record<string, AdminKey>): SocialLink[] {
+  let raw: unknown;
+  try {
+    raw = JSON.parse(text(form, "social", 50_000) || "[]");
+  } catch {
+    raw = [];
+  }
+  const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  return (Array.isArray(raw) ? raw.slice(0, 20) : []).flatMap((entry, i): SocialLink[] => {
+    const network = entry?.network;
+    if (!isSocialNetwork(network)) return [];
+    const url = str(entry.url, 500);
+    const label = str(entry.label, 60);
+    const icon = network === "custom" ? str(entry.icon, 300) : "";
+    if (!validSocialUrl(network, url)) errors[`social-url-${i}`] = network === "email" ? "err.emailInvalid" : "err.urlInvalid";
+    if (network === "custom" && !label) errors[`social-label-${i}`] = "err.required";
+    if (network === "custom" && !isAllowedImage(icon)) errors[`social-icon-${i}`] = "err.imageInvalid";
+    const id = str(entry.id, 40);
+    return [{ id: /^[\w-]{1,40}$/.test(id) ? id : `s${i}-${Date.now().toString(36)}`, network, url, label, icon }];
   });
 }
