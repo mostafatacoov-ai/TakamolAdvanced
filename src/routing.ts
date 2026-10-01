@@ -6,4 +6,7 @@ export const routing = defineRouting({
   locales: ["ar", "en"],
   defaultLocale: "ar",
   localePrefix: "as-needed",
+  // the site always opens in Arabic, whatever the browser's language or an
+  // earlier visit chose; English is only served at /en
+  localeDetection: false,
 });
