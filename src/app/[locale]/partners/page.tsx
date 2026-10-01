@@ -3,10 +3,13 @@ import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PartnersSection from "@/components/home/Partners";
+import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = pageMetadata("partners", "partnersDesc");
 
-export default function PartnersPage() {
+export default function PartnersPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   const t = useTranslations("Partners");
   return (
     <>

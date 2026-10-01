@@ -53,6 +53,7 @@ export default function InteractiveVision() {
                 src="/assets/interactive-1.jpg"
                 alt="The Land"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover absolute inset-0 pointer-events-none"
                 style={{ opacity: getOpacity(1), transition: 'opacity 0.1s ease-out' }}
               />
@@ -60,6 +61,7 @@ export default function InteractiveVision() {
                 src="/assets/interactive-2.jpg"
                 alt="The Development"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover absolute inset-0 pointer-events-none"
                 style={{ opacity: getOpacity(2), transition: 'opacity 0.1s ease-out' }}
               />
@@ -67,6 +69,7 @@ export default function InteractiveVision() {
                 src="/assets/interactive-3.jpg"
                 alt="The Vision"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover absolute inset-0 pointer-events-none"
                 style={{ opacity: getOpacity(3), transition: 'opacity 0.1s ease-out' }}
               />

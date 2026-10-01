@@ -8,8 +8,11 @@ import Knowledge from "@/components/home/Knowledge";
 import Partners from "@/components/home/Partners";
 import Participations from "@/components/home/Participations";
 import Social from "@/components/home/Social";
+import { setRequestLocale } from "next-intl/server";
 
-export default function Home() {
+export default function Home({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   return (
     <>
       <Header />

@@ -118,6 +118,7 @@ export default function Social() {
                   <div className={`relative z-10 flex w-full justify-between items-start px-2 pb-6 transition-opacity duration-700 ${isActive ? "opacity-100" : "opacity-0"}`}>
                     <div className="flex items-center gap-3">
                       <div className="bg-teal p-1.5 rounded-full flex items-center justify-center w-10 h-10 shadow-lg">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src="/assets/logo-icon.png" className="w-full h-full object-contain" alt="TAC" />
                       </div>
                       <div className="text-start">

@@ -4,7 +4,6 @@
     "about": "About Takamol",
     "services": "Services",
     "platforms": "Platforms",
-    "partners": "Partners",
     "knowledge": "Knowledge Center",
     "join": "Join Now"
   },
@@ -48,26 +47,9 @@
     "mainDesc": "From site boundaries to project vision. Move the slider to see the story unfold."
   },
   "Services": {
-    "prev": "Previous",
-    "next": "Next",
     "headerSub1": "Integrated services to support your real estate ambitions",
-    "headerSub2": "Our tech products in the real estate sector",
     "headerTitle1": "Our Services",
-    "headerTitle2": "Our Products",
-    "svc1Title": "Investment and Real Estate Development Consulting",
-    "svc1Desc": "Smart investment decisions based on accurate analysis and integrated feasibility studies",
-    "svc2Title": "Innovative Engineering Consulting",
-    "svc2Desc": "Futuristic designs and effective engineering solutions that achieve the highest standards of quality and sustainability",
-    "svc3Title": "Digital Real Estate Marketing",
-    "svc3Desc": "Advanced marketing strategies to reach your target audience with the latest technical tools",
-    "svc4Title": "Professional Real Estate Brokerage",
-    "svc4Desc": "Building strategic partnerships that benefit everyone with transparency and efficiency",
-    "prod1Title": "Real Forsa",
-    "prod1Desc": "The innovative real estate platform to connect investors with promising opportunities in the Saudi real estate market in easy, safe, and reliable steps.",
-    "prod1Action": "Explore Platform",
-    "prod2Title": "Real Invest",
-    "prod2Desc": "Advanced feasibility studies and real estate analytics engine to enable investors to make accurate decisions based on live data.",
-    "prod2Action": "Explore Tool"
+    "viewAll": "View all services"
   },
   "Knowledge": {
     "title": "Knowledge Center",
@@ -127,16 +109,13 @@
     "switchLanguage": "عربي"
   },
   "AboutHero": {
-    "breadcrumb": "About Takamol",
     "titleLine1": "Building the Future",
     "titleLine2": "of the Real Estate Market",
-    "subtitle": "With innovative technologies and an ambitious vision",
     "subtitleLine1": "With innovative technologies",
     "subtitleLine2": "and an ambitious vision"
   },
   "Story": {
     "heading1": "Who We Are",
-    "heading2": "Our Story and Mission",
     "p1": "Takamol Advanced is a Saudi company specializing in real estate solutions and property technology, offering integrated solutions that serve every segment of the real estate market.",
     "p2": "It is driven by a modern vision that combines expertise with advanced technology, supporting the sector's growth through smart services that keep pace with digital transformation.",
     "p3": "It focuses on developing the market ecosystem with tools and solutions that make decisions more effective and speed up development, with the aim of building real, lasting value in the Saudi real estate market.",
@@ -146,17 +125,13 @@
   },
   "VisionMission": {
     "visionLabel": "Our Vision",
-    "visionTitle": "Our Vision",
     "visionText": "For Takamol Advanced to be the leading provider of integrated real estate solutions, developing the real estate market through innovation and advanced technology.",
     "missionLabel": "Our Mission",
-    "missionTitle": "Our Mission",
     "missionText": "We deliver smart technology solutions that shape the future of the real estate market, and we strive to turn it into an integrated digital ecosystem.",
     "valuesLabel": "Our Values",
-    "valuesTitle": "Our Values",
     "valuesText": "Innovation, responsibility, excellence, integrity: principles we work by every day to build a sustainable digital real estate environment."
   },
   "Values": {
-    "title": "Our Values",
     "items": [
       {
         "title": "Innovation",
@@ -337,19 +312,11 @@
     },
     "realFursa": {
       "metaTitle": "Real Forsa – The Real Estate Platform | Takamol Advanced",
-      "badge": "Our Products",
-      "title": "Real Forsa – The Real Estate Platform",
-      "subtitle": "Your guide to seizing real estate opportunities",
-      "intro": "A leading digital platform that connects property seekers with the best opportunities on the market in an innovative, easy-to-use way, powered by modern search and analytics technology.",
-      "comingSoon": "We are currently expanding this page with more details. Please visit us again soon."
+      "metaDescription": "Real Forsa platform: the investment opportunity map, market analytics, property assessment, and project and portfolio dashboards for the Saudi real estate market."
     },
     "realInvest": {
       "metaTitle": "Real Invest – The Studies Engine | Takamol Advanced",
-      "badge": "Our Products",
-      "title": "Real Invest – The Studies Engine",
-      "subtitle": "A smart engine for investment analysis",
-      "intro": "Real Invest is an advanced engine that delivers in-depth real estate analyses and studies, helping investors and decision-makers build strong strategies based on reliable, continuously updated data.",
-      "comingSoon": "We are currently expanding this page with more details. Please visit us again soon."
+      "metaDescription": "Real Invest engine: from a plot of land to a complete feasibility study — plot analysis, market indicators, best use, risks and the final report."
     },
     "promisingCities": {
       "metaTitle": "Promising Saudi Cities | Knowledge Center | Takamol Advanced",
@@ -1024,5 +991,359 @@
         "resultText": "That set your project up for success from day one, before any costly execution work begins."
       }
     ]
+  },
+  "ProductsOverview": {
+    "badge": "Our Products",
+    "heading": "Digital platforms that shorten the real estate investment journey",
+    "p1": "Takamol Advanced built one integrated digital ecosystem: the Real Forsa platform for discovering real estate opportunities and analysing the market, and the Real Invest engine inside it for in-depth feasibility studies, giving investors, landowners and developers a complete picture from the first look to the final decision.",
+    "p2": "Live data, interactive maps, precise indicators and shareable studies: everything you need to make a confident real estate decision, in one place.",
+    "imgAlt": "Real Forsa platform"
+  },
+  "PlatformsPage": {
+    "ecosystem": {
+      "title": "One ecosystem, from opportunity to study",
+      "desc": "Real Forsa and Real Invest are not two separate products but one path: you discover the opportunity on the map, then study it in depth in the same place, with the same data, and with the Takamol team behind you.",
+      "hub": "The Real ecosystem",
+      "items": [
+        {
+          "title": "Real Forsa: discover",
+          "desc": "The opportunity map, market analytics, property assessment, and project and portfolio dashboards."
+        },
+        {
+          "title": "Real Invest: study",
+          "desc": "An engine inside the platform that turns any plot of land into a complete feasibility study in clear steps."
+        },
+        {
+          "title": "One data source",
+          "desc": "The same prices and indicators power discovery and study, so nothing conflicts and nothing is re-entered."
+        },
+        {
+          "title": "Takamol experts",
+          "desc": "An advisory team that reads the outputs with you and turns them into a realistic execution plan."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Choose your starting point",
+      "text": "Start from the map to discover opportunities, or from your own plot to study it. Our team is with you at every step.",
+      "forsa": "Explore Real Forsa",
+      "invest": "Discover Real Invest",
+      "consultant": "Talk to a consultant"
+    }
+  },
+  "Forsa": {
+    "title": "Real Forsa Platform",
+    "tagline": "From spotting the opportunity to the investment decision",
+    "intro": "Real Forsa is a smart real estate platform that connects investors and property seekers with the best opportunities available in the Saudi market. It brings together interactive maps, up-to-date market data, and advanced assessment and analysis tools, condensing the journey of searching, comparing and studying into one easy, safe and reliable experience.",
+    "steps": [
+      "Set the area and your search criteria",
+      "Explore opportunities on the map",
+      "Analyse the market and current prices",
+      "Assess the property or project",
+      "Track your portfolio and reports"
+    ],
+    "map": {
+      "heading": "The Investment Opportunity Map",
+      "desc": "An interactive map showing investment zones, high-growth areas and available properties, with smart filters for price, area and property type, so you reach the right opportunity in minutes instead of weeks of searching.",
+      "hub": "Interactive map",
+      "items": [
+        {
+          "title": "Investment zones",
+          "desc": "Visual highlighting of the areas with the strongest investment appeal by demand and prices."
+        },
+        {
+          "title": "Growth areas",
+          "desc": "Spot neighbourhoods where demand and prices are rising before it becomes obvious to everyone."
+        },
+        {
+          "title": "Available properties",
+          "desc": "A live view of listed opportunities with their key data and exact location."
+        },
+        {
+          "title": "Smart filters",
+          "desc": "Filter by price, area, type and location to find what fits your goal."
+        }
+      ],
+      "resultTitle": "A clear opportunity on the map",
+      "resultText": "You see the market through an investor's eyes: where the demand is, where the growth is, and which opportunity deserves a study."
+    },
+    "analytics": {
+      "heading": "Market Analytics Dashboard",
+      "desc": "Analytical dashboards showing price trends, transaction volume and neighbourhood performance, plus a summary for every plot or property: area, expected price and growth rates, so you compare with confidence before you decide.",
+      "hub": "Market analytics",
+      "items": [
+        {
+          "title": "Price trends",
+          "desc": "Historical and current price curves by area and property type."
+        },
+        {
+          "title": "Parcel summary",
+          "desc": "A card for each plot combining area, expected price and the key indicators."
+        },
+        {
+          "title": "Neighbourhood comparison",
+          "desc": "Neighbourhood performance side by side to pick the best location for your goal."
+        },
+        {
+          "title": "Updated indicators",
+          "desc": "Data refreshed continuously so your decisions reflect today's reality."
+        }
+      ],
+      "resultTitle": "A decision built on numbers",
+      "resultText": "Instead of impressions, you get up-to-date indicators that support every step of your investment decision."
+    },
+    "assess": {
+      "heading": "Property Assessment",
+      "desc": "An instant assessment of any property or plot: the key criteria, the investment suitability score, the potential risks and the most suitable use, all on one clear card.",
+      "hub": "Property assessment",
+      "items": [
+        {
+          "title": "Suitability score",
+          "desc": "An indicator summarising how well the property fits your investment goal."
+        },
+        {
+          "title": "Risks",
+          "desc": "Early detection of warning factors: location, price, regulation and liquidity."
+        },
+        {
+          "title": "Best use",
+          "desc": "The highest-yielding use suggested from regulatory and market inputs."
+        },
+        {
+          "title": "Recommendation",
+          "desc": "A practical conclusion that helps you proceed, negotiate or look for an alternative."
+        }
+      ],
+      "resultTitle": "Know the value of what you own and what you buy",
+      "resultText": "An objective assessment that protects you from overpaying and reveals potential that isn't obvious."
+    },
+    "project": {
+      "heading": "Project & Feasibility Dashboard",
+      "desc": "Every project gets a dashboard that brings together investment feasibility, projected return, cost estimates, the funding plan and the timeline, so you manage your project and follow its indicators from one place.",
+      "hub": "Project dashboard",
+      "items": [
+        {
+          "title": "Feasibility & return",
+          "desc": "Projected return and feasibility indicators updated with every change in the inputs."
+        },
+        {
+          "title": "Cost estimates",
+          "desc": "A breakdown of construction, development and operating costs across project phases."
+        },
+        {
+          "title": "Funding plan",
+          "desc": "The funding structure, its sources and coverage ratios in one view."
+        },
+        {
+          "title": "Timeline",
+          "desc": "Project phases and key milestones with progress tracking."
+        }
+      ],
+      "resultTitle": "Your project under control",
+      "resultText": "A complete, up-to-date picture of your project that makes decisions easier and keeps partners aligned."
+    },
+    "reports": {
+      "heading": "Portfolio Reports",
+      "desc": "Share-ready executive reports summarising your real estate portfolio's performance: total value, occupancy rates, returns and the best-performing assets, on a map and in clear indicators everyone understands.",
+      "hub": "Executive reports",
+      "items": [
+        {
+          "title": "Performance summary",
+          "desc": "Total value, returns and occupancy rates at a glance."
+        },
+        {
+          "title": "Asset map",
+          "desc": "The geographic spread of your assets with each location's performance."
+        },
+        {
+          "title": "Top assets",
+          "desc": "Assets ranked by value and income so you know what drives your portfolio."
+        },
+        {
+          "title": "Easy sharing",
+          "desc": "Export and share the report with partners and financiers in one click."
+        }
+      ],
+      "resultTitle": "A portfolio you can read in a minute",
+      "resultText": "One report gives you and your partners the full picture without drowning in detail."
+    },
+    "why": {
+      "title": "Why Real Forsa?",
+      "items": [
+        {
+          "title": "Reliable, up-to-date data",
+          "desc": "Trusted sources and continuous updates of prices and indicators."
+        },
+        {
+          "title": "Easy and secure experience",
+          "desc": "A clear interface and simple steps from search to decision."
+        },
+        {
+          "title": "Integrated with Real Invest",
+          "desc": "Discover the opportunity, then study it in depth in the same place with no re-entry."
+        },
+        {
+          "title": "Takamol expert support",
+          "desc": "An advisory team that helps you read the results and turn them into a plan."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to discover your next opportunity?",
+      "text": "Contact our team for a platform demo or to join the early-access list.",
+      "primary": "Request a demo",
+      "secondary": "Talk to a consultant",
+      "mailSubject": "Demo request – Real Forsa platform",
+      "mailBody": "Hello, I would like to request a demo of the Real Forsa platform."
+    }
+  },
+  "Invest": {
+    "title": "Real Invest Engine",
+    "tagline": "From a plot of land to a complete feasibility study",
+    "intro": "Real Invest is the studies engine inside the Real Forsa platform. It turns any plot of land into a complete feasibility study in clear steps: analysing the plot, reading market indicators, testing the best use, assessing strengths and risks, and then producing a detailed final report you can share with partners and financiers.",
+    "steps": [
+      "Choose the plot on the map",
+      "Analyse the plot's dimensions and data",
+      "Read market indicators and prices",
+      "Test the best use for the land",
+      "Assess strengths and risks",
+      "Receive the study and final report"
+    ],
+    "stagesTitle": "From land to project",
+    "stages": [
+      {
+        "title": "The land",
+        "desc": "Identifying the plot and understanding its location, dimensions and regulatory setting."
+      },
+      {
+        "title": "Development",
+        "desc": "Testing use scenarios and estimating the costs and returns of each."
+      },
+      {
+        "title": "The project",
+        "desc": "A final study that supports the development, investment or financing decision."
+      }
+    ],
+    "land": {
+      "heading": "Choosing the Land and Analysing the Plot",
+      "desc": "Start from the map: pick the plot and the engine gathers its data automatically, from dimensions and area to terrain and regulations, building the foundation the whole study rests on.",
+      "hub": "Plot analysis",
+      "items": [
+        {
+          "title": "Plot data",
+          "desc": "Dimensions, area, shape, frontages and terrain."
+        },
+        {
+          "title": "Location & surroundings",
+          "desc": "Streets, services and neighbouring projects, and their effect on value."
+        },
+        {
+          "title": "Regulations",
+          "desc": "Permitted uses, building ratios and heights."
+        }
+      ],
+      "resultTitle": "A sound foundation for a sound study",
+      "resultText": "Every study starts with a precise understanding of the land itself, before any number."
+    },
+    "market": {
+      "heading": "Market Indicators and Best Use",
+      "desc": "The engine reads current prices and supply-and-demand indicators in the area, then tests the investment indicators of several scenarios to determine the best possible use of the land, with numbers rather than guesswork.",
+      "hub": "Best use",
+      "items": [
+        {
+          "title": "Current prices",
+          "desc": "Actual sale and rental prices in the area and around it."
+        },
+        {
+          "title": "Supply & demand",
+          "desc": "Current and expected supply against demand for each use."
+        },
+        {
+          "title": "Use scenarios",
+          "desc": "Residential, commercial, mixed: alternatives tested side by side."
+        },
+        {
+          "title": "Investment indicators",
+          "desc": "Return, payback period and net value for each scenario."
+        }
+      ],
+      "resultTitle": "The highest and best use",
+      "resultText": "Don't guess what to build; test the alternatives with numbers and choose the highest return."
+    },
+    "risk": {
+      "heading": "Assessing Strengths and Risks",
+      "desc": "Before the decision, the engine reviews the project's strengths and points of caution: funding, costs, timing and competition, with an estimate of each factor's effect on the final result.",
+      "hub": "Strengths & risks",
+      "items": [
+        {
+          "title": "Strengths",
+          "desc": "What distinguishes the location and the project and raises its chances of success."
+        },
+        {
+          "title": "Potential risks",
+          "desc": "Costs, timing, competition and regulation, with an estimate of each one's impact."
+        },
+        {
+          "title": "Sensitivity analysis",
+          "desc": "How the result changes if the price, cost or duration changes."
+        }
+      ],
+      "resultTitle": "A decision that knows its limits",
+      "resultText": "You enter the project knowing what might change and how to handle it."
+    },
+    "study": {
+      "heading": "The Complete Study and Outputs",
+      "desc": "The end result is a comprehensive feasibility study: an executive summary, the financial feasibility, the best use, the risk analysis and subdivision data where relevant, in a detailed report ready to share with partners and financiers.",
+      "hub": "Complete study",
+      "items": [
+        {
+          "title": "Executive summary",
+          "desc": "The study's conclusion and recommendation on one page."
+        },
+        {
+          "title": "Financial feasibility",
+          "desc": "Costs, revenues, cash flows and the projected return."
+        },
+        {
+          "title": "Subdivision data",
+          "desc": "Plot division and subdivision outputs when needed."
+        },
+        {
+          "title": "Shareable report",
+          "desc": "A detailed file ready to present to partners and financiers."
+        }
+      ],
+      "resultTitle": "A study ready for decision and financing",
+      "resultText": "One report answers the investor's and the financier's question: is the project worth it?"
+    },
+    "outputs": {
+      "title": "What do you get from Real Invest?",
+      "items": [
+        {
+          "title": "A complete feasibility study",
+          "desc": "From plot analysis to the final recommendation in one path."
+        },
+        {
+          "title": "The best use for the land",
+          "desc": "The highest-yielding scenario, backed by market indicators."
+        },
+        {
+          "title": "Risk and sensitivity analysis",
+          "desc": "Advance knowledge of what might change and its effect on the result."
+        },
+        {
+          "title": "A detailed, shareable report",
+          "desc": "Ready to present to partners, financiers and lenders."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Own a plot of land? Start its study today",
+      "text": "Contact our team to prepare a feasibility study for your plot with the Real Invest engine, or to get a demo of the engine.",
+      "primary": "Request a study for your plot",
+      "secondary": "Talk to a consultant",
+      "mailSubject": "Feasibility study request – Real Invest engine",
+      "mailBody": "Hello, I would like to prepare a feasibility study for a plot of land with the Real Invest engine."
+    }
   }
 }

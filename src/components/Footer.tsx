@@ -43,6 +43,7 @@ export default function Footer() {
             <div className={`flex flex-col items-start gap-4 ${locale === 'en' ? 'md:items-start' : ''}`}>
               <Link href="/" className="shrink-0">
                 <span className="relative inline-block h-[40px] w-[150px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/assets/logo.png"
                     alt="تكامل المتقدمة — Takamol Advanced"

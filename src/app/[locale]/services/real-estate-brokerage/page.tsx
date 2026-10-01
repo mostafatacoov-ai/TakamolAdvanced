@@ -4,12 +4,15 @@ import Footer from "@/components/Footer";
 import { detailMetadata } from "@/components/DetailPage";
 import ServicesOverview from "@/components/services/ServicesOverview";
 import { FeatureHub, ResultBanner, ServiceIntro } from "@/components/services/blocks";
+import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = detailMetadata("brokerage");
 
 type Item = { title: string; desc: string };
 
-export default function BrokeragePage() {
+export default function BrokeragePage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   const t = useTranslations("Brokerage");
 
   return (

@@ -64,6 +64,7 @@ export default async function DetailPage({
                 src={image}
                 alt={t("title")}
                 fill
+                sizes="(max-width: 896px) 100vw, 896px"
                 className={imageClass}
               />
               <div className={`absolute inset-0 ${overlay === "light" ? "bg-navy/20" : "bg-navy/40"}`} />

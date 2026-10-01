@@ -4,12 +4,15 @@ import Footer from "@/components/Footer";
 import { detailMetadata } from "@/components/DetailPage";
 import ServicesOverview from "@/components/services/ServicesOverview";
 import { MethodStrip, ServiceIntro, SubService } from "@/components/services/blocks";
+import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = detailMetadata("consulting");
 
 const IMG = "/assets/services";
 
-export default function IntegratedConsultingPage() {
+export default function IntegratedConsultingPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   const t = useTranslations("SvcIntegrated");
 
   return (

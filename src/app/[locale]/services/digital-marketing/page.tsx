@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { detailMetadata } from "@/components/DetailPage";
 import ServicesOverview from "@/components/services/ServicesOverview";
 import { BlockTitle, FeatureHub, ResultBanner, ServiceIntro, SubService } from "@/components/services/blocks";
+import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = detailMetadata("digitalMarketing");
 
@@ -33,7 +34,9 @@ function StepRing({ n, label }: { n: number; label: string }) {
   );
 }
 
-export default function DigitalMarketingPage() {
+export default function DigitalMarketingPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   const t = useTranslations("Marketing");
   const steps = t.raw("steps") as string[];
 

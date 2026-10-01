@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Benefits from "@/components/join/Benefits";
 import Jobs from "@/components/join/Jobs";
 import SubmitCV from "@/components/join/SubmitCV";
+import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = pageMetadata("join");
 
@@ -20,6 +21,7 @@ function JoinHero() {
           src="/assets/about-hero.png"
           alt=""
           fill
+          sizes="100vw"
           priority
           className="object-cover object-bottom"
         />
@@ -45,7 +47,9 @@ function JoinHero() {
   );
 }
 
-export default function JoinPage() {
+export default function JoinPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   return (
     <>
       <Header />

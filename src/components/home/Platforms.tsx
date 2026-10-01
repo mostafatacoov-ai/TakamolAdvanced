@@ -28,7 +28,7 @@ const SCREENS = [
   { 
     id: 5, 
     stage: "study",
-    src: "/assets/real-invest/step-img-الخطوة الرابعة .png",
+    src: "/assets/real-invest/step-4b.png",
   },
   { 
     id: 6, 
@@ -123,7 +123,8 @@ export default function Platforms() {
                 key={s.src} 
                 src={s.src} 
                 alt={title(i)} 
-                fill 
+                fill
+                sizes="(max-width: 1024px) 100vw, 1200px"
                 className={`object-contain lg:object-cover transition-opacity duration-700 ease-in-out ${idx === i ? 'opacity-100' : 'opacity-0'}`}
                 priority={i === 0}
               />
@@ -183,7 +184,7 @@ export default function Platforms() {
                 }`}
               >
                 <div className="relative aspect-video w-full bg-navy-deep/60">
-                  <Image src={s.src} fill className="object-cover" alt={title(i)} />
+                  <Image src={s.src} fill sizes="(max-width: 768px) 50vw, 300px" className="object-cover" alt={title(i)} />
                 </div>
                 <div className={`p-3 text-center text-xs font-bold transition-colors ${idx === i ? 'bg-teal text-navy' : 'bg-white/[0.06] text-white'}`}>
                   {title(i)}
