@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
-import { CONSULTANT_WHATSAPP } from "@/lib/contact";
 
 const IMAGES = [
   "/assets/hero_ksa_2_1790677040006.jpg",
@@ -65,29 +63,6 @@ export default function Hero() {
           <p className="mt-6 max-w-[580px] text-[15px] font-light leading-[1.95] text-white/80 md:text-[17px]">
             {t("description")}
           </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Link
-              href="/platforms/real-fursa"
-              className="glow-pulse rounded-full border-2 border-teal bg-navy/40 px-8 py-3.5 text-[15px] font-bold text-white transition-all duration-300 hover:bg-teal hover:text-navy md:text-[16px]"
-            >
-              {t("ctaForsa")}
-            </Link>
-            <a
-              href={CONSULTANT_WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-white/40 px-7 py-3.5 text-[15px] font-bold text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-navy md:text-[16px]"
-            >
-              {t("ctaConsultant")}
-            </a>
-            <Link
-              href="/platforms/real-invest"
-              className="px-2 text-[14px] font-bold text-teal underline decoration-teal/60 underline-offset-[10px] transition-colors hover:text-teal-cyan md:text-[15px]"
-            >
-              {t("ctaInvest")}
-            </Link>
-          </div>
         </div>
       </div>
 
