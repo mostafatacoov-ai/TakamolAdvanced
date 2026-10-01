@@ -80,7 +80,7 @@ export type TextField = {
 };
 
 export function sectionFields(ns: string): TextField[] | null {
-  if (!(ns in DEFAULTS.en)) return null;
+  if (!Object.hasOwn(DEFAULTS.en, ns)) return null;
   const changed = overrides();
   const fields: TextField[] = [];
   for (const [path, enOriginal] of ORIGINAL.en) {
