@@ -1,3 +1,4 @@
+import { use } from "react";
 import { pageMetadata } from "@/lib/metadata";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -6,7 +7,8 @@ import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = pageMetadata("knowledge", "knowledgeDesc");
 
-export default function KnowledgePage({ params: { locale } }: { params: { locale: string } }) {
+export default function KnowledgePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   return (

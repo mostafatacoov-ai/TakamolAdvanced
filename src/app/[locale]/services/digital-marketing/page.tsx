@@ -1,3 +1,4 @@
+import { use } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
@@ -34,7 +35,8 @@ function StepRing({ n, label }: { n: number; label: string }) {
   );
 }
 
-export default function DigitalMarketingPage({ params: { locale } }: { params: { locale: string } }) {
+export default function DigitalMarketingPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations("Marketing");

@@ -1,3 +1,4 @@
+import { use } from "react";
 import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -13,7 +14,8 @@ export const generateMetadata = detailMetadata("realFursa");
 type Item = { title: string; desc: string };
 const IMG = "/assets/products";
 
-export default function RealForsaPage({ params: { locale } }: { params: { locale: string } }) {
+export default function RealForsaPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations("Forsa");

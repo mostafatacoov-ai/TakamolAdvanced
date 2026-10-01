@@ -1,3 +1,4 @@
+import { use } from "react";
 import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,7 +16,8 @@ export const generateMetadata = detailMetadata("realInvest");
 type Item = { title: string; desc: string };
 const IMG = "/assets/products";
 
-export default function RealInvestPage({ params: { locale } }: { params: { locale: string } }) {
+export default function RealInvestPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations("Invest");

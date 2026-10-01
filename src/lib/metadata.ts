@@ -4,10 +4,11 @@ import { getTranslations } from "next-intl/server";
 // generateMetadata for a page whose title/description live in the "Meta" namespace.
 export function pageMetadata(titleKey: string, descriptionKey?: string) {
   return async function generateMetadata({
-    params: { locale },
+    params,
   }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
   }): Promise<Metadata> {
+    const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "Meta" });
     return {
       title: t(titleKey),

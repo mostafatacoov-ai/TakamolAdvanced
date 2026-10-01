@@ -44,6 +44,7 @@ export default function ProductsOverview({ active }: { active?: number }) {
                 src="/assets/products/forsa-main.jpg"
                 alt={t("imgAlt")}
                 fill
+                priority
                 sizes="440px"
                 className="object-cover"
               />

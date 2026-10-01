@@ -26,10 +26,11 @@ const bold = { b: (chunks: ReactNode) => <strong>{chunks}</strong> };
 
 export function detailMetadata(page: string) {
   return async function generateMetadata({
-    params: { locale },
+    params,
   }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
   }): Promise<Metadata> {
+    const { locale } = await params;
     const t = await getTranslations({ locale, namespace: `Pages.${page}` });
     return {
       title: t("metaTitle"),
@@ -64,6 +65,7 @@ export default async function DetailPage({
                 src={image}
                 alt={t("title")}
                 fill
+                priority
                 sizes="(max-width: 896px) 100vw, 896px"
                 className={imageClass}
               />

@@ -1,3 +1,4 @@
+import { use } from "react";
 import { pageMetadata } from "@/lib/metadata";
 import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
@@ -7,7 +8,8 @@ import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = pageMetadata("partners", "partnersDesc");
 
-export default function PartnersPage({ params: { locale } }: { params: { locale: string } }) {
+export default function PartnersPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations("Partners");

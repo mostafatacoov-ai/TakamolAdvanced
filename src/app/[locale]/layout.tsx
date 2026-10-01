@@ -6,7 +6,7 @@ import { routing } from "@/navigation";
 import ScrollReveal from "@/components/ScrollReveal";
 import "../globals.css";
 
-type Params = { params: { locale: string } };
+type Params = { params: Promise<{ locale: string }> };
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://takamoladvanced.sa";
 
@@ -14,7 +14,8 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: Params): Promise<Metadata> {
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Meta" });
   const title = t("siteTitle");
   const description = t("siteDescription");
@@ -33,8 +34,9 @@ export async function generateMetadata({ params: { locale } }: Params): Promise<
 
 export default async function RootLayout({
   children,
-  params: { locale }
+  params
 }: Readonly<{ children: React.ReactNode } & Params>) {
+  const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 

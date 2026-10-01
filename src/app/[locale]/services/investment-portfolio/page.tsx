@@ -1,3 +1,4 @@
+import { use } from "react";
 import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,7 +11,8 @@ export const generateMetadata = detailMetadata("investmentPortfolio");
 
 const IMG = "/assets/services";
 
-export default function InvestmentConsultingPage({ params: { locale } }: { params: { locale: string } }) {
+export default function InvestmentConsultingPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations("SvcInvest");

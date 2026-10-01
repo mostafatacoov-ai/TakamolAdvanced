@@ -1,3 +1,4 @@
+import { use } from "react";
 import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
@@ -47,7 +48,8 @@ function JoinHero() {
   );
 }
 
-export default function JoinPage({ params: { locale } }: { params: { locale: string } }) {
+export default function JoinPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   return (

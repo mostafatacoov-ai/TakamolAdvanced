@@ -1,3 +1,4 @@
+import { use } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/home/Hero";
@@ -10,7 +11,8 @@ import Participations from "@/components/home/Participations";
 import Social from "@/components/home/Social";
 import { setRequestLocale } from "next-intl/server";
 
-export default function Home({ params: { locale } }: { params: { locale: string } }) {
+export default function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   return (

@@ -68,6 +68,7 @@ export default function ServicesOverview({ active }: { active?: number }) {
                 src="/assets/services/overview.jpg"
                 alt={t("imgAlt")}
                 fill
+                priority
                 sizes="440px"
                 className="object-cover"
               />

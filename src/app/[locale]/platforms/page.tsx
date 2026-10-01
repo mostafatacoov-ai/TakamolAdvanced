@@ -1,3 +1,4 @@
+import { use } from "react";
 import { useTranslations } from "next-intl";
 import { pageMetadata } from "@/lib/metadata";
 import { CONSULTANT_WHATSAPP } from "@/lib/contact";
@@ -12,7 +13,8 @@ export const generateMetadata = pageMetadata("platforms", "platformsDesc");
 
 type Item = { title: string; desc: string };
 
-export default function PlatformsPage({ params: { locale } }: { params: { locale: string } }) {
+export default function PlatformsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations("PlatformsPage");
