@@ -1,6 +1,7 @@
 import {hasLocale} from 'next-intl';
 import {getRequestConfig} from 'next-intl/server';
-import {routing} from './navigation';
+import {routing} from './routing';
+import {getMessagesFor} from './server/content';
 
 export default getRequestConfig(async ({locale, requestLocale}) => {
   // `locale` is set when a caller passes one explicitly (e.g. generateMetadata)
@@ -11,6 +12,7 @@ export default getRequestConfig(async ({locale, requestLocale}) => {
 
   return {
     locale: resolved,
-    messages: (await import(`../messages/${resolved}.json`)).default
+    // texts shipped in messages/*.json, with edits from the admin area applied
+    messages: getMessagesFor(resolved)
   };
 });

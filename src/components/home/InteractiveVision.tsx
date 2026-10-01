@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+import Image from "@/components/SiteImage";
 import { useTranslations, useLocale } from "next-intl";
 
 export default function InteractiveVision() {

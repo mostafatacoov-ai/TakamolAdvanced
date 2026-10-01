@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/SiteImage";
 import { BlockTitle } from "@/components/services/blocks";
 
 type Stage = { title: string; desc: string };

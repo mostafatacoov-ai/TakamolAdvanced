@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/navigation";
+import { publishedSlugs } from "@/server/pages";
+
+// pages added in the admin area appear within the hour
+export const revalidate = 3600;
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://takamoladvanced.sa";
 
@@ -33,7 +37,7 @@ const href = (locale: string, route: string) => {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return ROUTES.map((route) => ({
+  return [...ROUTES, ...publishedSlugs().map((slug) => `/${slug}`)].map((route) => ({
     url: href(routing.defaultLocale, route),
     lastModified,
     changeFrequency: route === "/" ? "weekly" : "monthly",

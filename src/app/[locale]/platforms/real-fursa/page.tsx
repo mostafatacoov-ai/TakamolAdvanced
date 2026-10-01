@@ -3,7 +3,8 @@ import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { detailMetadata } from "@/components/DetailPage";
-import { CONSULTANT_WHATSAPP, mailto } from "@/lib/contact";
+import { mailtoHref, whatsappHref } from "@/lib/links";
+import { getSiteSettings } from "@/server/site";
 import ProductsOverview from "@/components/products/ProductsOverview";
 import ProductCta from "@/components/products/ProductCta";
 import { FeatureHub, MethodStrip, ServiceIntro, SubService } from "@/components/services/blocks";
@@ -19,6 +20,7 @@ export default function RealForsaPage({ params }: { params: Promise<{ locale: st
   setRequestLocale(locale);
 
   const t = useTranslations("Forsa");
+  const settings = getSiteSettings();
 
   return (
     <>
@@ -55,8 +57,8 @@ export default function RealForsaPage({ params }: { params: Promise<{ locale: st
         <ProductCta
           title={t("cta.title")}
           text={t("cta.text")}
-          primary={{ label: t("cta.primary"), href: mailto(t("cta.mailSubject"), t("cta.mailBody")) }}
-          buttons={[{ label: t("cta.secondary"), href: CONSULTANT_WHATSAPP }]}
+          primary={{ label: t("cta.primary"), href: mailtoHref(settings.requestsEmail, t("cta.mailSubject"), t("cta.mailBody")) }}
+          buttons={[{ label: t("cta.secondary"), href: whatsappHref(settings.whatsapp) }]}
         />
       </main>
       <Footer />

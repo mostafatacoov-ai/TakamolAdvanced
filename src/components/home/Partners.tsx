@@ -1,20 +1,22 @@
-"use client";
-
 import { useTranslations, useLocale } from "next-intl";
+import { SiteImg } from "@/components/SiteImage";
+import { getPartners } from "@/server/site";
 
-// every logo in public/assets/partners (cropped to the visible mark)
-const LOGOS = [
-  ...Array.from({ length: 11 }, (_, i) => String(i + 1).padStart(2, "0")),
-  "rafal",
-];
+const SLOT = 200; // px per logo
+const SPEED = 53; // px per second
 
-/* The set is repeated 4× and the track slides by exactly one set, so the
-   strip is always full and loops seamlessly on any screen width. */
-const COPIES = 4;
-
+/* Partner logos (managed in the admin area) in an endless strip. The set is
+   repeated enough times to cover wide screens, and the track slides by
+   exactly one set, so it loops seamlessly with no empty space. */
 export default function Partners() {
   const t = useTranslations("Partners");
   const locale = useLocale();
+  const partners = getPartners();
+  if (!partners.length) return null;
+
+  const setWidth = partners.length * SLOT;
+  const copies = Math.max(4, Math.ceil(2800 / setWidth) + 1);
+  const seconds = Math.round(setWidth / SPEED);
 
   return (
     <section id="partners" className="relative overflow-hidden py-8 md:py-10 bg-navy" dir={locale === "ar" ? "rtl" : "ltr"}>
@@ -26,19 +28,34 @@ export default function Partners() {
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-navy to-transparent" />
 
         <div className="partners-track flex w-max items-center hover:[animation-play-state:paused]" dir="ltr">
-          {Array.from({ length: COPIES }, (_, c) =>
-            LOGOS.map((name, i) => (
-              <div key={`${c}-${name}`} className="flex h-[72px] w-[200px] shrink-0 items-center justify-center px-6">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`/assets/partners/${name}.png`}
-                  alt={`${t("partnerAlt")} ${i + 1}`}
+          {Array.from({ length: copies }, (_, c) =>
+            partners.map((p, i) => {
+              const logo = (
+                <SiteImg
+                  src={p.logo}
+                  alt={p.name || `${t("partnerAlt")} ${i + 1}`}
                   loading="eager"
                   decoding="async"
                   className="max-h-[54px] w-auto max-w-[150px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
                 />
-              </div>
-            ))
+              );
+              return (
+                <div
+                  key={`${c}-${p.id}`}
+                  aria-hidden={c > 0 || undefined}
+                  className="flex h-[72px] shrink-0 items-center justify-center px-6"
+                  style={{ width: SLOT }}
+                >
+                  {p.url ? (
+                    <a href={p.url} target="_blank" rel="noopener noreferrer" tabIndex={c > 0 ? -1 : undefined}>
+                      {logo}
+                    </a>
+                  ) : (
+                    logo
+                  )}
+                </div>
+              );
+            }),
           )}
         </div>
       </div>
@@ -48,11 +65,11 @@ export default function Partners() {
           __html: `
         @keyframes partnersTicker {
           from { transform: translateX(0); }
-          to { transform: translateX(-${100 / COPIES}%); }
+          to { transform: translateX(-${100 / copies}%); }
         }
-        .partners-track { animation: partnersTicker 45s linear infinite; }
+        .partners-track { animation: partnersTicker ${seconds}s linear infinite; }
         @media (prefers-reduced-motion: reduce) {
-          .partners-track { animation-duration: 180s; }
+          .partners-track { animation-duration: ${seconds * 4}s; }
         }
       `,
         }}

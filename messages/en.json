@@ -1,12 +1,4 @@
 {
-  "Header": {
-    "home": "Home",
-    "about": "About Takamol",
-    "services": "Services",
-    "platforms": "Platforms",
-    "knowledge": "Knowledge Center",
-    "join": "Join Now"
-  },
   "Hero": {
     "tagline": "Real estate expertise. Smart platforms. Informed decisions.",
     "title": "From land to opportunity, and from knowledge to decision.",
@@ -201,13 +193,35 @@
   },
   "Jobs": {
     "title": "Open Positions",
-    "subtitle": "Join the Takamol Advanced team"
+    "subtitle": "Join the Takamol Advanced team",
+    "apply": "Apply now",
+    "noJobs": "There are no open positions right now. You can send a general application with the form below."
   },
   "SubmitCV": {
-    "title": "Didn't find your role?",
-    "description": "If no current opening matches your qualifications, you can send us your CV and we will contact you when a suitable opportunity comes up.",
-    "button": "Email us your CV",
-    "hint": "Attach your CV (PDF or Word) and send it to",
+    "title": "Apply now",
+    "description": "Choose a position or send a general application, attach your CV, and we'll contact you when there's a suitable opportunity.",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Mobile number",
+    "position": "Position",
+    "general": "General application (no matching role)",
+    "linkedin": "LinkedIn profile (optional)",
+    "message": "About you (optional)",
+    "cv": "CV",
+    "cvChoose": "Choose your CV file",
+    "cvHint": "PDF or Word, up to 5 MB",
+    "consent": "I agree that Takamol Advanced may keep my details to review my application.",
+    "submit": "Submit application",
+    "sending": "Sending…",
+    "success": "Thank you, your application has been received. We'll contact you when there's a suitable opportunity.",
+    "another": "Send another application",
+    "errorRequired": "Please fill in your name and mobile number.",
+    "errorEmail": "Please enter a valid email address.",
+    "errorCv": "Please attach your CV as a PDF or Word file of up to 5 MB.",
+    "errorConsent": "Please agree to us keeping your details to review the application.",
+    "errorRate": "We've recently received several applications from your device. Please try again later.",
+    "errorGeneric": "We couldn't send your application. Please try again.",
+    "hint": "Or email your CV to",
     "mailSubject": "Job application - CV",
     "mailBody": "Name:\nDesired position:\nMobile number:\n\nPlease find my CV attached.\n"
   },

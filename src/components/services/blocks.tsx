@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/SiteImage";
 import { useTranslations } from "next-intl";
 
 type Item = { title: string; desc: string };

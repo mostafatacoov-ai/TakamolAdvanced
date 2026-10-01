@@ -1,12 +1,12 @@
 import { use } from "react";
 import { pageMetadata } from "@/lib/metadata";
-import Image from "next/image";
+import Image from "@/components/SiteImage";
 import { useTranslations, useLocale } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Benefits from "@/components/join/Benefits";
 import Jobs from "@/components/join/Jobs";
-import SubmitCV from "@/components/join/SubmitCV";
+import ApplySection from "@/components/join/ApplySection";
 import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = pageMetadata("join");
@@ -59,7 +59,7 @@ export default function JoinPage({ params }: { params: Promise<{ locale: string 
         <JoinHero />
         <Benefits />
         <Jobs />
-        <SubmitCV />
+        <ApplySection />
       </main>
       <Footer />
     </>

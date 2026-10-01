@@ -1,7 +1,8 @@
 import { use } from "react";
 import { useTranslations } from "next-intl";
 import { pageMetadata } from "@/lib/metadata";
-import { CONSULTANT_WHATSAPP } from "@/lib/contact";
+import { whatsappHref } from "@/lib/links";
+import { getSiteSettings } from "@/server/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductsOverview from "@/components/products/ProductsOverview";
@@ -42,7 +43,7 @@ export default function PlatformsPage({ params }: { params: Promise<{ locale: st
           primary={{ label: t("cta.forsa"), href: "/platforms/real-fursa" }}
           buttons={[
             { label: t("cta.invest"), href: "/platforms/real-invest" },
-            { label: t("cta.consultant"), href: CONSULTANT_WHATSAPP },
+            { label: t("cta.consultant"), href: whatsappHref(getSiteSettings().whatsapp) },
           ]}
         />
       </main>

@@ -4,6 +4,8 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from "@/navigation";
 import ScrollReveal from "@/components/ScrollReveal";
+import { AssetProvider } from "@/components/SiteImage";
+import { getAssetOverrides } from "@/server/images";
 import "../globals.css";
 
 type Params = { params: Promise<{ locale: string }> };
@@ -46,8 +48,10 @@ export default async function RootLayout({
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className="antialiased">
         <NextIntlClientProvider messages={messages}>
-          <ScrollReveal />
-          {children}
+          <AssetProvider overrides={getAssetOverrides()}>
+            <ScrollReveal />
+            {children}
+          </AssetProvider>
         </NextIntlClientProvider>
       </body>
     </html>

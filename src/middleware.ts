@@ -1,8 +1,9 @@
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './navigation';
+import { routing } from './routing';
 
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: ['/((?!api|_next|.*\\..*).*)']
+  // the admin area and uploaded files aren't localised pages
+  matcher: ['/((?!api|admin|media|_next|.*\\..*).*)']
 };

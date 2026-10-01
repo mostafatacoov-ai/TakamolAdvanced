@@ -24,3 +24,6 @@ next-env.d.ts
 
 # local AI tooling (not part of the site)
 .agents/
+
+# local database and uploads (production keeps them outside the app folder)
+/.data/

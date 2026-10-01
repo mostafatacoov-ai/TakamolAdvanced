@@ -1,5 +1,5 @@
 import { use } from "react";
-import Image from "next/image";
+import Image from "@/components/SiteImage";
 import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
