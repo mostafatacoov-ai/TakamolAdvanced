@@ -31,6 +31,8 @@ export default function Social() {
     return diff;
   };
 
+  // The side distances are CSS variables set per breakpoint on the carousel,
+  // not read from the window, so server and browser render the same markup.
   const getStyle = (index: number) => {
     const diff = getOffset(index);
     let translateX = "-50%";
@@ -44,33 +46,25 @@ export default function Social() {
       opacity = 1;
       zIndex = 30;
     } else if (diff === -1) {
-      translateX = "calc(-50% + 280px)";
+      translateX = "calc(-50% + var(--near))";
       scale = 0.7;
       opacity = 0.6;
       zIndex = 20;
     } else if (diff === 1) {
-      translateX = "calc(-50% - 280px)";
+      translateX = "calc(-50% - var(--near))";
       scale = 0.7;
       opacity = 0.6;
       zIndex = 20;
     } else if (diff === -2) {
-      translateX = "calc(-50% + 500px)";
+      translateX = "calc(-50% + var(--far))";
       scale = 0.5;
       opacity = 0.3;
       zIndex = 10;
     } else {
-      translateX = "calc(-50% - 500px)";
+      translateX = "calc(-50% - var(--far))";
       scale = 0.5;
       opacity = 0.3;
       zIndex = 10;
-    }
-
-    // Adjustments for mobile sizes
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-       if (diff === -1) translateX = "calc(-50% + 140px)";
-       if (diff === 1) translateX = "calc(-50% - 140px)";
-       if (diff === -2) translateX = "calc(-50% + 240px)";
-       if (diff === 2) translateX = "calc(-50% - 240px)";
     }
 
     return {
@@ -97,7 +91,7 @@ export default function Social() {
         </div>
 
         {/* Carousel Area */}
-        <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden flex items-center justify-center">
+        <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden flex items-center justify-center [--far:240px] [--near:140px] md:[--far:500px] md:[--near:280px]">
           {POSTS.map((p, i) => {
             const diff = getOffset(i);
             const isActive = diff === 0;
