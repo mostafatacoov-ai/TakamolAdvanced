@@ -33,8 +33,8 @@ export type Product = (typeof PRODUCTS)[number];
 
 /* satellite screenshot offsets around the bubble, per side */
 const SHOT_POS = {
-  start: ["-top-2 start-6", "top-[44%] -start-10 hidden sm:block", "-bottom-1 start-10"],
-  end: ["-top-2 end-6", "top-[44%] -end-10 hidden sm:block", "-bottom-1 end-10"],
+  start: ["-top-[0.5em] start-[1.5em]", "top-[44%] -start-[2.5em] hidden sm:block", "-bottom-[0.25em] start-[2.5em]"],
+  end: ["-top-[0.5em] end-[1.5em]", "top-[44%] -end-[2.5em] hidden sm:block", "-bottom-[0.25em] end-[2.5em]"],
 } as const;
 
 /* The bubble pair. `active` highlights the current product's bubble on
@@ -77,8 +77,9 @@ export function ProductBubbles({ active, embed = false }: { active?: number; emb
         </div>
       </div>
 
-      {/* phones & tablets */}
-      <div className="stagger container-tk relative mt-6 flex flex-col items-center gap-16 sm:flex-row sm:items-start sm:justify-center lg:hidden">
+      {/* phones & tablets: the two bubbles side by side in one row, sized
+          from the row's width (see .prod-row / .prod-bubble in globals.css) */}
+      <div className="prod-row stagger container-tk relative mt-4 flex items-start justify-between gap-3 sm:justify-evenly lg:hidden">
         {PRODUCTS.map((p, i) => (
           <ProductBubble key={p.key} product={p} index={i} active={i === active} />
         ))}
@@ -87,17 +88,19 @@ export function ProductBubbles({ active, embed = false }: { active?: number; emb
   );
 }
 
+/* Everything inside the bubble is measured in em, so one font-size on the
+   root (.prod-bubble) scales the whole bubble: 1em = 16px at 340px. */
 export function ProductBubble({ product, index, active = false }: { product: Product; index: number; active?: boolean }) {
   const t = useTranslations("OurProducts");
   const gid = `prodGrad${index}`;
 
   return (
-    <div className="flex w-[340px] max-w-full flex-col items-center">
+    <div className="prod-bubble flex w-[21.25em] max-w-full flex-col items-center">
       <div className="relative">
         <Link
           href={product.href}
           aria-current={active ? "page" : undefined}
-          className="pin-float group relative flex h-[340px] w-[340px] items-end justify-center pb-10 transition-transform duration-500 hover:scale-[1.03]"
+          className="pin-float group relative flex h-[21.25em] w-[21.25em] items-end justify-center pb-[2.5em] transition-transform duration-500 hover:scale-[1.03]"
           style={{ animationDelay: `${index * -2.6}s` }}
         >
           <span aria-hidden className="glow-halo absolute inset-[2px] rounded-full" style={{ animationDelay: `${index * -2}s` }} />
@@ -105,10 +108,10 @@ export function ProductBubble({ product, index, active = false }: { product: Pro
           {/* photo body */}
           <span
             aria-hidden
-            className={`absolute inset-[12px] overflow-hidden rounded-full transition-shadow duration-500 ${
+            className={`absolute inset-[0.75em] overflow-hidden rounded-full transition-shadow duration-500 ${
               active
-                ? "shadow-[0_26px_55px_rgba(0,5,15,.55),0_0_60px_rgba(0,180,172,.35)]"
-                : "shadow-[0_26px_55px_rgba(0,5,15,.55)] group-hover:shadow-[0_26px_55px_rgba(0,5,15,.55),0_0_45px_rgba(0,180,172,.2)]"
+                ? "shadow-[0_1.6em_3.4em_rgba(0,5,15,.55),0_0_3.75em_rgba(0,180,172,.35)]"
+                : "shadow-[0_1.6em_3.4em_rgba(0,5,15,.55)] group-hover:shadow-[0_1.6em_3.4em_rgba(0,5,15,.55),0_0_2.8em_rgba(0,180,172,.2)]"
             }`}
           >
             <Image
@@ -147,10 +150,10 @@ export function ProductBubble({ product, index, active = false }: { product: Pro
           </svg>
 
           {/* content */}
-          <span className="relative flex max-w-[250px] flex-col items-center text-center transition-transform duration-500 group-hover:-translate-y-0.5">
-            <span className={`text-[21px] font-bold leading-[1.45] ${active ? "text-teal-cyan" : "text-white"}`}>{t(`${product.key}Title`)}</span>
-            <span className="mt-1.5 text-[13.5px] font-light leading-[1.8] text-iceblue/90">{t(`${product.key}Tag`)}</span>
-            <span aria-hidden className="mt-3 h-0 w-0 border-x-[9px] border-t-[10px] border-x-transparent border-t-teal-cyan" />
+          <span className="relative flex max-w-[15.6em] flex-col items-center text-center transition-transform duration-500 group-hover:-translate-y-0.5">
+            <span className={`prod-title font-bold leading-[1.45] ${active ? "text-teal-cyan" : "text-white"}`}>{t(`${product.key}Title`)}</span>
+            <span className="prod-tag mt-[0.4em] font-light leading-[1.8] text-iceblue/90">{t(`${product.key}Tag`)}</span>
+            <span aria-hidden className="mt-[0.75em] h-0 w-0 border-x-[0.5625em] border-t-[0.625em] border-x-transparent border-t-teal-cyan" />
           </span>
         </Link>
 
@@ -159,7 +162,7 @@ export function ProductBubble({ product, index, active = false }: { product: Pro
           <span
             key={src}
             aria-hidden
-            className={`pin-float absolute z-10 h-[84px] w-[84px] overflow-hidden rounded-full border-2 border-teal/50 bg-navy shadow-[0_10px_30px_rgba(0,10,20,.5),0_0_20px_rgba(0,180,172,.25)] ${SHOT_POS[product.side][s]}`}
+            className={`pin-float absolute z-10 h-[5.25em] w-[5.25em] overflow-hidden rounded-full border-2 border-teal/50 bg-navy shadow-[0_10px_30px_rgba(0,10,20,.5),0_0_20px_rgba(0,180,172,.25)] ${SHOT_POS[product.side][s]}`}
             style={{ animationDelay: `${(index * 3 + s) * -1.7}s` }}
           >
             <Image src={src} alt="" fill sizes="84px" className="object-cover" />
@@ -167,7 +170,7 @@ export function ProductBubble({ product, index, active = false }: { product: Pro
         ))}
       </div>
 
-      <p className="mt-5 max-w-[320px] text-center text-[14px] leading-[1.9] text-steel md:text-[15px]">{t(`${product.key}Desc`)}</p>
+      <p className="prod-desc mt-4 max-w-[20em] text-center leading-[1.8] text-steel md:mt-5">{t(`${product.key}Desc`)}</p>
     </div>
   );
 }

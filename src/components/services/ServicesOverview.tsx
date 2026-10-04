@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "@/components/SiteImage";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
@@ -11,19 +12,104 @@ export const SERVICE_LINKS = [
   "/services/real-estate-brokerage",
 ];
 
-/* Where each bubble sits in the 3-over-2 arrangement on desktop, as % of the
-   stage (reading-direction start first, so RTL starts on the right). */
-const PIN_POS = [
-  { x: 16, y: 26 },
-  { x: 34, y: 72 },
-  { x: 50, y: 26 },
-  { x: 66, y: 72 },
-  { x: 84, y: 26 },
-];
+/* ── Geometry of the bubble chain, in design units ─────────────────────
+   Measured from the design: bubbles of radius 100 whose centres sit 194
+   apart on both axes, so the ribbon runs at 45°. The ribbon is a pair of
+   parallel lines tangent to each neighbouring pair of bubbles, wrapping
+   around each bubble as an arc of radius 112: half a turn on the two end
+   bubbles, three quarters on the middle ones. Neighbouring lines cross in
+   an X between the bubbles. */
+type Pt = { x: number; y: number };
+type Layout = { w: number; h: number; centers: Pt[] };
 
-/* Rotation of each bubble's crescent + outer arc, so the highlight travels
-   around the chain like in the design. */
-const ARC_ROT = [205, 25, 155, 335, 65];
+const R = 100;
+const D = 112;
+const STEP = 194;
+const IDX = [0, 1, 2, 3, 4];
+
+/* Desktop: three bubbles over two. Reading-direction start first, so the
+   chain starts on the right in Arabic (the SVG is mirrored for RTL). */
+const WIDE: Layout = {
+  w: 130 * 2 + STEP * 4,
+  h: 130 * 2 + STEP,
+  centers: IDX.map((i) => ({ x: 130 + i * STEP, y: i % 2 ? 130 + STEP : 130 })),
+};
+
+/* Phones and tablets: three rows (two, two, one) so the chain stays short.
+   The ribbon snakes through them with right-angle turns; the pitch equals
+   the ribbon's width (2 × D) so the inner lines of one turn continue
+   straight into the next. */
+const PITCH = D * 2;
+const TALL_COLS = [118, 118 + PITCH];
+const TALL: Layout = {
+  w: 118 * 2 + PITCH,
+  h: 118 * 2 + PITCH * 2,
+  centers: [
+    { x: TALL_COLS[0], y: 118 },
+    { x: TALL_COLS[1], y: 118 },
+    { x: TALL_COLS[1], y: 118 + PITCH },
+    { x: TALL_COLS[0], y: 118 + PITCH },
+    { x: TALL_COLS[0], y: 118 + PITCH * 2 },
+  ],
+};
+
+const TAU = Math.PI * 2;
+const f = (n: number) => (Math.round(n * 10) / 10).toString();
+const unit = (v: Pt): Pt => {
+  const l = Math.hypot(v.x, v.y);
+  return { x: v.x / l, y: v.y / l };
+};
+const move = (p: Pt, v: Pt, k: number): Pt => ({ x: p.x + v.x * k, y: p.y + v.y * k });
+const diff = (a: Pt, b: Pt): Pt => ({ x: a.x - b.x, y: a.y - b.y });
+const angleOf = (c: Pt, p: Pt) => Math.atan2(p.y - c.y, p.x - c.x);
+const mod = (a: number) => ((a % TAU) + TAU) % TAU;
+
+/* Arc of radius r around c from s to e, going round the side that `via`
+   (a unit vector from c) points to. */
+function arc(c: Pt, r: number, s: Pt, e: Pt, via: Pt) {
+  const start = angleOf(c, s);
+  const cw = mod(angleOf(c, e) - start);
+  const viaAt = mod(Math.atan2(via.y, via.x) - start);
+  const sweep = viaAt < cw ? 1 : 0;
+  const span = sweep ? cw : TAU - cw;
+  return `M${f(s.x)} ${f(s.y)}A${f(r)} ${f(r)} 0 ${span > Math.PI ? 1 : 0} ${sweep} ${f(e.x)} ${f(e.y)}`;
+}
+
+function ribbon(centers: Pt[], d: number) {
+  const last = centers.length - 1;
+  // unit normal of each segment between neighbouring centres
+  const normals = centers.slice(1).map((c, i) => {
+    const u = unit(diff(c, centers[i]));
+    return { x: -u.y, y: u.x };
+  });
+
+  const lines = normals.flatMap((n, i) =>
+    [d, -d].map((k) => {
+      const p = move(centers[i], n, k);
+      const q = move(centers[i + 1], n, k);
+      return `M${f(p.x)} ${f(p.y)}L${f(q.x)} ${f(q.y)}`;
+    })
+  );
+
+  const arcs = centers.map((c, i) => {
+    if (i === 0 || i === last) {
+      const n = normals[i === 0 ? 0 : last - 1];
+      const neighbour = centers[i === 0 ? 1 : last - 1];
+      return arc(c, d, move(c, n, d), move(c, n, -d), unit(diff(c, neighbour)));
+    }
+    // middle bubble: the arc skips the wedge facing both neighbours
+    const toPrev = unit(diff(centers[i - 1], c));
+    const toNext = unit(diff(centers[i + 1], c));
+    const inward = unit({ x: toPrev.x + toNext.x, y: toPrev.y + toNext.y });
+    const inner = [normals[i - 1], normals[i]].map((n) => {
+      const p = move(c, n, d);
+      return (p.x - c.x) * inward.x + (p.y - c.y) * inward.y > 0 ? p : move(c, n, -d);
+    });
+    return arc(c, d, inner[0], inner[1], { x: -inward.x, y: -inward.y });
+  });
+
+  return { lines: lines.join(""), arcs: arcs.join("") };
+}
 
 /* "خدمتنا" intro + the five service bubbles. On a service page, `active`
    highlights that service's bubble. */
@@ -87,139 +173,80 @@ export default function ServicesOverview({ active }: { active?: number }) {
    `embed` renders a plain div so the scroll-reveal treats the parent
    section as one unit. */
 export function ServiceBubbles({ active, embed = false }: { active?: number; embed?: boolean }) {
-  const t = useTranslations("ServicesOverview");
   const Root = embed ? "div" : "section";
   return (
-    <>
-      {/* ── service bubbles ──────────────────────────────── */}
-      <Root className={`relative overflow-hidden ${embed ? "py-2" : "py-10 md:py-14"}`}>
-        <div className="pointer-events-none absolute inset-0 opacity-[0.06] binary-bg" />
-
-        {/* desktop: 3-over-2 bubbles threaded by thin diagonal lines */}
-        <div className="container-tk relative hidden lg:block">
-          <div className="stagger relative h-[620px]">
-            <svg
-              aria-hidden
-              className="absolute inset-0 h-full w-full rtl:-scale-x-100"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <g stroke="rgba(214,233,242,.28)" strokeWidth="1.2" fill="none">
-                <polyline points="-4,78 16,26 34,72 50,26 66,72 84,26 104,78" vectorEffect="non-scaling-stroke" />
-                <polyline points="-4,-10 16,26 34,72" vectorEffect="non-scaling-stroke" />
-                <polyline points="66,72 84,26 104,-10" vectorEffect="non-scaling-stroke" />
-                <polyline points="34,72 26,110" vectorEffect="non-scaling-stroke" />
-                <polyline points="66,72 74,110" vectorEffect="non-scaling-stroke" />
-              </g>
-              {/* light pulses travelling along the lines */}
-              <g stroke="rgba(68,197,207,.9)" strokeWidth="1.6" fill="none" strokeLinecap="round">
-                <polyline className="line-flow" pathLength={100} points="-4,78 16,26 34,72 50,26 66,72 84,26 104,78" vectorEffect="non-scaling-stroke" />
-                <polyline className="line-flow" pathLength={100} points="-4,-10 16,26 34,72" vectorEffect="non-scaling-stroke" style={{ animationDelay: "-2.4s" }} />
-                <polyline className="line-flow" pathLength={100} points="66,72 84,26 104,-10" vectorEffect="non-scaling-stroke" style={{ animationDelay: "-4.8s" }} />
-              </g>
-            </svg>
-            {SERVICE_LINKS.map((href, i) => (
-              <div
-                key={href}
-                className="absolute -translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2"
-                style={{ insetInlineStart: `${PIN_POS[i].x}%`, top: `${PIN_POS[i].y}%` }}
-              >
-                <Pin href={href} index={i} active={i === active} title={t(`items.${i}.title`)} tagline={t(`items.${i}.tagline`)} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* phones & tablets: simple grid */}
-        <div className="stagger container-tk relative grid grid-cols-1 justify-items-center gap-10 py-4 sm:grid-cols-2 lg:hidden">
-          {SERVICE_LINKS.map((href, i) => (
-            <Pin key={href} href={href} index={i} active={i === active} title={t(`items.${i}.title`)} tagline={t(`items.${i}.tagline`)} />
-          ))}
-        </div>
-      </Root>
-    </>
+    <Root className={`relative overflow-hidden ${embed ? "py-4" : "py-10 md:py-14"}`}>
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06] binary-bg" />
+      <div className="container-tk relative">
+        <Stage layout={WIDE} active={active} className="hidden lg:block" />
+        <Stage layout={TALL} active={active} className="mx-auto max-w-[460px] lg:hidden" />
+      </div>
+    </Root>
   );
 }
 
-/* One service bubble, as in the design: a dark circle with a thin ring,
-   a brighter teal crescent, and an outer arc suggesting the path that
-   threads the chain. Floats gently; the active page's bubble glows. */
-function Pin({
-  href,
-  index,
-  active,
-  title,
-  tagline,
-}: {
-  href: string;
-  index: number;
-  active: boolean;
-  title: string;
-  tagline: string;
-}) {
-  const gid = `pinGrad${index}`;
+/* The bubbles laid over the ribbon. Everything is sized from the stage
+   width (see .svc-* in globals.css), so the picture scales as one piece. */
+function Stage({ layout, active, className }: { layout: Layout; active?: number; className: string }) {
+  const t = useTranslations("ServicesOverview");
+  const { w, h, centers } = layout;
+  const { lines, arcs } = ribbon(centers, D);
+  const style = { aspectRatio: `${w} / ${h}`, "--r": `${(R / w) * 100}cqw` } as CSSProperties;
+
+  return (
+    <div className={`svc-stage stagger relative w-full ${className}`} style={style}>
+      <svg
+        aria-hidden
+        viewBox={`0 0 ${w} ${h}`}
+        className="absolute inset-0 h-full w-full overflow-visible rtl:-scale-x-100"
+      >
+        <g fill="none" strokeWidth="1.4" strokeLinecap="round">
+          <path d={arcs} stroke="rgba(70,190,200,.5)" vectorEffect="non-scaling-stroke" />
+          <path d={lines} stroke="rgba(70,190,200,.55)" vectorEffect="non-scaling-stroke" />
+        </g>
+        {/* light pulses travelling along the ribbon */}
+        <g fill="none" stroke="rgba(120,225,235,.95)" strokeWidth="1.8" strokeLinecap="round">
+          <path className="line-flow" pathLength={100} d={lines} vectorEffect="non-scaling-stroke" />
+          <path className="line-flow" pathLength={100} d={lines} vectorEffect="non-scaling-stroke" style={{ animationDelay: "-3.5s" }} />
+        </g>
+      </svg>
+
+      {centers.map((c, i) => (
+        <div
+          key={SERVICE_LINKS[i]}
+          className="absolute -translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2"
+          style={{ insetInlineStart: `${(c.x / w) * 100}%`, top: `${(c.y / h) * 100}%` }}
+        >
+          <Pin href={SERVICE_LINKS[i]} active={i === active} title={t(`items.${i}.title`)} tagline={t(`items.${i}.tagline`)} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* One service bubble, as in the design: a navy disc with a thin teal ring
+   and a shadow falling to the bottom-left; inside, the bold title over a
+   short teal rule, the tagline, and a small teal triangle. */
+function Pin({ href, active, title, tagline }: { href: string; active: boolean; title: string; tagline: string }) {
   return (
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className="pin-float group relative flex h-[270px] w-[270px] items-center justify-center transition-transform duration-500 hover:scale-[1.04]"
-      style={{ animationDelay: `${index * -1.3}s` }}
+      className={`svc-pin group relative flex items-center justify-center rounded-full bg-navy ${active ? "svc-pin-active" : ""}`}
     >
-      {/* breathing teal halo behind the bubble */}
+      {active && <span aria-hidden className="glow-halo absolute inset-[8%] rounded-full" />}
+      {/* thin ring at the disc's edge */}
       <span
         aria-hidden
-        className="glow-halo absolute inset-[2px] rounded-full"
-        style={{ animationDelay: `${index * -1.9}s` }}
-      />
-      {/* body */}
-      <span
-        aria-hidden
-        className={`absolute inset-[10px] rounded-full bg-[radial-gradient(circle_at_50%_18%,#0d4459_0%,#083247_55%,#041e2d_100%)] transition-shadow duration-500 ${
-          active
-            ? "shadow-[0_26px_55px_rgba(0,5,15,.55),0_0_60px_rgba(0,180,172,.3)]"
-            : "shadow-[0_26px_55px_rgba(0,5,15,.55)] group-hover:shadow-[0_26px_55px_rgba(0,5,15,.55),0_0_45px_rgba(0,180,172,.2)]"
+        className={`absolute inset-0 rounded-full border-[1.5px] transition-colors duration-500 ${
+          active ? "border-teal-cyan" : "border-teal/60 group-hover:border-teal-cyan"
         }`}
       />
-      {/* rings */}
-      <svg aria-hidden viewBox="0 0 272 272" className="absolute inset-0 h-full w-full">
-        <defs>
-          <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#44C5CF" />
-            <stop offset="1" stopColor="#00B4AC" stopOpacity="0.15" />
-          </linearGradient>
-        </defs>
-        {/* thin full ring at the body's edge */}
-        <circle cx="136" cy="136" r="126" fill="none" stroke="rgba(0,180,172,.35)" strokeWidth="1.5" />
-        {/* brighter crescent on the ring, drifting slowly */}
-        <g className="arc-spin-slow">
-          <g transform={`rotate(${ARC_ROT[index]} 136 136)`}>
-            <circle
-              cx="136" cy="136" r="126" fill="none"
-              stroke={`url(#${gid})`}
-              strokeWidth={active ? 5 : 3.5}
-              strokeLinecap="round"
-              strokeDasharray="300 492"
-              className={active ? undefined : "opacity-80"}
-            />
-          </g>
-        </g>
-        {/* outer thin arc: the path looping around the bubble, orbiting */}
-        <g className="arc-spin">
-          <g transform={`rotate(${ARC_ROT[index] + 140} 136 136)`}>
-            <circle
-              cx="136" cy="136" r="134" fill="none"
-              stroke="rgba(120,200,205,.4)" strokeWidth="1.2"
-              strokeDasharray="340 502" strokeLinecap="round"
-            />
-          </g>
-        </g>
-      </svg>
-
-      {/* content */}
-      <span className="relative flex max-w-[190px] flex-col items-center text-center transition-transform duration-500 group-hover:-translate-y-0.5">
-        <span className={`text-[17px] font-bold leading-[1.55] ${active ? "text-teal-cyan" : "text-white"}`}>{title}</span>
-        <span className="mt-2.5 text-[13px] font-light leading-[1.8] text-iceblue/90">{tagline}</span>
-        <span aria-hidden className="mt-3.5 h-0 w-0 border-x-[9px] border-t-[10px] border-x-transparent border-t-teal-cyan" />
+      <span className="svc-pin-body relative flex flex-col items-center text-center">
+        <span className={`svc-title font-bold ${active ? "text-teal-cyan" : "text-white"}`}>{title}</span>
+        <span aria-hidden className="svc-rule bg-teal" />
+        <span className="svc-tag font-light text-white/90">{tagline}</span>
+        <span aria-hidden className="svc-tri" />
       </span>
     </Link>
   );
