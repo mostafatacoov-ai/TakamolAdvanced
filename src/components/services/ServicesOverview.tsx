@@ -35,21 +35,24 @@ const WIDE: Layout = {
   centers: IDX.map((i) => ({ x: 130 + i * STEP, y: i % 2 ? 130 + STEP : 130 })),
 };
 
-/* Phones and tablets: three rows (two, two, one) so the chain stays short.
-   The ribbon snakes through them with right-angle turns; the pitch equals
-   the ribbon's width (2 × D) so the inner lines of one turn continue
-   straight into the next. */
-const PITCH = D * 2;
-const TALL_COLS = [118, 118 + PITCH];
+/* Phones and tablets: three rows (two, two, one centred) so the chain stays
+   short. The ribbon snakes through the first four with right-angle turns;
+   the row gap equals the ribbon's width (2 × D) so the inner lines of one
+   turn continue straight into the next. The columns are a little wider so
+   the last, diagonal segment down to the centred bubble passes tangent to
+   the arc of the bubble beside it instead of behind it. */
+const TALL_COL = 250;
+const TALL_ROW = D * 2;
+const TALL_X = [118, 118 + TALL_COL];
 const TALL: Layout = {
-  w: 118 * 2 + PITCH,
-  h: 118 * 2 + PITCH * 2,
+  w: 118 * 2 + TALL_COL,
+  h: 118 * 2 + TALL_ROW + TALL_COL,
   centers: [
-    { x: TALL_COLS[0], y: 118 },
-    { x: TALL_COLS[1], y: 118 },
-    { x: TALL_COLS[1], y: 118 + PITCH },
-    { x: TALL_COLS[0], y: 118 + PITCH },
-    { x: TALL_COLS[0], y: 118 + PITCH * 2 },
+    { x: TALL_X[0], y: 118 },
+    { x: TALL_X[1], y: 118 },
+    { x: TALL_X[1], y: 118 + TALL_ROW },
+    { x: TALL_X[0], y: 118 + TALL_ROW },
+    { x: 118 + TALL_COL / 2, y: 118 + TALL_ROW + TALL_COL },
   ],
 };
 
@@ -179,7 +182,7 @@ export function ServiceBubbles({ active, embed = false }: { active?: number; emb
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] binary-bg" />
       <div className="container-tk relative">
         <Stage layout={WIDE} active={active} className="hidden lg:block" />
-        <Stage layout={TALL} active={active} className="mx-auto max-w-[460px] lg:hidden" />
+        <Stage layout={TALL} active={active} className="mx-auto max-w-[486px] lg:hidden" />
       </div>
     </Root>
   );
