@@ -62,10 +62,12 @@ Environment variables:
 | `ADMIN_SETUP_TOKEN` | to create the first admin | Any long secret phrase. `/admin/setup` asks for it in production; once the first administrator exists, setup is closed for good. |
 | `NEXT_PUBLIC_SITE_URL` | optional | The live address (default `https://takamoladvanced.sa`), used in the sitemap, `robots.txt` and link previews. Read at build time. |
 | `DATA_DIR` | optional | Where the database and uploaded files live. Defaults to `takamol-data` in the hosting account's home folder, outside the app, so redeploying from Git never touches it. |
-| `SMTP_HOST` | for email notifications | The outgoing mail server, e.g. `smtp.hostinger.com`. Without it (or `SMTP_PASS`) nothing is sent and a line is logged instead. |
+| `ZOHO_API_KEY` | for email notifications | A ZeptoMail "Send Mail Token" (Zoho's transactional email service). The sender's domain must be verified in ZeptoMail. Used in preference to SMTP. |
+| `ZOHO_API_URL` | optional | Defaults to `https://api.zeptomail.com/v1.1/email`; change the host for an EU/IN/AU/CN ZeptoMail account (e.g. `api.zeptomail.eu`). |
+| `SMTP_HOST` | alternative to `ZOHO_API_KEY` | An outgoing mail server, e.g. `smtp.zoho.com` or `smtp.hostinger.com`. Without either option nothing is sent and a line is logged instead. |
 | `SMTP_PORT` | optional | Defaults to `465` (SSL). Use `587` for STARTTLS. |
 | `SMTP_USER` | optional | The mailbox to sign in as. Defaults to `MAIL_FROM`. |
-| `SMTP_PASS` | for email notifications | That mailbox's password. |
+| `SMTP_PASS` | with `SMTP_HOST` | That mailbox's password (for Zoho Mail, an app-specific password). |
 | `MAIL_FROM` | optional | The sender address, default `info@takamoladvanced.sa`. |
 | `NOTIFY_EMAIL` | optional | Who receives a notification for every new job application and quotation brief, default `pm@takamoladvanced.sa`. |
 | `SERVER_ACTIONS_ORIGINS` | only if saving fails behind a proxy | Comma-separated host names allowed to submit admin forms, e.g. `takamoladvanced.sa,www.takamoladvanced.sa`. |

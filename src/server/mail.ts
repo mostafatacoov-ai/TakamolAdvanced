@@ -4,8 +4,9 @@ import { formatMoney, type QuotationRecord } from "@/lib/quotation";
 import type { ApplicationRecord } from "./applications";
 
 /* Email notifications to the team when something is submitted on the site.
-   Sending needs an SMTP mailbox (see README › Environment variables); when
-   none is configured the submission still succeeds and a line is logged. */
+   They go out through Zoho's ZeptoMail API when ZOHO_API_KEY is set, or an
+   SMTP mailbox otherwise (see README › Environment variables). When neither
+   is configured the submission still succeeds and a line is logged. */
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://takamoladvanced.sa").replace(/\/$/, "");
 
@@ -13,6 +14,29 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://takamoladvanced.s
 export const NOTIFY_TO = process.env.NOTIFY_EMAIL || "pm@takamoladvanced.sa";
 /** The mailbox the notifications come from (and sign in as, unless SMTP_USER differs). */
 export const MAIL_FROM = process.env.MAIL_FROM || process.env.SMTP_USER || "info@takamoladvanced.sa";
+
+/** Zoho ZeptoMail: a "Send Mail Token" from the ZeptoMail console. */
+const ZOHO_API_KEY = process.env.ZOHO_API_KEY;
+const ZOHO_API_URL = process.env.ZOHO_API_URL || "https://api.zeptomail.com/v1.1/email";
+
+async function sendWithZoho(subject: string, body: { html: string; text: string }) {
+  const response = await fetch(ZOHO_API_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Zoho-enczapikey ${ZOHO_API_KEY}`,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      from: { address: MAIL_FROM, name: "Takamol Advanced" },
+      to: NOTIFY_TO.split(",").map((address) => ({ email_address: { address: address.trim() } })),
+      subject,
+      htmlbody: body.html,
+      textbody: body.text,
+    }),
+  });
+  if (!response.ok) throw new Error(`ZeptoMail ${response.status}: ${(await response.text()).slice(0, 500)}`);
+}
 
 function transport() {
   const host = process.env.SMTP_HOST;
@@ -60,12 +84,16 @@ function render(title: string, rows: Row[], links: { label: string; href: string
 }
 
 async function send(subject: string, body: { html: string; text: string }) {
-  const t = transport();
-  if (!t) {
-    console.warn(`[mail] not configured (SMTP_HOST / SMTP_PASS missing): would have sent "${subject}" to ${NOTIFY_TO}`);
-    return;
-  }
   try {
+    if (ZOHO_API_KEY) {
+      await sendWithZoho(subject, body);
+      return;
+    }
+    const t = transport();
+    if (!t) {
+      console.warn(`[mail] not configured (ZOHO_API_KEY or SMTP_HOST / SMTP_PASS missing): would have sent "${subject}" to ${NOTIFY_TO}`);
+      return;
+    }
     await t.sendMail({ from: `"Takamol Advanced" <${MAIL_FROM}>`, to: NOTIFY_TO, subject, ...body });
   } catch (error) {
     console.error("[mail] failed to send", subject, error);
