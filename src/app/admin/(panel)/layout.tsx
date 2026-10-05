@@ -5,6 +5,7 @@ import { Banner } from "@/components/admin/ui";
 import { pick } from "@/lib/site-types";
 import { getAdminLang, getAdminT } from "@/server/admin-lang";
 import { countNewApplications } from "@/server/applications";
+import { countDraftReports } from "@/server/kpi";
 import { countNewQuotations } from "@/server/quotations";
 import { can, requireUser } from "@/server/auth";
 
@@ -45,6 +46,14 @@ export default async function PanelLayout({ children }: { children: ReactNode })
         can(user, "quotations.view") && {
           href: "/admin/quotations", label: t("nav.quotations"), icon: "quotes", badge: countNewQuotations(),
         },
+      ),
+    },
+    {
+      label: t("nav.group.kpi"),
+      items: only(
+        can(user, "kpi.view") && { href: "/admin/kpi", label: t("nav.kpi"), icon: "kpi", badge: countDraftReports() },
+        can(user, "kpi.view") && { href: "/admin/kpi/people", label: t("nav.kpiPeople"), icon: "users" },
+        can(user, "kpi.manage") && { href: "/admin/kpi/team", label: t("nav.kpiTeam"), icon: "partners" },
       ),
     },
     {

@@ -12,6 +12,7 @@ import { countEditedTexts } from "@/server/content";
 import { countReplacedImages } from "@/server/images";
 import { countOpenJobs } from "@/server/jobs";
 import { countPages } from "@/server/pages";
+import { countDraftReports } from "@/server/kpi";
 import { countNewQuotations } from "@/server/quotations";
 import { countUsers } from "@/server/users";
 
@@ -35,6 +36,9 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
         )}
         {can(user, "quotations.view") && (
           <StatCard label={t("dash.newQuotations")} value={countNewQuotations()} href="/admin/quotations?status=new" icon="quotes" tone="amber" />
+        )}
+        {can(user, "kpi.view") && (
+          <StatCard label={t("dash.draftReports")} value={countDraftReports()} href="/admin/kpi?status=draft" icon="kpi" tone="blue" />
         )}
         {can(user, "jobs.manage") && (
           <StatCard label={t("dash.openJobs")} value={countOpenJobs()} href="/admin/jobs" icon="jobs" tone="blue" />

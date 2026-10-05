@@ -10,6 +10,8 @@ export const PERMISSIONS = [
   "applications.manage",
   "quotations.view",
   "quotations.manage",
+  "kpi.view",
+  "kpi.manage",
   "settings.manage",
   "users.manage",
   "roles.manage",
@@ -18,10 +20,11 @@ export const PERMISSIONS = [
 
 export type Permission = (typeof PERMISSIONS)[number];
 
-export const PERMISSION_GROUPS: { key: "content" | "careers" | "sales" | "admin"; permissions: Permission[] }[] = [
+export const PERMISSION_GROUPS: { key: "content" | "careers" | "sales" | "kpi" | "admin"; permissions: Permission[] }[] = [
   { key: "content", permissions: ["content.edit", "media.manage", "pages.manage", "navigation.manage"] },
   { key: "careers", permissions: ["jobs.manage", "applications.view", "applications.manage"] },
   { key: "sales", permissions: ["quotations.view", "quotations.manage"] },
+  { key: "kpi", permissions: ["kpi.view", "kpi.manage"] },
   { key: "admin", permissions: ["settings.manage", "users.manage", "roles.manage", "activity.view"] },
 ];
 

@@ -20,4 +20,9 @@ export const QUOTATION_TONE: Record<string, Tone> = {
   declined: "gray",
 };
 
+export const REPORT_TONE: Record<string, Tone> = { draft: "amber", approved: "green" };
+export const reportStatusKey = (status: string) => `kpi.status.${status}` as AdminKey;
+
+export const RATING_TONE: Record<string, Tone> = { excellent: "green", veryGood: "teal", good: "blue", fair: "amber", weak: "rose" };
+
 export const quotationStatusKey = (status: string) => `quotes.status.${status}` as AdminKey;

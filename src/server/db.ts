@@ -1,12 +1,13 @@
 import "server-only";
 import { DatabaseSync, type SQLInputValue, type StatementSync } from "node:sqlite";
 import { DB_FILE, ensureDataDirs } from "./paths";
+import { seedKpi } from "./kpi-seed";
 import { seed } from "./seed";
 
 /* SQLite through Node's built-in driver (no native packages to install).
    One connection per process; statements are prepared once and reused. */
 
-const MIGRATIONS: string[] = [
+const MIGRATIONS: (string | ((db: DatabaseSync) => void))[] = [
   `
   CREATE TABLE roles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -193,6 +194,61 @@ const MIGRATIONS: string[] = [
   );
   CREATE INDEX quotation_files_quotation ON quotation_files(quotation_id);
   `,
+  (db) => {
+    db.exec(`
+      CREATE TABLE departments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        name_en TEXT NOT NULL DEFAULT '',
+        sort_order INTEGER NOT NULL DEFAULT 0,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      );
+      CREATE TABLE employees (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        department_id INTEGER NOT NULL REFERENCES departments(id) ON DELETE CASCADE,
+        name TEXT NOT NULL,
+        title TEXT NOT NULL DEFAULT '',
+        active INTEGER NOT NULL DEFAULT 1,
+        sort_order INTEGER NOT NULL DEFAULT 0,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      );
+      CREATE INDEX employees_department ON employees(department_id, sort_order);
+      CREATE TABLE kpi_reports (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        department_id INTEGER NOT NULL REFERENCES departments(id) ON DELETE CASCADE,
+        period TEXT NOT NULL,
+        title TEXT NOT NULL DEFAULT '',
+        status TEXT NOT NULL DEFAULT 'draft',
+        content TEXT NOT NULL DEFAULT '{}',
+        score REAL,
+        updated_by INTEGER,
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+        UNIQUE (department_id, period)
+      );
+      CREATE TABLE kpi_evaluations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        report_id INTEGER NOT NULL REFERENCES kpi_reports(id) ON DELETE CASCADE,
+        employee_id INTEGER NOT NULL REFERENCES employees(id) ON DELETE CASCADE,
+        name TEXT NOT NULL DEFAULT '',
+        title TEXT NOT NULL DEFAULT '',
+        highlights TEXT NOT NULL DEFAULT '[]',
+        kpis TEXT NOT NULL DEFAULT '[]',
+        score REAL,
+        sort_order INTEGER NOT NULL DEFAULT 0,
+        UNIQUE (report_id, employee_id)
+      );
+      CREATE INDEX kpi_evaluations_employee ON kpi_evaluations(employee_id);
+      UPDATE roles SET permissions = json_insert(permissions, '$[#]', 'kpi.view')
+        WHERE key = 'site_manager'
+          AND NOT EXISTS (SELECT 1 FROM json_each(roles.permissions) WHERE value = 'kpi.view');
+      UPDATE roles SET permissions = json_insert(permissions, '$[#]', 'kpi.manage')
+        WHERE key = 'site_manager'
+          AND NOT EXISTS (SELECT 1 FROM json_each(roles.permissions) WHERE value = 'kpi.manage');
+    `);
+    // the departments, team and August 2026 reports the module was built from
+    seedKpi(db);
+  },
 ];
 
 type Connection = { db: DatabaseSync; statements: Map<string, StatementSync> };
@@ -218,7 +274,9 @@ function migrate(db: DatabaseSync) {
       // re-read under the write lock: a parallel build worker may have migrated
       const v = version();
       if (v < MIGRATIONS.length) {
-        db.exec(MIGRATIONS[v]);
+        const step = MIGRATIONS[v];
+        if (typeof step === "string") db.exec(step);
+        else step(db);
         if (v === 0) seed(db);
         db.prepare(
           "INSERT INTO meta (key, value) VALUES ('schema_version', ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
