@@ -1473,7 +1473,21 @@
       "confidential": "Internal document for the sales team and the Studies & Consulting Department",
       "company": "Takamol Advanced Company",
       "signature": "Sales representative signature",
-      "approval": "Studies & Consulting Department approval"
-    }
+      "approval": "Studies & Consulting Department approval",
+      "attachmentsNote": "Attachments are kept with the brief and can be downloaded from its link or the admin area."
+    },
+    "salesPersonChoose": "Choose the sales representative",
+    "amountFrom": "From",
+    "amountTo": "To",
+    "amountRangeHint": "Enter a single price, or a lower and upper limit for the price range.",
+    "range": "{from} – {to}",
+    "attachments": "Attachments",
+    "attachmentsHint": "Title deed, survey plan, coordinates, photos… up to 10 files of 10 MB each (PDF, images, Word, Excel, KML/KMZ, DWG, ZIP).",
+    "attachmentsChoose": "Choose files or drop them here",
+    "attachmentsCount": "{count} files selected",
+    "attachmentsClear": "Remove files",
+    "errorSalesPerson": "Please choose the sales representative from the list.",
+    "errorRange": "The upper limit of the price range must be higher than the lower limit.",
+    "errorFiles": "The attachments couldn't be accepted: up to 10 files of 10 MB each, as PDF, images, Word, Excel, KML, DWG or ZIP."
   }
 }

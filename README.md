@@ -28,7 +28,7 @@ Open `/admin`. The first time, it offers to create the first administrator.
 - **Partners**: the logos in the partners strip.
 - **Jobs**: positions on the Join page (add, edit, close, reorder, delete).
 - **Applications & CVs**: everything sent through the Join page form, with CV download, status and notes.
-- **Quotation briefs**: the intake forms sales people fill in at `/quotation-request` (unlisted, not in the menu).
+- **Quotation briefs**: the intake forms sales people fill in at `/quotation-request` (unlisted, not in the menu), with a fixed list of sales people, a price range and file attachments.
   Each brief opens as a printable sheet that the browser saves as a PDF; the admin can filter, update the status, add notes and open the PDF.
 - **Users / Roles & permissions**: add people and choose what each role can do.
   Built in: *Administrator* (everything), *Site manager* (everything except users and roles),

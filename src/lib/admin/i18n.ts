@@ -323,6 +323,8 @@ const en = {
   "quotes.openPdf": "Open / download PDF",
   "quotes.copyLink": "Copy brief link",
   "quotes.language": "Form language",
+  "quotes.attachments": "Attachments",
+  "quotes.noAttachments": "No files were attached.",
 
   "users.subtitle": "People who can sign in to this control panel, and the role that decides what each can do.",
   "users.new": "Add user",
@@ -760,6 +762,8 @@ const ar: Record<AdminKey, string> = {
   "quotes.openPdf": "فتح / تحميل PDF",
   "quotes.copyLink": "نسخ رابط النموذج",
   "quotes.language": "لغة النموذج",
+  "quotes.attachments": "المرفقات",
+  "quotes.noAttachments": "لم تُرفق ملفات.",
 
   "users.subtitle": "الأشخاص المصرّح لهم بالدخول إلى لوحة التحكم، والدور الذي يحدد صلاحيات كل منهم.",
   "users.new": "إضافة مستخدم",

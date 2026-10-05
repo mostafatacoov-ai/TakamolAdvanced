@@ -4,7 +4,7 @@ import { Icon } from "@/components/admin/icons";
 import { QUOTATION_TONE, quotationStatusKey } from "@/components/admin/status";
 import { Badge, buttonClass, Card, cx, Field, inputClass, PageHeader } from "@/components/admin/ui";
 import { formatDate } from "@/lib/admin/format";
-import { lookup, quotationSections } from "@/lib/quotation";
+import { formatBytes, lookup, quotationSections } from "@/lib/quotation";
 import { getAdminLang, getAdminT } from "@/server/admin-lang";
 import { can, requirePermission } from "@/server/auth";
 import { getMessagesFor } from "@/server/content";
@@ -71,6 +71,27 @@ export default async function QuotationPage({ params }: { params: Promise<{ id: 
               </dl>
             </Card>
           ))}
+          <Card title={t("quotes.attachments")}>
+            {q.attachments.length === 0 ? (
+              <p className="text-[13.5px] text-steel">{t("quotes.noAttachments")}</p>
+            ) : (
+              <ul className="divide-y divide-white/10">
+                {q.attachments.map((f) => (
+                  <li key={f.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
+                    <span className="inline-flex min-w-0 items-center gap-2 text-[14px] text-white">
+                      <Icon name="file" className="h-5 w-5 shrink-0 text-teal" />
+                      <bdi className="truncate">{f.name}</bdi>
+                      <span className="shrink-0 font-exo text-[12.5px] text-steel">{formatBytes(f.size)}</span>
+                    </span>
+                    <a href={`/quotation-files/${q.token}/${f.id}`} target="_blank" rel="noopener noreferrer" className={buttonClass.small}>
+                      <Icon name="download" className="h-4 w-4" />
+                      {t("common.download")}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
           <p className="text-[12.5px] text-steel">
             {t("quotes.submitted")}: {formatDate(q.createdAt, lang)} · {t("quotes.language")}: {q.locale === "en" ? "English" : "العربية"}
           </p>

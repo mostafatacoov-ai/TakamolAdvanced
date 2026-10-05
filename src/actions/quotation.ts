@@ -20,7 +20,7 @@ export async function submitQuotation(_previous: QuotationState, form: FormData)
   const values = (name: string) => form.getAll(name).filter((v): v is string => typeof v === "string");
 
   try {
-    const result = store({
+    const result = await store({
       salesPerson: value("salesPerson"),
       requestDate: value("requestDate"),
       reference: value("reference"),
@@ -41,12 +41,14 @@ export async function submitQuotation(_previous: QuotationState, form: FormData)
       documents: values("documents"),
       clientRequirements: value("clientRequirements"),
       amount: value("amount"),
+      amountMax: value("amountMax"),
       durationDays: value("durationDays"),
       validity: value("validity"),
       payments: [value("payment1"), value("payment2"), value("payment3")],
       formats: values("formats"),
       meeting: value("meeting"),
       notes: value("notes"),
+      files: form.getAll("attachments").filter((f): f is File => f instanceof File),
       locale: value("locale"),
       ip: await clientIp(),
     });

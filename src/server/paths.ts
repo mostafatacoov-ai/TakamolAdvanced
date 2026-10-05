@@ -22,6 +22,8 @@ export const DIRS = {
   assets: path.join(DATA_DIR, "uploads", "assets"),
   /** applicants' CV files (never publicly served) */
   cvs: path.join(DATA_DIR, "uploads", "cvs"),
+  /** files attached to quotation briefs (served only behind the brief's link) */
+  quotations: path.join(DATA_DIR, "uploads", "quotations"),
 };
 
 export const PUBLIC_ASSETS = path.join(process.cwd(), "public", "assets");

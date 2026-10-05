@@ -57,6 +57,23 @@ export default function QuotationSheet({
           </section>
         ))}
 
+        {q.attachments.length > 0 && (
+          <section className="print:hidden">
+            <h2 className="mb-2 text-[14.5px] font-bold text-navy">{t("attachments")}</h2>
+            <ul className="divide-y divide-[#d7e3ea] rounded-lg border border-[#d7e3ea] text-[13px]">
+              {q.attachments.map((f) => (
+                <li key={f.id} className="flex items-center justify-between gap-3 px-3 py-2">
+                  <bdi className="min-w-0 truncate">{f.name}</bdi>
+                  <a href={`/quotation-files/${q.token}/${f.id}`} target="_blank" rel="noopener noreferrer" className="shrink-0 font-bold text-teal hover:underline">
+                    {t("print.download")}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-1 text-[11px] text-[#5c7a8c]">{t("print.attachmentsNote")}</p>
+          </section>
+        )}
+
         <div className="grid grid-cols-2 gap-6 break-inside-avoid pt-4">
           {[t("print.signature"), t("print.approval")].map((label) => (
             <div key={label} className="rounded-lg border border-dashed border-[#b9ccd8] px-4 pb-10 pt-3 text-[12.5px] font-bold text-[#345468]">

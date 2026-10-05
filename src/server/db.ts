@@ -178,6 +178,21 @@ const MIGRATIONS: string[] = [
     WHERE key = 'site_manager'
       AND NOT EXISTS (SELECT 1 FROM json_each(roles.permissions) WHERE value = 'quotations.manage');
   `,
+  `
+  ALTER TABLE quotations ADD COLUMN amount_max REAL;
+  ALTER TABLE quotations ADD COLUMN vat_max REAL;
+  ALTER TABLE quotations ADD COLUMN total_max REAL;
+  CREATE TABLE quotation_files (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    quotation_id INTEGER NOT NULL REFERENCES quotations(id) ON DELETE CASCADE,
+    file TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    mime TEXT NOT NULL,
+    size INTEGER NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+  CREATE INDEX quotation_files_quotation ON quotation_files(quotation_id);
+  `,
 ];
 
 type Connection = { db: DatabaseSync; statements: Map<string, StatementSync> };

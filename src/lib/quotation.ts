@@ -19,9 +19,18 @@ export type QuotationStatus = (typeof QUOTATION_STATUSES)[number];
 export const isQuotationStatus = (v: string): v is QuotationStatus =>
   (QUOTATION_STATUSES as readonly string[]).includes(v);
 
+export const SALES_PEOPLE = ["Waleed Al-Anzan", "Mohamed Almohyfeed", "Mohamed Altuwaim", "Hajar Saad"] as const;
+
 export const VAT_RATE = 0.15;
 export const DEFAULT_PAYMENTS = [50, 20, 30] as const;
 export const DEFAULT_DEPARTMENT = { ar: "إدارة الدراسات والاستشارات", en: "Studies & Consulting Department" };
+
+export type QuotationFile = { id: number; name: string; mime: string; size: number };
+
+/** Files a brief may carry: deeds, plans, photos, map exports. */
+export const ATTACHMENT_MAX_BYTES = 10 * 1024 * 1024;
+export const ATTACHMENT_MAX_COUNT = 10;
+export const ATTACHMENT_EXTENSIONS = ["pdf", "jpg", "jpeg", "png", "webp", "doc", "docx", "xls", "xlsx", "kml", "kmz", "dwg", "dxf", "zip"] as const;
 
 /** The brief as stored, with the money figures already worked out. */
 export type QuotationRecord = {
@@ -46,15 +55,21 @@ export type QuotationRecord = {
   studyGoal: string;
   documents: DocumentKey[];
   clientRequirements: string;
+  /** the low end of the price range (or the single price) */
   amount: number | null;
   vat: number | null;
   total: number | null;
+  /** the high end of the price range; null when a single price was given */
+  amountMax: number | null;
+  vatMax: number | null;
+  totalMax: number | null;
   durationDays: number | null;
   validity: string;
   payments: [number, number, number] | null;
   formats: FormatKey[];
   meeting: boolean | null;
   notes: string;
+  attachments: QuotationFile[];
   status: QuotationStatus;
   adminNotes: string;
   locale: string;
@@ -74,6 +89,12 @@ const numberLocale = (locale: string) => (locale === "en" ? "en-US" : "ar-SA-u-n
 
 export function formatMoney(value: number, locale: string) {
   return new Intl.NumberFormat(numberLocale(locale), { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+}
+
+export function formatBytes(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 export function formatInteger(value: number, locale: string) {
@@ -115,7 +136,10 @@ export function quotationSections(q: QuotationRecord, t: (key: string) => string
   const dash = "—";
   const yesNo = (v: boolean | null) => (v === null ? dash : v ? t("yes") : t("no"));
   const list = (keys: readonly string[], ns: string) => (keys.length ? keys.map((k) => t(`${ns}.${k}`)).join("، ") : dash);
-  const money = (v: number | null) => (v === null ? dash : `${formatMoney(v, locale)} ${t("currency")}`);
+  const money = (v: number | null, max: number | null) =>
+    v === null ? dash
+    : max === null || max === v ? `${formatMoney(v, locale)} ${t("currency")}`
+    : t("range").replace("{from}", formatMoney(v, locale)).replace("{to}", formatMoney(max, locale)) + ` ${t("currency")}`;
   const services = q.services.map((k) => (k === "other" && q.serviceOther ? `${t("services.other")}: ${q.serviceOther}` : t(`services.${k}`)));
 
   return [
@@ -155,14 +179,19 @@ export function quotationSections(q: QuotationRecord, t: (key: string) => string
       rows: [
         { label: t("documentsReceived"), value: list(q.documents, "documents"), multiline: true },
         { label: t("clientRequirements"), value: q.clientRequirements || dash, multiline: true },
+        {
+          label: t("attachments"),
+          value: q.attachments.length ? q.attachments.map((f) => `${f.name} (${formatBytes(f.size)})`).join("\n") : dash,
+          multiline: true,
+        },
       ],
     },
     {
       title: t("sections.financial"),
       rows: [
-        { label: t("amount"), value: money(q.amount) },
-        { label: t("vat"), value: money(q.vat) },
-        { label: t("total"), value: money(q.total) },
+        { label: t("amount"), value: money(q.amount, q.amountMax), ltr: q.amountMax !== null },
+        { label: t("vat"), value: money(q.vat, q.vatMax), ltr: q.vatMax !== null },
+        { label: t("total"), value: money(q.total, q.totalMax), ltr: q.totalMax !== null },
         { label: t("duration"), value: q.durationDays === null ? dash : `${formatInteger(q.durationDays, locale)} ${t("durationUnit")}` },
         { label: t("validity"), value: q.validity || dash },
         {

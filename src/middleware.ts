@@ -4,6 +4,6 @@ import { routing } from './routing';
 export default createMiddleware(routing);
 
 export const config = {
-  // the admin area and uploaded files aren't localised pages
-  matcher: ['/((?!api|admin|media|_next|.*\\..*).*)']
+  // the admin area and uploaded files (media, quotation attachments) aren't localised pages
+  matcher: ['/((?!api|admin|media|quotation-files|_next|.*\\..*).*)']
 };

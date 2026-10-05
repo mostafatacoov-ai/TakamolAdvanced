@@ -4,7 +4,8 @@ import { startTransition, useActionState, useEffect, useRef, useState, type Form
 import { useLocale, useTranslations } from "next-intl";
 import { submitQuotation } from "@/actions/quotation";
 import {
-  CLIENT_TYPES, computeTotals, DEFAULT_DEPARTMENT, DEFAULT_PAYMENTS, DOCUMENTS, FORMATS, formatMoney, SERVICES, todayIso,
+  ATTACHMENT_EXTENSIONS, ATTACHMENT_MAX_BYTES, ATTACHMENT_MAX_COUNT, CLIENT_TYPES, computeTotals, DEFAULT_DEPARTMENT,
+  DEFAULT_PAYMENTS, DOCUMENTS, FORMATS, formatBytes, formatMoney, SALES_PEOPLE, SERVICES, todayIso,
 } from "@/lib/quotation";
 import { Link } from "@/navigation";
 
@@ -24,6 +25,9 @@ export default function QuotationForm() {
   const dateRef = useRef<HTMLInputElement>(null);
   const [token, setToken] = useState("");
   const [amount, setAmount] = useState("");
+  const [amountMax, setAmountMax] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
+  const fileRef = useRef<HTMLInputElement>(null);
   const [payments, setPayments] = useState<string[]>(DEFAULT_PAYMENTS.map(String));
   const [otherService, setOtherService] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -38,6 +42,8 @@ export default function QuotationForm() {
       setToken(state.token);
       formRef.current?.reset();
       setAmount("");
+      setAmountMax("");
+      setFiles([]);
       setPayments(DEFAULT_PAYMENTS.map(String));
       setOtherService(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -56,8 +62,18 @@ export default function QuotationForm() {
   const bad = (name: string) => !!state && !state.ok && state.fields.includes(name);
   const input = (name: string, extra = "") => `${inputBase} ${bad(name) ? "border-rose-400/70" : "border-white/15"} ${extra}`;
 
-  const parsedAmount = Number(amount.replace(/[,\s]/g, ""));
-  const totals = amount.trim() && Number.isFinite(parsedAmount) && parsedAmount >= 0 ? computeTotals(parsedAmount) : null;
+  const parse = (raw: string) => {
+    const n = Number(raw.replace(/[,\s]/g, ""));
+    return raw.trim() && Number.isFinite(n) && n >= 0 ? n : null;
+  };
+  const low = parse(amount);
+  const high = parse(amountMax);
+  const totals = low === null ? null : computeTotals(low);
+  const totalsMax = high === null || low === null || high <= low ? null : computeTotals(high);
+  // "12,750.00" or "12,750.00 – 15,000.00"
+  const figure = (a: number | undefined, b: number | undefined) =>
+    a === undefined ? "—" : b === undefined ? formatMoney(a, locale) : `${formatMoney(a, locale)} – ${formatMoney(b, locale)}`;
+  const tooMany = files.length > ATTACHMENT_MAX_COUNT || files.some((f) => f.size > ATTACHMENT_MAX_BYTES);
   const paymentsSum = payments.reduce((sum, p) => sum + (Number(p) || 0), 0);
 
   if (token) {
@@ -114,7 +130,12 @@ export default function QuotationForm() {
       {/* 1 ---------------------------------------------------------------- */}
       <Section n={1} title={t("sections.sales")} subtitle={t("sectionsEn.sales")}>
         <Field label={t("salesPerson")} required htmlFor="q-sales">
-          <input id="q-sales" name="salesPerson" required autoComplete="name" maxLength={120} className={input("salesPerson")} />
+          <select id="q-sales" name="salesPerson" required defaultValue="" className={input("salesPerson")}>
+            <option value="" disabled>{t("salesPersonChoose")}</option>
+            {SALES_PEOPLE.map((name) => (
+              <option key={name} value={name}>{name}</option>
+            ))}
+          </select>
         </Field>
         <Field label={t("requestDate")} required htmlFor="q-date">
           <input ref={dateRef} id="q-date" name="requestDate" type="date" required dir="ltr" className={input("requestDate", "text-start font-exo")} />
@@ -217,32 +238,77 @@ export default function QuotationForm() {
         <Field label={t("clientRequirements")} htmlFor="q-reqs" wide>
           <textarea id="q-reqs" name="clientRequirements" rows={3} maxLength={3000} className={input("clientRequirements")} />
         </Field>
+        <Field label={t("attachments")} hint={t("attachmentsHint")} wide>
+          <label
+            htmlFor="q-files"
+            className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-[16px] border-2 border-dashed px-4 py-6 text-center transition-colors hover:border-teal hover:bg-teal/10 ${
+              bad("attachments") || tooMany ? "border-rose-400/70 bg-rose-500/5" : "border-teal/40 bg-teal/[0.05]"
+            }`}
+          >
+            <svg viewBox="0 0 24 24" className="h-7 w-7 fill-teal"><path d="M5 20h14v-2H5v2zm7-18-5.5 5.5 1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z" /></svg>
+            <span className="text-[15px] font-bold text-white">
+              {files.length ? t("attachmentsCount", { count: files.length }) : t("attachmentsChoose")}
+            </span>
+          </label>
+          <input
+            ref={fileRef}
+            id="q-files"
+            name="attachments"
+            type="file"
+            multiple
+            accept={ATTACHMENT_EXTENSIONS.map((e) => `.${e}`).join(",")}
+            className="sr-only"
+            onChange={(e) => setFiles(Array.from(e.target.files ?? []))}
+          />
+          {files.length > 0 && (
+            <ul className="mt-3 divide-y divide-white/10 rounded-[14px] border border-white/10 text-[13.5px]">
+              {files.map((f, i) => (
+                <li key={`${f.name}-${i}`} className="flex items-center justify-between gap-3 px-4 py-2">
+                  <bdi className={`min-w-0 truncate ${f.size > ATTACHMENT_MAX_BYTES ? "text-rose-300" : "text-white/90"}`}>{f.name}</bdi>
+                  <span className="shrink-0 font-exo text-[12.5px] text-steel">{formatBytes(f.size)}</span>
+                </li>
+              ))}
+              <li className="px-4 py-2 text-end">
+                <button
+                  type="button"
+                  onClick={() => { setFiles([]); if (fileRef.current) fileRef.current.value = ""; }}
+                  className="text-[13px] font-bold text-rose-300 hover:underline"
+                >
+                  {t("attachmentsClear")}
+                </button>
+              </li>
+            </ul>
+          )}
+        </Field>
       </Section>
 
       {/* 5 ---------------------------------------------------------------- */}
       <Section n={5} title={t("sections.financial")} subtitle={t("sectionsEn.financial")}>
-        <Field label={t("amount")} htmlFor="q-amount">
-          <div className="relative">
-            <input
-              id="q-amount"
-              name="amount"
-              inputMode="decimal"
-              dir="ltr"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className={input("amount", "text-start font-exo pe-24")}
-            />
-            <span className="pointer-events-none absolute inset-y-0 end-4 flex items-center text-[13px] text-steel">{t("currency")}</span>
+        <Field label={t("amount")} hint={t("amountRangeHint")} wide>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {([["amount", amount, setAmount, "amountFrom"], ["amountMax", amountMax, setAmountMax, "amountTo"]] as const).map(([name, value, set, label]) => (
+              <div key={name} className="relative">
+                <span className="pointer-events-none absolute inset-y-0 start-4 flex items-center text-[13px] font-bold text-iceblue">{t(label)}</span>
+                <input
+                  name={name}
+                  aria-label={`${t("amount")} – ${t(label)}`}
+                  inputMode="decimal"
+                  dir="ltr"
+                  value={value}
+                  onChange={(e) => set(e.target.value)}
+                  className={input(name, "text-start font-exo ps-16 pe-24")}
+                />
+                <span className="pointer-events-none absolute inset-y-0 end-4 flex items-center text-[13px] text-steel">{t("currency")}</span>
+              </div>
+            ))}
           </div>
         </Field>
-        <div className="grid grid-cols-2 gap-4">
-          <Field label={t("vat")} hint={t("autoCalculated")}>
-            <Computed value={totals ? formatMoney(totals.vat, locale) : "—"} />
-          </Field>
-          <Field label={t("total")} hint={t("autoCalculated")}>
-            <Computed value={totals ? formatMoney(totals.total, locale) : "—"} strong />
-          </Field>
-        </div>
+        <Field label={t("vat")} hint={t("autoCalculated")}>
+          <Computed value={figure(totals?.vat, totalsMax?.vat)} />
+        </Field>
+        <Field label={t("total")} hint={t("autoCalculated")}>
+          <Computed value={figure(totals?.total, totalsMax?.total)} strong />
+        </Field>
         <Field label={t("duration")} hint={t("durationHint")} htmlFor="q-days">
           <div className="relative">
             <input id="q-days" name="durationDays" inputMode="numeric" dir="ltr" maxLength={5} className={input("durationDays", "text-start font-exo pe-24")} />

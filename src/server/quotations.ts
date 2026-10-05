@@ -1,11 +1,15 @@
 import "server-only";
-import { randomBytes } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 import {
-  CLIENT_TYPES, computeTotals, DOCUMENTS, FORMATS, isQuotationStatus, QUOTATION_STATUSES, round2, SERVICES,
-  type ClientType, type DocumentKey, type FormatKey, type QuotationRecord, type QuotationStatus, type ServiceKey,
+  ATTACHMENT_EXTENSIONS, ATTACHMENT_MAX_BYTES, ATTACHMENT_MAX_COUNT, CLIENT_TYPES, computeTotals, DOCUMENTS, FORMATS,
+  isQuotationStatus, QUOTATION_STATUSES, round2, SALES_PEOPLE, SERVICES,
+  type ClientType, type DocumentKey, type FormatKey, type QuotationFile, type QuotationRecord, type QuotationStatus, type ServiceKey,
 } from "@/lib/quotation";
 import { hashIp } from "./applications";
-import { all, one, run } from "./db";
+import { all, one, run, transaction } from "./db";
+import { DIRS, within } from "./paths";
 
 export { QUOTATION_STATUSES, isQuotationStatus, type QuotationStatus };
 
@@ -14,7 +18,8 @@ type Row = {
   client_name: string; client_type: string; client_contact: string; client_phone: string; client_email: string;
   client_address: string; services: string; service_other: string; project_name: string; project_location: string;
   land_area: string; boundaries: string; study_goal: string; documents: string; client_requirements: string;
-  amount: number | null; vat: number | null; total: number | null; duration_days: number | null; validity: string;
+  amount: number | null; vat: number | null; total: number | null;
+  amount_max: number | null; vat_max: number | null; total_max: number | null; duration_days: number | null; validity: string;
   payments: string; formats: string; meeting: number | null; notes: string; status: string; admin_notes: string;
   locale: string; created_at: string; updated_at: string;
 };
@@ -37,7 +42,21 @@ function parsePayments(raw: string): [number, number, number] | null {
   }
 }
 
-const toRecord = (r: Row): QuotationRecord => ({
+type FileRow = { id: number; quotation_id: number; file: string; name: string; mime: string; size: number };
+
+const toFile = (r: FileRow): QuotationFile => ({ id: r.id, name: r.name, mime: r.mime, size: r.size });
+
+const filesOf = (ids: number[]): Map<number, QuotationFile[]> => {
+  const map = new Map<number, QuotationFile[]>();
+  if (!ids.length) return map;
+  const rows = all<FileRow>(
+    `SELECT * FROM quotation_files WHERE quotation_id IN (${ids.map(() => "?").join(",")}) ORDER BY id`, ...ids,
+  );
+  for (const r of rows) map.set(r.quotation_id, [...(map.get(r.quotation_id) ?? []), toFile(r)]);
+  return map;
+};
+
+const toRecord = (r: Row, files: QuotationFile[] = []): QuotationRecord => ({
   id: r.id,
   token: r.token,
   reference: r.reference,
@@ -62,12 +81,16 @@ const toRecord = (r: Row): QuotationRecord => ({
   amount: r.amount,
   vat: r.vat,
   total: r.total,
+  amountMax: r.amount_max,
+  vatMax: r.vat_max,
+  totalMax: r.total_max,
   durationDays: r.duration_days,
   validity: r.validity,
   payments: parsePayments(r.payments),
   formats: parseList(r.formats, FORMATS),
   meeting: r.meeting === null ? null : r.meeting === 1,
   notes: r.notes,
+  attachments: files,
   status: isQuotationStatus(r.status) ? r.status : "new",
   adminNotes: r.admin_notes,
   locale: r.locale,
@@ -97,19 +120,31 @@ export function listQuotations(filter: { status?: string; q?: string; page?: num
     `SELECT * FROM quotations ${clause} ORDER BY id DESC LIMIT ? OFFSET ?`,
     ...params, perPage, (page - 1) * perPage,
   );
-  return { rows: rows.map(toRecord), total, page, pages: Math.max(1, Math.ceil(total / perPage)) };
+  const files = filesOf(rows.map((r) => r.id));
+  return { rows: rows.map((r) => toRecord(r, files.get(r.id))), total, page, pages: Math.max(1, Math.ceil(total / perPage)) };
 }
 
+const withFiles = (row: Row | undefined) => (row ? toRecord(row, filesOf([row.id]).get(row.id)) : null);
+
 export function getQuotation(id: number) {
-  const row = one<Row>("SELECT * FROM quotations WHERE id = ?", id);
-  return row ? toRecord(row) : null;
+  return withFiles(one<Row>("SELECT * FROM quotations WHERE id = ?", id));
 }
 
 /** The brief behind its unguessable link (shown to whoever submitted it). */
 export function getQuotationByToken(token: string) {
   if (!/^[a-f0-9]{48}$/.test(token)) return null;
-  const row = one<Row>("SELECT * FROM quotations WHERE token = ?", token);
-  return row ? toRecord(row) : null;
+  return withFiles(one<Row>("SELECT * FROM quotations WHERE token = ?", token));
+}
+
+/** An attachment of the brief behind `token`, if the file still exists. */
+export function quotationFile(token: string, fileId: number) {
+  if (!/^[a-f0-9]{48}$/.test(token)) return null;
+  const row = one<FileRow>(
+    "SELECT f.* FROM quotation_files f JOIN quotations q ON q.id = f.quotation_id WHERE q.token = ? AND f.id = ?", token, fileId,
+  );
+  if (!row) return null;
+  const file = within(DIRS.quotations, row.file);
+  return file && fs.existsSync(file) ? { file, name: row.name, mime: row.mime } : null;
 }
 
 export function updateQuotation(id: number, status: QuotationStatus, adminNotes: string) {
@@ -119,7 +154,12 @@ export function updateQuotation(id: number, status: QuotationStatus, adminNotes:
 export function deleteQuotation(id: number) {
   const q = getQuotation(id);
   if (!q) return null;
+  const stored = all<{ file: string }>("SELECT file FROM quotation_files WHERE quotation_id = ?", id);
   run("DELETE FROM quotations WHERE id = ?", id);
+  for (const { file } of stored) {
+    const full = within(DIRS.quotations, file);
+    if (full && fs.existsSync(full)) fs.unlinkSync(full);
+  }
   return q;
 }
 
@@ -128,14 +168,14 @@ export function countNewQuotations() {
 }
 
 export function recentQuotations(limit = 5) {
-  return all<Row>("SELECT * FROM quotations ORDER BY id DESC LIMIT ?", limit).map(toRecord);
+  return all<Row>("SELECT * FROM quotations ORDER BY id DESC LIMIT ?", limit).map((r) => toRecord(r));
 }
 
 /* ---- public submission ------------------------------------------------- */
 
 export type QuotationError =
   | "errorRequired" | "errorClient" | "errorEmail" | "errorService" | "errorAmount" | "errorPayments"
-  | "errorRate" | "errorGeneric";
+  | "errorSalesPerson" | "errorRange" | "errorFiles" | "errorRate" | "errorGeneric";
 
 export type QuotationInput = {
   salesPerson: string; requestDate: string; reference: string; department: string;
@@ -143,10 +183,39 @@ export type QuotationInput = {
   services: string[]; serviceOther: string;
   projectName: string; projectLocation: string; landArea: string; boundaries: string; studyGoal: string;
   documents: string[]; clientRequirements: string;
-  amount: string; durationDays: string; validity: string; payments: string[];
+  amount: string; amountMax: string; durationDays: string; validity: string; payments: string[];
   formats: string[]; meeting: string; notes: string;
+  files: File[];
   locale: string; ip: string;
 };
+
+/* Attachments are recognised by their first bytes where the format allows
+   it, and by a whitelist of extensions otherwise. */
+const MAGIC: { bytes: number[]; ext: string[]; mime: string }[] = [
+  { bytes: [0x25, 0x50, 0x44, 0x46], ext: ["pdf"], mime: "application/pdf" },
+  { bytes: [0xff, 0xd8, 0xff], ext: ["jpg", "jpeg"], mime: "image/jpeg" },
+  { bytes: [0x89, 0x50, 0x4e, 0x47], ext: ["png"], mime: "image/png" },
+  { bytes: [0x52, 0x49, 0x46, 0x46], ext: ["webp"], mime: "image/webp" },
+  { bytes: [0xd0, 0xcf, 0x11, 0xe0], ext: ["doc", "xls"], mime: "application/octet-stream" },
+  { bytes: [0x50, 0x4b, 0x03, 0x04], ext: ["docx", "xlsx", "kmz", "zip"], mime: "application/zip" },
+];
+const MIMES: Record<string, string> = {
+  doc: "application/msword", xls: "application/vnd.ms-excel",
+  docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  kml: "application/vnd.google-earth.kml+xml", kmz: "application/vnd.google-earth.kmz",
+  dwg: "application/acad", dxf: "application/dxf", zip: "application/zip",
+};
+
+async function detectAttachment(file: File): Promise<{ ext: string; mime: string } | null> {
+  const ext = path.extname(file.name).slice(1).toLowerCase();
+  if (!(ATTACHMENT_EXTENSIONS as readonly string[]).includes(ext)) return null;
+  const head = Buffer.from(await file.slice(0, 8).arrayBuffer());
+  const magic = MAGIC.find((m) => head.subarray(0, m.bytes.length).equals(Buffer.from(m.bytes)));
+  if (magic) return magic.ext.includes(ext) ? { ext, mime: MIMES[ext] ?? magic.mime } : null;
+  // kml, dwg and dxf have no reliable signature; keep them by extension
+  return ["kml", "dwg", "dxf"].includes(ext) ? { ext, mime: MIMES[ext] } : null;
+}
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -163,9 +232,10 @@ function parseAmount(raw: string): number | null | undefined {
   return Number.isFinite(n) && n >= 0 && n < 1e12 ? round2(n) : undefined;
 }
 
-export function submitQuotation(input: QuotationInput):
+export async function submitQuotation(input: QuotationInput): Promise<
   | { ok: true; token: string; id: number }
-  | { ok: false; error: QuotationError; fields?: string[] } {
+  | { ok: false; error: QuotationError; fields?: string[] }
+> {
   const salesPerson = clean(input.salesPerson, 120);
   const clientName = clean(input.clientName, 200);
   const clientPhone = clean(input.clientPhone, 40);
@@ -173,9 +243,10 @@ export function submitQuotation(input: QuotationInput):
   const requestDate = DAY.test(input.requestDate.trim()) ? input.requestDate.trim() : "";
 
   const missing: string[] = [];
-  if (salesPerson.length < 2) missing.push("salesPerson");
+  if (!salesPerson) missing.push("salesPerson");
   if (!requestDate) missing.push("requestDate");
   if (missing.length) return { ok: false, error: "errorRequired", fields: missing };
+  if (!(SALES_PEOPLE as readonly string[]).includes(salesPerson)) return { ok: false, error: "errorSalesPerson", fields: ["salesPerson"] };
 
   const clientMissing: string[] = [];
   if (clientName.length < 2) clientMissing.push("clientName");
@@ -193,6 +264,12 @@ export function submitQuotation(input: QuotationInput):
   const amount = parseAmount(input.amount);
   if (amount === undefined) return { ok: false, error: "errorAmount", fields: ["amount"] };
   const totals = amount === null ? null : computeTotals(amount);
+  // the high end of the price range: optional, and only meaningful above the low end
+  let amountMax = parseAmount(input.amountMax);
+  if (amountMax === undefined) return { ok: false, error: "errorAmount", fields: ["amountMax"] };
+  if (amountMax !== null && (amount === null || amountMax < amount)) return { ok: false, error: "errorRange", fields: ["amountMax"] };
+  if (amountMax !== null && amountMax === amount) amountMax = null;
+  const totalsMax = amountMax === null ? null : computeTotals(amountMax);
 
   const durationRaw = clean(input.durationDays, 10).replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
   const durationDays = durationRaw ? Number(durationRaw) : null;
@@ -209,6 +286,17 @@ export function submitQuotation(input: QuotationInput):
     payments = [nums[0], nums[1], nums[2]];
   }
 
+  const files = input.files.filter((f) => f.size > 0);
+  if (files.length > ATTACHMENT_MAX_COUNT || files.some((f) => f.size > ATTACHMENT_MAX_BYTES)) {
+    return { ok: false, error: "errorFiles", fields: ["attachments"] };
+  }
+  const kinds: { ext: string; mime: string }[] = [];
+  for (const f of files) {
+    const kind = await detectAttachment(f);
+    if (!kind) return { ok: false, error: "errorFiles", fields: ["attachments"] };
+    kinds.push(kind);
+  }
+
   const ipHash = hashIp(input.ip);
   const recent = one<{ n: number }>(
     "SELECT COUNT(*) AS n FROM quotations WHERE ip_hash = ? AND created_at > datetime('now', '-1 hour')", ipHash,
@@ -220,22 +308,37 @@ export function submitQuotation(input: QuotationInput):
   const meeting = input.meeting === "yes" ? 1 : input.meeting === "no" ? 0 : null;
   const token = randomBytes(24).toString("hex");
 
-  const result = run(
+  const stored: { file: string; name: string; mime: string; size: number }[] = [];
+  for (const [i, f] of files.entries()) {
+    const file = `${randomUUID()}.${kinds[i].ext}`;
+    const name = path.basename(f.name).replace(/[^\p{L}\p{N}._ -]/gu, "_").slice(0, 150) || `file.${kinds[i].ext}`;
+    fs.writeFileSync(path.join(DIRS.quotations, file), Buffer.from(await f.arrayBuffer()));
+    stored.push({ file, name, mime: kinds[i].mime, size: f.size });
+  }
+
+  const result = transaction(() => {
+    const inserted = run(
     `INSERT INTO quotations (
        token, reference, sales_person, request_date, department,
        client_name, client_type, client_contact, client_phone, client_email, client_address,
        services, service_other, project_name, project_location, land_area, boundaries, study_goal,
-       documents, client_requirements, amount, vat, total, duration_days, validity, payments,
+       documents, client_requirements, amount, vat, total, amount_max, vat_max, total_max, duration_days, validity, payments,
        formats, meeting, notes, locale, ip_hash
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     token, clean(input.reference, 40), salesPerson, requestDate, clean(input.department, 150),
     clientName, input.clientType, clean(input.clientContact, 150), clientPhone, clientEmail, clean(input.clientAddress, 300),
     JSON.stringify(services), serviceOther, clean(input.projectName, 300), clean(input.projectLocation, 300),
     clean(input.landArea, 40), clean(input.boundaries, 1500), clean(input.studyGoal, 2000),
     JSON.stringify(documents), clean(input.clientRequirements, 3000),
-    amount, totals?.vat ?? null, totals?.total ?? null, durationDays, clean(input.validity, 120),
+    amount, totals?.vat ?? null, totals?.total ?? null, amountMax, totalsMax?.vat ?? null, totalsMax?.total ?? null,
+    durationDays, clean(input.validity, 120),
     payments ? JSON.stringify(payments) : "",
     JSON.stringify(formats), meeting, clean(input.notes, 3000), input.locale === "en" ? "en" : "ar", ipHash,
-  );
+    );
+    for (const f of stored) {
+      run("INSERT INTO quotation_files (quotation_id, file, name, mime, size) VALUES (?, ?, ?, ?, ?)", inserted.id, f.file, f.name, f.mime, f.size);
+    }
+    return inserted;
+  });
   return { ok: true, token, id: result.id };
 }
