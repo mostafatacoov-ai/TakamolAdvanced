@@ -16,7 +16,7 @@ export default async function NewKpiReportPage() {
 
   return (
     <>
-      <PageHeader title={t("kpi.new.title")} subtitle={t("kpi.new.hint")} back={{ href: "/admin/kpi", label: t("nav.kpi") }} />
+      <PageHeader title={t("kpi.new.title")} subtitle={`${t("kpi.new.hint")} ${t("kpi.new.prefillHint")}`} back={{ href: "/admin/kpi", label: t("nav.kpi") }} />
       <Card className="max-w-[760px]">
         <ActionForm action={createReportAction} className="space-y-5">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">

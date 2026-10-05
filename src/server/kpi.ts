@@ -1,6 +1,6 @@
 import "server-only";
 import {
-  isReportStatus, newEvaluation, PERIOD, reportScore, sanitizeContent, sanitizeEvaluations,
+  carryOverContent, isReportStatus, newEvaluation, PERIOD, reportScore, sanitizeContent, sanitizeEvaluations,
   type Department, type Employee, type Evaluation, type KpiReport, type KpiRow, type ReportContent, type ReportStatus,
 } from "@/lib/kpi";
 import { all, one, run, transaction } from "./db";
@@ -179,15 +179,61 @@ export function getReport(id: number) {
 export const reportExists = (departmentId: number, period: string, exceptId?: number) =>
   !!one<{ id: number }>("SELECT id FROM kpi_reports WHERE department_id = ? AND period = ? AND id != ?", departmentId, period, exceptId ?? 0);
 
-/** A new report for the department and month, with a blank KPI card for each active employee. */
+/** The department's most recent report, if any. */
+export function latestReport(departmentId: number, before?: string) {
+  const row = before
+    ? one<ReportRow>(`${REPORT_SELECT} WHERE r.department_id = ? AND r.period < ? ORDER BY r.period DESC, r.id DESC LIMIT 1`, departmentId, before)
+    : one<ReportRow>(`${REPORT_SELECT} WHERE r.department_id = ? ORDER BY r.period DESC, r.id DESC LIMIT 1`, departmentId);
+  return row ? getReport(row.id) : null;
+}
+
+/** Each employee's indicators from their most recent card, to start the next card from. */
+export function latestKpiTemplates(employeeIds: number[]): Record<number, KpiRow[]> {
+  const out: Record<number, KpiRow[]> = {};
+  for (const employeeId of employeeIds) {
+    const row = one<{ kpis: string }>(
+      `SELECT ev.kpis FROM kpi_evaluations ev JOIN kpi_reports r ON r.id = ev.report_id
+       WHERE ev.employee_id = ? ORDER BY r.period DESC, r.id DESC LIMIT 1`,
+      employeeId,
+    );
+    if (row) out[employeeId] = parseJson<KpiRow[]>(row.kpis, []);
+  }
+  return out;
+}
+
+/** Every indicator the department has used so far, most frequent first. */
+export function indicatorSuggestions(departmentId: number): string[] {
+  const counts = new Map<string, number>();
+  const bump = (kpis: KpiRow[]) => {
+    for (const k of kpis) if (k.indicator) counts.set(k.indicator, (counts.get(k.indicator) ?? 0) + 1);
+  };
+  for (const row of all<{ kpis: string }>(
+    "SELECT ev.kpis FROM kpi_evaluations ev JOIN kpi_reports r ON r.id = ev.report_id WHERE r.department_id = ?", departmentId,
+  )) bump(parseJson<KpiRow[]>(row.kpis, []));
+  for (const row of all<{ content: string }>("SELECT content FROM kpi_reports WHERE department_id = ?", departmentId)) {
+    bump(sanitizeContent(parseJson<Partial<ReportContent>>(row.content, {})).teamKpis);
+  }
+  return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([indicator]) => indicator);
+}
+
+/** A new report for the department and month. It starts from the
+    department's latest report (header, columns, signatures, department
+    card) and gives each active employee a card pre-filled with their
+    previous indicators and weights, scores left empty. */
 export function createReport(input: { departmentId: number; period: string; title: string; content: ReportContent }) {
+  const previous = latestReport(input.departmentId);
+  const content: ReportContent = previous ? carryOverContent(previous.content) : input.content;
+  // what the form said wins over what was carried over
+  if (input.content.meta.preparedBy) content.meta.preparedBy = input.content.meta.preparedBy;
+  const employees = listEmployees({ departmentId: input.departmentId, activeOnly: true });
+  const templates = latestKpiTemplates(employees.map((e) => e.id));
   return transaction(() => {
     const id = run(
       "INSERT INTO kpi_reports (department_id, period, title, content) VALUES (?, ?, ?, ?)",
-      input.departmentId, input.period, input.title, JSON.stringify(input.content),
+      input.departmentId, input.period, input.title, JSON.stringify(content),
     ).id;
-    listEmployees({ departmentId: input.departmentId, activeOnly: true }).forEach((e, i) => {
-      const ev = newEvaluation(e);
+    employees.forEach((e, i) => {
+      const ev = newEvaluation(e, templates[e.id] ?? []);
       run(
         "INSERT INTO kpi_evaluations (report_id, employee_id, name, title, highlights, kpis, score, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         id, e.id, ev.name, ev.title, JSON.stringify(ev.highlights), JSON.stringify(ev.kpis), ev.score, i,

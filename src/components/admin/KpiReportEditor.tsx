@@ -22,11 +22,17 @@ const small = cx(inputClass, "px-2.5 py-1.5 text-[13px]");
 export function KpiReportEditor({
   report,
   employees,
+  templates,
+  suggestions,
   action,
 }: {
   report: KpiReport;
   /** the department's active employees, offered for new cards */
   employees: Employee[];
+  /** each employee's previous indicators, used when their card is added */
+  templates: Record<number, KpiRow[]>;
+  /** indicators the department has used before, offered when adding a row */
+  suggestions: string[];
   action: FormAction;
 }) {
   const t = useT();
@@ -101,7 +107,7 @@ export function KpiReportEditor({
       </Card>
 
       <Card title={t("kpi.edit.teamKpis")} description={t("kpi.edit.teamKpisHint")}>
-        <KpiRowsEditor kpis={c.teamKpis} onChange={(teamKpis) => setContent({ teamKpis })} />
+        <KpiRowsEditor kpis={c.teamKpis} suggestions={suggestions} onChange={(teamKpis) => setContent({ teamKpis })} />
       </Card>
 
       <Card
@@ -112,7 +118,7 @@ export function KpiReportEditor({
               value=""
               onChange={(e) => {
                 const employee = employees.find((x) => x.id === Number(e.target.value));
-                if (employee) update({ evaluations: [...data.evaluations, newEvaluation(employee)] });
+                if (employee) update({ evaluations: [...data.evaluations, newEvaluation(employee, templates[employee.id] ?? [])] });
               }}
               className={cx(small, "w-auto")}
             >
@@ -133,6 +139,7 @@ export function KpiReportEditor({
                 key={ev.employeeId}
                 index={i}
                 evaluation={ev}
+                suggestions={suggestions}
                 onChange={(next) => update({ evaluations: data.evaluations.map((x, j) => (j === i ? next : x)) })}
                 onRemove={() => update({ evaluations: data.evaluations.filter((_, j) => j !== i) })}
                 onMove={(dir) => {
@@ -283,9 +290,10 @@ function IndicatorsEditor({ value, onChange }: { value: ReportContent["indicator
   );
 }
 
-function KpiRowsEditor({ kpis, onChange }: { kpis: KpiRow[]; onChange: (kpis: KpiRow[]) => void }) {
+function KpiRowsEditor({ kpis, suggestions, onChange }: { kpis: KpiRow[]; suggestions: string[]; onChange: (kpis: KpiRow[]) => void }) {
   const t = useT();
   const lang = useAdminLang();
+  const unused = suggestions.filter((s) => !kpis.some((k) => k.indicator === s));
   const score = weightedScore(kpis);
   const weight = totalWeight(kpis);
   const r = rating(score);
@@ -337,6 +345,16 @@ function KpiRowsEditor({ kpis, onChange }: { kpis: KpiRow[]; onChange: (kpis: Kp
           <Icon name="plus" className="h-4 w-4" />
           {t("kpi.edit.addKpi")}
         </button>
+        {unused.length > 0 && (
+          <select
+            value=""
+            onChange={(e) => e.target.value && onChange([...kpis, { ...emptyKpi(), indicator: e.target.value }])}
+            className={cx(small, "w-auto max-w-[360px]")}
+          >
+            <option value="">{t("kpi.edit.addFromPrevious")}…</option>
+            {unused.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        )}
         {kpis.length > 0 && (
           <>
             <span className={cx("text-[13px] font-bold", weight === 100 ? "text-teal" : "text-amber-300")}>
@@ -354,10 +372,11 @@ function KpiRowsEditor({ kpis, onChange }: { kpis: KpiRow[]; onChange: (kpis: Kp
 }
 
 function EvaluationEditor({
-  index, evaluation, onChange, onRemove, onMove,
+  index, evaluation, suggestions, onChange, onRemove, onMove,
 }: {
   index: number;
   evaluation: Evaluation;
+  suggestions: string[];
   onChange: (e: Evaluation) => void;
   onRemove: () => void;
   onMove: (dir: -1 | 1) => void;
@@ -399,7 +418,7 @@ function EvaluationEditor({
       />
 
       <p className="mb-2 mt-5 text-[13px] font-bold text-iceblue">{t("kpi.edit.kpis")}</p>
-      <KpiRowsEditor kpis={evaluation.kpis} onChange={(kpis) => onChange({ ...evaluation, kpis, score: weightedScore(kpis) })} />
+      <KpiRowsEditor kpis={evaluation.kpis} suggestions={suggestions} onChange={(kpis) => onChange({ ...evaluation, kpis, score: weightedScore(kpis) })} />
     </section>
   );
 }

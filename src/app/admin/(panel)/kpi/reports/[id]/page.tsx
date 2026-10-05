@@ -8,7 +8,7 @@ import KpiReportSheet from "@/components/kpi/KpiReportSheet";
 import { formatPeriod, formatScore, rating, RATING_LABELS } from "@/lib/kpi";
 import { getAdminLang, getAdminT } from "@/server/admin-lang";
 import { can, requirePermission } from "@/server/auth";
-import { getReport, listEmployees } from "@/server/kpi";
+import { getReport, indicatorSuggestions, latestKpiTemplates, listEmployees } from "@/server/kpi";
 import { deleteReportAction, saveReportAction } from "../../../../_actions/kpi";
 
 export const metadata = { title: "KPI report" };
@@ -29,6 +29,7 @@ export default async function KpiReportPage({
   const { created } = await searchParams;
   const canManage = can(user, "kpi.manage");
   const band = rating(report.score);
+  const employees = listEmployees({ departmentId: report.departmentId, activeOnly: true });
 
   return (
     <>
@@ -53,7 +54,9 @@ export default async function KpiReportPage({
         <>
           <KpiReportEditor
             report={report}
-            employees={listEmployees({ departmentId: report.departmentId, activeOnly: true })}
+            employees={employees}
+            templates={latestKpiTemplates(employees.map((e) => e.id))}
+            suggestions={indicatorSuggestions(report.departmentId)}
             action={saveReportAction.bind(null, report.id)}
           />
           <div className="mt-8">

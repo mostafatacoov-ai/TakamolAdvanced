@@ -152,14 +152,34 @@ export const emptyContent = (): ReportContent => ({
 
 export const emptyKpi = (): KpiRow => ({ indicator: "", weight: 25, score: null, note: "" });
 
-export const newEvaluation = (employee: { id: number; name: string; title: string }): Evaluation => ({
+/** The same indicators and weights, ready to be scored again. */
+export const templateKpis = (kpis: KpiRow[]): KpiRow[] =>
+  kpis.filter((k) => k.indicator).map((k) => ({ indicator: k.indicator, weight: k.weight, score: null, note: "" }));
+
+/** A card for the employee, starting from their previous indicators when there are any. */
+export const newEvaluation = (employee: { id: number; name: string; title: string }, template: KpiRow[] = []): Evaluation => ({
   employeeId: employee.id,
   name: employee.name,
   title: employee.title,
   highlights: [],
-  kpis: [emptyKpi(), emptyKpi(), emptyKpi(), emptyKpi()],
+  kpis: template.length ? templateKpis(template) : [emptyKpi(), emptyKpi(), emptyKpi(), emptyKpi()],
   score: null,
 });
+
+/** A new month's content carried over from the previous report: header,
+    table columns, signatures and the department card's indicators, with
+    the month-specific parts (status, summary, achievements, rows, plan) blank. */
+export function carryOverContent(previous: ReportContent): ReportContent {
+  return {
+    meta: { ...previous.meta, generalStatus: "" },
+    summary: "",
+    achievements: [],
+    indicators: { columns: [...previous.indicators.columns], rows: [] },
+    teamKpis: templateKpis(previous.teamKpis),
+    plan: [],
+    signatories: previous.signatories.map((s) => ({ ...s })),
+  };
+}
 
 /* ---- cleaning what the editor sends ------------------------------------- */
 
