@@ -1,7 +1,11 @@
 "use server";
 
+import { after } from "next/server";
+import { lookup } from "@/lib/quotation";
 import { clientIp } from "@/server/auth";
-import { submitQuotation as store, type QuotationError } from "@/server/quotations";
+import { getMessagesFor } from "@/server/content";
+import { notifyNewQuotation } from "@/server/mail";
+import { getQuotation, submitQuotation as store, type QuotationError } from "@/server/quotations";
 
 export type QuotationState =
   | { ok: true; token: string; at: number }
@@ -52,9 +56,13 @@ export async function submitQuotation(_previous: QuotationState, form: FormData)
       locale: value("locale"),
       ip: await clientIp(),
     });
-    return result.ok
-      ? { ok: true, token: result.token, at: Date.now() }
-      : { ok: false, error: result.error, fields: result.fields ?? [], at: Date.now() };
+    if (!result.ok) return { ok: false, error: result.error, fields: result.fields ?? [], at: Date.now() };
+    // tell the team once the response is on its way
+    after(async () => {
+      const q = getQuotation(result.id);
+      if (q) await notifyNewQuotation(q, lookup(getMessagesFor("ar").Quotation));
+    });
+    return { ok: true, token: result.token, at: Date.now() };
   } catch (error) {
     console.error("[quotation]", error);
     return { ok: false, error: "errorGeneric", fields: [], at: Date.now() };

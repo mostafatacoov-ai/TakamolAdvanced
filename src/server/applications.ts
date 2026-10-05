@@ -160,7 +160,7 @@ export function hashIp(ip: string) {
 export async function submitApplication(input: {
   name: string; email: string; phone: string; linkedin: string; message: string;
   jobId: number | null; consent: boolean; cv: File | null; locale: string; ip: string;
-}): Promise<{ ok: true } | { ok: false; error: SubmitError }> {
+}): Promise<{ ok: true; id: number } | { ok: false; error: SubmitError }> {
   const name = input.name.trim().slice(0, 120);
   const email = input.email.trim().slice(0, 200);
   const phone = input.phone.trim().slice(0, 40);
@@ -184,7 +184,7 @@ export async function submitApplication(input: {
   const original = path.basename(cv.name).replace(/[^\p{L}\p{N}._ -]/gu, "_").slice(0, 150) || `cv.${kind.ext}`;
 
   fs.writeFileSync(path.join(DIRS.cvs, stored), Buffer.from(await cv.arrayBuffer()));
-  run(
+  const inserted = run(
     `INSERT INTO applications (job_id, job_title, name, email, phone, linkedin, message, cv_file, cv_name, cv_mime,
        cv_size, locale, ip_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     job && job.status === "open" ? job.id : null,
@@ -192,5 +192,5 @@ export async function submitApplication(input: {
     name, email, phone, linkedin, input.message.trim().slice(0, 3000),
     stored, original, kind.mime, cv.size, input.locale === "en" ? "en" : "ar", ipHash,
   );
-  return { ok: true };
+  return { ok: true, id: inserted.id };
 }

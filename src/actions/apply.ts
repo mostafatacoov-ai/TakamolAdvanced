@@ -1,7 +1,9 @@
 "use server";
 
-import { submitApplication as store, type SubmitError } from "@/server/applications";
+import { after } from "next/server";
+import { getApplication, submitApplication as store, type SubmitError } from "@/server/applications";
 import { clientIp } from "@/server/auth";
+import { notifyNewApplication } from "@/server/mail";
 
 export type ApplyState = { ok: boolean; error?: SubmitError; at: number } | null;
 
@@ -30,7 +32,13 @@ export async function submitApplication(_previous: ApplyState, form: FormData): 
       locale: value("locale"),
       ip: await clientIp(),
     });
-    return result.ok ? { ok: true, at: Date.now() } : { ok: false, error: result.error, at: Date.now() };
+    if (!result.ok) return { ok: false, error: result.error, at: Date.now() };
+    // tell the team once the response is on its way
+    after(async () => {
+      const app = getApplication(result.id);
+      if (app) await notifyNewApplication(app);
+    });
+    return { ok: true, at: Date.now() };
   } catch (error) {
     console.error("[apply]", error);
     return { ok: false, error: "errorGeneric", at: Date.now() };
