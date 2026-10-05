@@ -5,6 +5,7 @@ import { Banner } from "@/components/admin/ui";
 import { pick } from "@/lib/site-types";
 import { getAdminLang, getAdminT } from "@/server/admin-lang";
 import { countNewApplications } from "@/server/applications";
+import { countNewQuotations } from "@/server/quotations";
 import { can, requireUser } from "@/server/auth";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +36,14 @@ export default async function PanelLayout({ children }: { children: ReactNode })
         can(user, "jobs.manage") && { href: "/admin/jobs", label: t("nav.jobs"), icon: "jobs" },
         can(user, "applications.view") && {
           href: "/admin/applications", label: t("nav.applications"), icon: "applications", badge: countNewApplications(),
+        },
+      ),
+    },
+    {
+      label: t("nav.group.sales"),
+      items: only(
+        can(user, "quotations.view") && {
+          href: "/admin/quotations", label: t("nav.quotations"), icon: "quotes", badge: countNewQuotations(),
         },
       ),
     },

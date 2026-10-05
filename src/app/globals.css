@@ -441,3 +441,23 @@ body {
     font-size: 12.5px;
   }
 }
+
+/* ---- printable documents (the quotation brief's "Download PDF") ---- */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0b2a3f;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+  }
+}

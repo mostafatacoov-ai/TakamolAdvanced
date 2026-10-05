@@ -72,6 +72,11 @@ export const CONTENT_GROUPS: { key: string; label: Localized; sections: { ns: st
     ],
   },
   {
+    key: "sales",
+    label: { ar: "المبيعات", en: "Sales" },
+    sections: [{ ns: "Quotation", label: { ar: "نموذج عرض السعر", en: "Quotation brief" } }],
+  },
+  {
     key: "knowledge",
     label: { ar: "مركز المعرفة وصفحات أخرى", en: "Knowledge center & other pages" },
     sections: [{ ns: "Pages", label: { ar: "المقالات والصفحات التفصيلية", en: "Articles & detail pages" } }],

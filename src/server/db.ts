@@ -129,6 +129,55 @@ const MIGRATIONS: string[] = [
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
   `,
+  `
+  CREATE TABLE quotations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    token TEXT NOT NULL UNIQUE,
+    reference TEXT NOT NULL DEFAULT '',
+    sales_person TEXT NOT NULL,
+    request_date TEXT NOT NULL,
+    department TEXT NOT NULL DEFAULT '',
+    client_name TEXT NOT NULL,
+    client_type TEXT NOT NULL DEFAULT '',
+    client_contact TEXT NOT NULL DEFAULT '',
+    client_phone TEXT NOT NULL DEFAULT '',
+    client_email TEXT NOT NULL DEFAULT '',
+    client_address TEXT NOT NULL DEFAULT '',
+    services TEXT NOT NULL DEFAULT '[]',
+    service_other TEXT NOT NULL DEFAULT '',
+    project_name TEXT NOT NULL DEFAULT '',
+    project_location TEXT NOT NULL DEFAULT '',
+    land_area TEXT NOT NULL DEFAULT '',
+    boundaries TEXT NOT NULL DEFAULT '',
+    study_goal TEXT NOT NULL DEFAULT '',
+    documents TEXT NOT NULL DEFAULT '[]',
+    client_requirements TEXT NOT NULL DEFAULT '',
+    amount REAL,
+    vat REAL,
+    total REAL,
+    duration_days INTEGER,
+    validity TEXT NOT NULL DEFAULT '',
+    payments TEXT NOT NULL DEFAULT '',
+    formats TEXT NOT NULL DEFAULT '[]',
+    meeting INTEGER,
+    notes TEXT NOT NULL DEFAULT '',
+    status TEXT NOT NULL DEFAULT 'new',
+    admin_notes TEXT NOT NULL DEFAULT '',
+    locale TEXT NOT NULL DEFAULT 'ar',
+    ip_hash TEXT NOT NULL DEFAULT '',
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+  CREATE INDEX quotations_status ON quotations(status, created_at);
+  CREATE INDEX quotations_ip ON quotations(ip_hash, created_at);
+  -- the built-in Site manager role gains the new sales permissions
+  UPDATE roles SET permissions = json_insert(permissions, '$[#]', 'quotations.view')
+    WHERE key = 'site_manager'
+      AND NOT EXISTS (SELECT 1 FROM json_each(roles.permissions) WHERE value = 'quotations.view');
+  UPDATE roles SET permissions = json_insert(permissions, '$[#]', 'quotations.manage')
+    WHERE key = 'site_manager'
+      AND NOT EXISTS (SELECT 1 FROM json_each(roles.permissions) WHERE value = 'quotations.manage');
+  `,
 ];
 
 type Connection = { db: DatabaseSync; statements: Map<string, StatementSync> };

@@ -12,6 +12,7 @@ import { countEditedTexts } from "@/server/content";
 import { countReplacedImages } from "@/server/images";
 import { countOpenJobs } from "@/server/jobs";
 import { countPages } from "@/server/pages";
+import { countNewQuotations } from "@/server/quotations";
 import { countUsers } from "@/server/users";
 
 export default async function Dashboard({ searchParams }: { searchParams: Promise<{ denied?: string }> }) {
@@ -31,6 +32,9 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {showApplications && (
           <StatCard label={t("dash.newApplications")} value={countNewApplications()} href="/admin/applications?status=new" icon="applications" />
+        )}
+        {can(user, "quotations.view") && (
+          <StatCard label={t("dash.newQuotations")} value={countNewQuotations()} href="/admin/quotations?status=new" icon="quotes" tone="amber" />
         )}
         {can(user, "jobs.manage") && (
           <StatCard label={t("dash.openJobs")} value={countOpenJobs()} href="/admin/jobs" icon="jobs" tone="blue" />

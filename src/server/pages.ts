@@ -45,7 +45,7 @@ const toRecord = (r: Row): PageRecord => {
 
 /* First path segments the site already uses (or that would shadow files). */
 const RESERVED = new Set([
-  "about", "services", "platforms", "knowledge", "partners", "join", "admin", "api", "media",
+  "about", "services", "platforms", "knowledge", "partners", "join", "quotation-request", "admin", "api", "media",
   "en", "ar", "assets", "fonts", "_next", "favicon.ico", "robots.txt", "sitemap.xml", "icon.png", "apple-icon.png",
 ]);
 export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
