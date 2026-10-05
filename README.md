@@ -62,7 +62,9 @@ Environment variables:
 | `ADMIN_SETUP_TOKEN` | to create the first admin | Any long secret phrase. `/admin/setup` asks for it in production; once the first administrator exists, setup is closed for good. |
 | `NEXT_PUBLIC_SITE_URL` | optional | The live address (default `https://takamoladvanced.sa`), used in the sitemap, `robots.txt` and link previews. Read at build time. |
 | `DATA_DIR` | optional | Where the database and uploaded files live. Defaults to `takamol-data` in the hosting account's home folder, outside the app, so redeploying from Git never touches it. |
-| `ZOHO_API_KEY` | for email notifications | A ZeptoMail "Send Mail Token" (Zoho's transactional email service). The sender's domain must be verified in ZeptoMail. Used in preference to SMTP. |
+| `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN` | for email notifications through a Zoho Mail mailbox | From a **Self Client** in [api-console.zoho.com](https://api-console.zoho.com): copy the Client ID and Secret, generate a code with the scope `ZohoMail.messages.CREATE,ZohoMail.accounts.READ` while signed in as the sending mailbox, then run `npm run zoho:token -- <client_id> <client_secret> <code>` within ten minutes to get the refresh token. Used in preference to the other options. |
+| `ZOHO_ACCOUNTS_URL`, `ZOHO_MAIL_URL` | optional | Default `https://accounts.zoho.com` and `https://mail.zoho.com`; change the domain for an account on another Zoho data centre (e.g. `zoho.eu`, `zoho.sa`). |
+| `ZOHO_API_KEY` | alternative: ZeptoMail | A ZeptoMail "Send Mail Token" (Zoho's transactional email service). The sender's domain must be verified in ZeptoMail. |
 | `ZOHO_API_URL` | optional | Defaults to `https://api.zeptomail.com/v1.1/email`; change the host for an EU/IN/AU/CN ZeptoMail account (e.g. `api.zeptomail.eu`). |
 | `SMTP_HOST` | alternative to `ZOHO_API_KEY` | An outgoing mail server, e.g. `smtp.zoho.com` or `smtp.hostinger.com`. Without either option nothing is sent and a line is logged instead. |
 | `SMTP_PORT` | optional | Defaults to `465` (SSL). Use `587` for STARTTLS. |

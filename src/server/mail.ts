@@ -4,9 +4,10 @@ import { formatMoney, type QuotationRecord } from "@/lib/quotation";
 import type { ApplicationRecord } from "./applications";
 
 /* Email notifications to the team when something is submitted on the site.
-   They go out through Zoho's ZeptoMail API when ZOHO_API_KEY is set, or an
-   SMTP mailbox otherwise (see README › Environment variables). When neither
-   is configured the submission still succeeds and a line is logged. */
+   They go out through the Zoho Mail API (ZOHO_REFRESH_TOKEN), else Zoho's
+   ZeptoMail API (ZOHO_API_KEY), else an SMTP mailbox (see README ›
+   Environment variables). When none is configured the submission still
+   succeeds and a line is logged. */
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://takamoladvanced.sa").replace(/\/$/, "");
 
@@ -14,6 +15,75 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://takamoladvanced.s
 export const NOTIFY_TO = process.env.NOTIFY_EMAIL || "pm@takamoladvanced.sa";
 /** The mailbox the notifications come from (and sign in as, unless SMTP_USER differs). */
 export const MAIL_FROM = process.env.MAIL_FROM || process.env.SMTP_USER || "info@takamoladvanced.sa";
+
+/* ---- Zoho Mail API (OAuth) -------------------------------------------
+   A "Self Client" in the Zoho API console gives a client id and secret, and
+   a one-time code that `npm run zoho:token` turns into a refresh token.
+   Access tokens are minted from it as needed and kept for their lifetime. */
+
+const ZOHO_CLIENT_ID = process.env.ZOHO_CLIENT_ID;
+const ZOHO_CLIENT_SECRET = process.env.ZOHO_CLIENT_SECRET;
+const ZOHO_REFRESH_TOKEN = process.env.ZOHO_REFRESH_TOKEN;
+const ZOHO_ACCOUNTS_URL = (process.env.ZOHO_ACCOUNTS_URL || "https://accounts.zoho.com").replace(/\/$/, "");
+const ZOHO_MAIL_URL = (process.env.ZOHO_MAIL_URL || "https://mail.zoho.com").replace(/\/$/, "");
+
+const zoho = globalThis as typeof globalThis & {
+  __zohoToken?: { value: string; expires: number };
+  __zohoAccount?: string;
+};
+
+async function zohoAccessToken() {
+  const cached = zoho.__zohoToken;
+  if (cached && cached.expires > Date.now()) return cached.value;
+  const params = new URLSearchParams({
+    grant_type: "refresh_token",
+    client_id: ZOHO_CLIENT_ID ?? "",
+    client_secret: ZOHO_CLIENT_SECRET ?? "",
+    refresh_token: ZOHO_REFRESH_TOKEN ?? "",
+  });
+  const response = await fetch(`${ZOHO_ACCOUNTS_URL}/oauth/v2/token`, { method: "POST", body: params });
+  const data = (await response.json()) as { access_token?: string; expires_in?: number; error?: string };
+  if (!response.ok || !data.access_token) throw new Error(`Zoho token: ${data.error ?? response.status}`);
+  // keep it a minute short of its lifetime (an hour by default)
+  zoho.__zohoToken = { value: data.access_token, expires: Date.now() + ((data.expires_in ?? 3600) - 60) * 1000 };
+  return data.access_token;
+}
+
+/** The Zoho Mail account that owns MAIL_FROM (or the first one the token can see). */
+async function zohoAccountId(token: string) {
+  if (zoho.__zohoAccount) return zoho.__zohoAccount;
+  const response = await fetch(`${ZOHO_MAIL_URL}/api/accounts`, { headers: { Authorization: `Zoho-oauthtoken ${token}` } });
+  const data = (await response.json()) as {
+    data?: { accountId: string; primaryEmailAddress?: string; emailAddress?: { mailId?: string }[] }[];
+  };
+  if (!response.ok || !data.data?.length) throw new Error(`Zoho accounts: ${response.status}`);
+  const from = MAIL_FROM.toLowerCase();
+  const account =
+    data.data.find((a) => a.primaryEmailAddress?.toLowerCase() === from) ??
+    data.data.find((a) => a.emailAddress?.some((e) => e.mailId?.toLowerCase() === from)) ??
+    data.data[0];
+  zoho.__zohoAccount = account.accountId;
+  return account.accountId;
+}
+
+async function sendWithZohoMail(subject: string, body: { html: string; text: string }) {
+  const token = await zohoAccessToken();
+  const account = await zohoAccountId(token);
+  const response = await fetch(`${ZOHO_MAIL_URL}/api/accounts/${account}/messages`, {
+    method: "POST",
+    headers: { Authorization: `Zoho-oauthtoken ${token}`, "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      fromAddress: MAIL_FROM,
+      toAddress: NOTIFY_TO,
+      subject,
+      content: body.html,
+      mailFormat: "html",
+    }),
+  });
+  if (!response.ok) throw new Error(`Zoho Mail ${response.status}: ${(await response.text()).slice(0, 500)}`);
+}
+
+/* ---- Zoho ZeptoMail ---------------------------------------------------- */
 
 /** Zoho ZeptoMail: a "Send Mail Token" from the ZeptoMail console. */
 const ZOHO_API_KEY = process.env.ZOHO_API_KEY;
@@ -85,13 +155,17 @@ function render(title: string, rows: Row[], links: { label: string; href: string
 
 async function send(subject: string, body: { html: string; text: string }) {
   try {
+    if (ZOHO_REFRESH_TOKEN && ZOHO_CLIENT_ID && ZOHO_CLIENT_SECRET) {
+      await sendWithZohoMail(subject, body);
+      return;
+    }
     if (ZOHO_API_KEY) {
       await sendWithZoho(subject, body);
       return;
     }
     const t = transport();
     if (!t) {
-      console.warn(`[mail] not configured (ZOHO_API_KEY or SMTP_HOST / SMTP_PASS missing): would have sent "${subject}" to ${NOTIFY_TO}`);
+      console.warn(`[mail] not configured (ZOHO_REFRESH_TOKEN, ZOHO_API_KEY or SMTP_HOST / SMTP_PASS missing): would have sent "${subject}" to ${NOTIFY_TO}`);
       return;
     }
     await t.sendMail({ from: `"Takamol Advanced" <${MAIL_FROM}>`, to: NOTIFY_TO, subject, ...body });
