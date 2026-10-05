@@ -255,9 +255,10 @@ export async function submitQuotation(input: QuotationInput): Promise<
   if (clientMissing.length) return { ok: false, error: "errorClient", fields: clientMissing };
   if (clientEmail && !EMAIL.test(clientEmail)) return { ok: false, error: "errorEmail", fields: ["clientEmail"] };
 
-  const services: ServiceKey[] = keep(input.services, SERVICES);
-  const serviceOther = clean(input.serviceOther, 300);
-  if (services.length === 0 || (services.includes("other") && services.length === 1 && !serviceOther)) {
+  // one service from the list; "other" must say what it is
+  const services: ServiceKey[] = keep(input.services, SERVICES).slice(0, 1);
+  const serviceOther = services[0] === "other" ? clean(input.serviceOther, 300) : "";
+  if (services.length === 0 || (services[0] === "other" && !serviceOther)) {
     return { ok: false, error: "errorService", fields: ["services"] };
   }
 

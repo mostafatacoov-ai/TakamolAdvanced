@@ -5,7 +5,7 @@
 export const CLIENT_TYPES = ["individual", "company", "government"] as const;
 export type ClientType = (typeof CLIENT_TYPES)[number];
 
-export const SERVICES = ["bestUse", "feasibility", "investmentFile", "other"] as const;
+export const SERVICES = ["full", "medium", "preliminary", "bestUse", "other"] as const;
 export type ServiceKey = (typeof SERVICES)[number];
 
 export const DOCUMENTS = ["deed", "survey", "coordinates", "media"] as const;

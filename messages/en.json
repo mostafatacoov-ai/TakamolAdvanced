@@ -1398,14 +1398,14 @@
     "clientEmail": "Email",
     "clientAddress": "Address / city",
     "serviceType": "Requested service",
-    "serviceHint": "Choose one or more services.",
     "services": {
-      "bestUse": "Highest and best-use study",
-      "feasibility": "Integrated feasibility study",
-      "investmentFile": "Investment file and marketing of investment opportunities",
-      "other": "Consulting / other services"
+      "full": "Full study",
+      "medium": "Medium study",
+      "preliminary": "Preliminary study",
+      "bestUse": "Highest and best use",
+      "other": "Other"
     },
-    "serviceOtherDetail": "Specify the other service",
+    "serviceOtherDetail": "Specify the service type",
     "projectDetails": "Site and project details",
     "projectName": "Project name / description",
     "projectLocation": "Land / property location",
@@ -1460,7 +1460,7 @@
     "errorRequired": "Please fill in the sales representative's name and the request date.",
     "errorClient": "Please fill in the client's name and phone number and choose the client type.",
     "errorEmail": "Please enter a valid email address or leave the field empty.",
-    "errorService": "Please choose the requested service (or specify the other service).",
+    "errorService": "Please choose the requested service type, and describe it when choosing “Other”.",
     "errorAmount": "Please enter valid numbers for the amount and delivery time.",
     "errorPayments": "Payment percentages must be whole numbers adding up to 100%.",
     "errorRate": "We've recently received several briefs from your device. Please try again later.",
@@ -1488,6 +1488,7 @@
     "attachmentsClear": "Remove files",
     "errorSalesPerson": "Please choose the sales representative from the list.",
     "errorRange": "The upper limit of the price range must be higher than the lower limit.",
-    "errorFiles": "The attachments couldn't be accepted: up to 10 files of 10 MB each, as PDF, images, Word, Excel, KML, DWG or ZIP."
+    "errorFiles": "The attachments couldn't be accepted: up to 10 files of 10 MB each, as PDF, images, Word, Excel, KML, DWG or ZIP.",
+    "serviceChoose": "Choose the service type"
   }
 }

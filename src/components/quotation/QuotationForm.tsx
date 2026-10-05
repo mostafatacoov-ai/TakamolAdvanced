@@ -179,31 +179,28 @@ export default function QuotationForm() {
 
       {/* 3 ---------------------------------------------------------------- */}
       <Section n={3} title={t("sections.project")} subtitle={t("sectionsEn.project")}>
-        <Field label={t("serviceType")} required hint={t("serviceHint")} wide>
-          <div className={`grid grid-cols-1 gap-2 md:grid-cols-2 ${bad("services") ? "rounded-[16px] ring-2 ring-rose-400/60" : ""}`}>
+        <Field label={t("serviceType")} required htmlFor="q-service">
+          <select
+            id="q-service"
+            name="services"
+            required
+            defaultValue=""
+            onChange={(e) => setOtherService(e.target.value === "other")}
+            className={input("services")}
+          >
+            <option value="" disabled>{t("serviceChoose")}</option>
             {SERVICES.map((k) => (
-              <label key={k} className={optionClass}>
-                <input
-                  type="checkbox"
-                  name="services"
-                  value={k}
-                  className={checkClass}
-                  onChange={k === "other" ? (e) => setOtherService(e.target.checked) : undefined}
-                />
-                <span>{t(`services.${k}`)}</span>
-              </label>
+              <option key={k} value={k}>{t(`services.${k}`)}</option>
             ))}
-          </div>
-          {otherService && (
-            <input
-              name="serviceOther"
-              aria-label={t("serviceOtherDetail")}
-              placeholder={t("serviceOtherDetail")}
-              maxLength={300}
-              className={`${input("services")} mt-3`}
-            />
-          )}
+          </select>
         </Field>
+        {otherService ? (
+          <Field label={t("serviceOtherDetail")} required htmlFor="q-service-other">
+            <input id="q-service-other" name="serviceOther" maxLength={300} autoFocus className={input("services")} />
+          </Field>
+        ) : (
+          <div className="hidden md:block" />
+        )}
 
         <h4 className="text-[15px] font-bold text-white md:col-span-2">{t("projectDetails")}</h4>
         <Field label={t("projectName")} htmlFor="q-project">
