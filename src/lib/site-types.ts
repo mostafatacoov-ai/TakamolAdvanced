@@ -17,6 +17,8 @@ export type SiteSettings = {
   footerEmail: string;
   requestsEmail: string;
   phone: string;
+  /** the office landline, shown under the mobile number */
+  landline: string;
   whatsapp: string;
   mapUrl: string;
   hours: string;

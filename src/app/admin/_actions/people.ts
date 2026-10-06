@@ -134,6 +134,7 @@ export async function saveSettingsAction(_state: ActionState, form: FormData): P
       footerEmail: text(form, "footerEmail", 200),
       requestsEmail: text(form, "requestsEmail", 200),
       phone: text(form, "phone", 40),
+      landline: text(form, "landline", 40),
       whatsapp: text(form, "whatsapp", 20),
       mapUrl: text(form, "mapUrl", 500),
       hours: text(form, "hours", 60),

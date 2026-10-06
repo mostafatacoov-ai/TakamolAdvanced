@@ -90,6 +90,12 @@ export default function Footer() {
             <div className="flex flex-col gap-1.5">
               <span className="text-[13px] text-white/90">{t("phoneWhatsapp")}</span>
               <a href={`https://wa.me/${settings.whatsapp.replace(/\D/g, "")}`} target="_blank" rel="noopener noreferrer" className={`font-exo font-medium text-[14px] text-white hover:text-teal ${locale === 'en' ? 'text-left' : 'text-right'}`} dir="ltr">{settings.phone}</a>
+              {settings.landline && (
+                <>
+                  <span className="mt-1.5 text-[13px] text-white/90">{t("landline")}</span>
+                  <a href={`tel:${settings.landline.replace(/[^\d+]/g, "")}`} className={`font-exo font-medium text-[14px] text-white hover:text-teal ${locale === 'en' ? 'text-left' : 'text-right'}`} dir="ltr">{settings.landline}</a>
+                </>
+              )}
             </div>
 
           </div>

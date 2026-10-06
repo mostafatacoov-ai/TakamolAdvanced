@@ -7,6 +7,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   footerEmail: "support@takamoladvanced.sa",
   requestsEmail: "info@takamoladvanced.sa",
   phone: "+966 50 894 4460",
+  landline: "920031481",
   whatsapp: "966508944460",
   mapUrl: "https://maps.app.goo.gl/YJWS9uMKLYA21ZDb8",
   hours: "10:00 AM - 6:00 PM",

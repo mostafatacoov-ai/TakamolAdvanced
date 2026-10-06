@@ -37,6 +37,7 @@ export default async function SettingsPage() {
               {input("footerEmail", t("settings.footerEmail"), s.footerEmail)}
               {input("requestsEmail", t("settings.requestsEmail"), s.requestsEmail)}
               {input("phone", t("settings.phone"), s.phone)}
+              {input("landline", t("settings.landline"), s.landline, t("settings.landlineHint"))}
               {input("whatsapp", t("settings.whatsapp"), s.whatsapp, t("settings.whatsappHint"))}
               {input("hours", t("settings.hours"), s.hours, t("settings.hoursHint"))}
               {input("mapUrl", t("settings.mapUrl"), s.mapUrl)}
