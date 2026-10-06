@@ -461,3 +461,25 @@ body {
     box-shadow: none !important;
   }
 }
+
+/* ---- phones: keep decorative glows from widening the page ----
+   Several sections float a wide blurred glow behind their content; without
+   this, the part sticking out past the screen made phones lay the whole
+   page out wider and zoom it out. `clip` (unlike `hidden`) creates no
+   scroll container, so sticky elements keep working. */
+main {
+  overflow-x: clip;
+}
+
+/* report pages in English: Latin digits (the brand font draws Arabic-Indic
+   ones), with letters unchanged */
+@font-face {
+  font-family: "Exo2Digits";
+  src: url("/fonts/Exo2.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0030-0039, U+0025, U+002B, U+002C, U+002E;
+}
+.latin-digits {
+  font-family: "Exo2Digits", "GESSTwo", "Exo2", system-ui, sans-serif;
+}

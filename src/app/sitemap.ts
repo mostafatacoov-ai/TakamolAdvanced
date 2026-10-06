@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/navigation";
+import { MARKET_REPORTS } from "@/lib/reports";
 import { publishedSlugs } from "@/server/pages";
 
 // pages added in the admin area appear within the hour
@@ -26,6 +27,7 @@ const ROUTES = [
   "/knowledge/mega-projects-impact",
   "/knowledge/promising-saudi-cities",
   "/knowledge/takamol-real-estate-index",
+  ...MARKET_REPORTS.map((r) => `/knowledge/reports/${r.slug}`),
   "/partners",
   "/join",
 ];

@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/metadata";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import KnowledgeSection from "@/components/home/Knowledge";
+import ReportsSection from "@/components/knowledge/ReportCards";
 import { setRequestLocale } from "next-intl/server";
 
 export const generateMetadata = pageMetadata("knowledge", "knowledgeDesc");
@@ -15,7 +16,8 @@ export default function KnowledgePage({ params }: { params: Promise<{ locale: st
     <>
       <Header />
       <main className="min-h-screen pt-[110px]">
-        <KnowledgeSection />
+        <ReportsSection />
+        <KnowledgeSection variant="page" />
       </main>
       <Footer />
     </>

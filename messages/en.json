@@ -55,7 +55,8 @@
     "r3Desc": "(NEOM, Red Sea, Diriyah, Khobar...)",
     "r4Title": "PropTech Revolution in Saudi Arabia",
     "r4Question": "How did technology change the face of the real estate sector?",
-    "r4Desc": "Takamol Advanced's vision on the future of real estate tech"
+    "r4Desc": "Takamol Advanced's vision on the future of real estate tech",
+    "articlesTitle": "Articles & insights"
   },
   "Partners": {
     "title": "Our Partners",
@@ -1491,5 +1492,601 @@
     "errorRange": "The upper limit of the price range must be higher than the lower limit.",
     "errorFiles": "The attachments couldn't be accepted: up to 10 files of 10 MB each, as PDF, images, Word, Excel, KML, DWG or ZIP.",
     "serviceChoose": "Choose the service type"
+  },
+  "Reports": {
+    "badge": "Real Estate Market Reports · 2026 Edition",
+    "title": "Real Estate Market Reports 2026",
+    "subtitle": "Data-driven, institutional readings of the Saudi market and its main regions: the macro picture and regulation, the residential, office, retail and hospitality sectors, and opportunity maps. Read each report's summary or download the full PDF.",
+    "featured": "National report",
+    "regionsTitle": "Regional and city reports",
+    "readSummary": "Read the summary",
+    "download": "Download the PDF report",
+    "pages": "pages",
+    "keyFigures": "Key figures",
+    "contentsTitle": "What the report covers",
+    "contentsHint": "A summary of each theme. The full detail, charts and tables are in the report.",
+    "contentsPreview": "The report's contents page",
+    "ctaTitle": "Get the full report",
+    "ctaText": "The full report includes the detailed analysis, charts, data tables and their sources, along with the investment opportunity maps.",
+    "sourceNote": "This summary is drawn from Takamol Advanced's 2026 real-estate market reports, and its figures are for general information. See the full report for detail and sources.",
+    "otherReports": "More reports",
+    "items": {
+      "saudiArabia": {
+        "region": "Saudi Arabia",
+        "title": "Saudi Real Estate Market Report 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "An institutional read of Saudi real estate in 2026: macro, regulation, housing, offices, retail, hospitality and 10 opportunities.",
+        "metaDescription": "Saudi Real Estate Market Report 2026: macro indicators, housing demand, offices and regional HQs, giga-projects, hospitality and investment opportunities.",
+        "intro": "Takamol Advanced's Saudi Real Estate Market Report 2026 offers a data-driven, institutional reading of the Kingdom's market across all thirteen regions, with a focus on Riyadh, Jeddah, Dammam/Khobar, Makkah, Madinah and the giga-project sites. Covering the reference period from Q3 2025 to Q1 2026, it is organised into <b>nine themes</b> that run from the macro economy and regulation through the residential, office, retail and hospitality sectors, and closes with ten ranked investment opportunities.",
+        "figures": [
+          {
+            "value": "$1.3T+",
+            "label": "Announced construction and infrastructure project pipeline"
+          },
+          {
+            "value": "4.1–4.9%",
+            "label": "Non-oil GDP growth"
+          },
+          {
+            "value": "830K",
+            "label": "Housing units of confirmed demand by 2030"
+          },
+          {
+            "value": "98–99%",
+            "label": "Grade A office occupancy in Riyadh"
+          },
+          {
+            "value": "540+",
+            "label": "Global firms licensed for regional headquarters"
+          },
+          {
+            "value": "150M",
+            "label": "Visitors targeted by 2030"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Macro Landscape",
+            "body": "Non-oil GDP is growing at 4.1–4.9%, fixed capital formation stands at 32% of GDP and the announced project pipeline exceeds $1.3 trillion, so property demand rests on deep capital restructuring rather than passing liquidity booms. The report puts confirmed cumulative housing demand to 2030 at 825–830 thousand units, while annual deliveries cover only 60–65% of organic demand. Institutional operating assets combine the highest yields with the lowest vacancy, such as serviced apartments at 8.0–9.2% and Riyadh Grade A offices at 8.2–8.8% net."
+          },
+          {
+            "heading": "Offices and Regional Headquarters",
+            "body": "Riyadh's office market is in a \"Grade A squeeze\": prime occupancy is 98–99%, rents in strategic locations are growing by more than 19%, and over 540 companies hold regional headquarters licences. Average Grade A rent in Riyadh is SAR 2,770/m² a year, reaching SAR 4,000 in KAFD against SAR 1,600 in Jeddah. The report expects about 1.1 million m² to arrive in 2027–2028 without a rental collapse, keeping prime net yields at 8.2–8.8%, while more than 70% of multinationals now require green certification."
+          },
+          {
+            "heading": "Residential and Housing Market",
+            "body": "Confirmed cumulative housing demand exceeds 830,000 units to 2030, with Saudi household ownership at 63.7% against a 70% target. Riyadh leads pricing, with apartments averaging SAR 5,150–5,400/m², 8.5% annual price growth and rents up 12–16%, compared with 2.5% growth in Jeddah and 1.8% in Dammam/Khobar. Apartments account for 62% of sales; 120–180 m² units priced at SAR 0.9–1.4 million sell more than 90% within the first months of launch, and Riyadh apartments return gross yields of 6.8–7.5%."
+          },
+          {
+            "heading": "Retail and Lifestyle Centres",
+            "body": "The report tracks a shift from enclosed malls to open lifestyle centres, as e-commerce grows by more than 20% a year and digital retail transactions in Riyadh rise by over 21%. Lifestyle and F&B centres run above 92% occupancy against an estimated 80% for traditional malls, and successful developers now give more than 50% of leasable area to dining and entertainment. Giga-projects add new destinations, including 900,000 m² of retail at New Murabba and an estimated 1.5 million m²+ of new retail and leisure space in Riyadh by 2030."
+          },
+          {
+            "heading": "Giga-Projects and Logistics",
+            "body": "Announced construction and development projects exceed $1.3 trillion, including more than $196 billion in contracts already awarded or under way and over 380,000 new homes within the giga-projects by 2030. Riyadh alone accounts for more than $314 billion of announced projects, and property near giga-project sites is recording price gains of 15–25%. In logistics, modern warehouse occupancy is close to 95% with rents rising 8–12% a year, while data centres deliver stable net yields of 8–9%."
+          },
+          {
+            "heading": "Hospitality and Tourism",
+            "body": "The Kingdom targets 150 million domestic and international visitors by 2030; RevPAR growth in Riyadh exceeds 18%, and the expected average daily rate for ultra-luxury products tops $1,200 a night. The west coast is adding more than 11,800 luxury keys in the first phase across the Red Sea and AMAALA, while Expo 2030 is generating demand for over 40,000 additional hotel rooms. The report's estimates show serviced apartments offering the fastest payback (5.5–7 years) and the highest IRR (16–19%)."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "The report charts regulatory decisions between Q3 2025 and Q1 2026 that moved the market from speculation to operational sustainability: non-Saudi ownership in designated zones, an expanded white land tax rising progressively to 10% in Riyadh with more than 411 million m² of undeveloped land identified, and the Tawazoun platform capping subsidised residential land at SAR 1,500/m². The Wafi off-plan system has also lifted off-plan projects by more than 60% in two years while cutting default risk to near zero."
+          },
+          {
+            "heading": "Market Data and Real Estate Transactions",
+            "body": "Annual residential transaction values exceed SAR 50 billion despite fewer deals, and individual mortgage lending tops SAR 27.8 billion a quarter, confirming that genuine demand remains active despite high interest rates. Riyadh has a residential stock of 1.45 million units and 6.1 million m² of office space, less than 35% of it prime. Rental growth is led by Riyadh Grade A offices (up to 19%), followed by Riyadh housing (up to 16%) and warehouses (up to 12%), while Jeddah and the Eastern Province offer entry costs roughly 25–40% lower."
+          },
+          {
+            "heading": "Takamol Perspective: Opportunity Summary",
+            "body": "The report closes with ten Saudi investment opportunities ranked by strength, led by build-to-rent serviced apartments for executives in north Riyadh yielding 8.0–9.2%, followed by pre-leased green Grade A offices in Riyadh and by modern warehouses and data centres with net yields of 8–9%. An investor matrix then maps the opportunities to investor profiles, from individuals with SAR 0.5–3 million and a 5.5–7.5% target yield to institutions and funds with more than SAR 300 million targeting 8–9%."
+          }
+        ]
+      },
+      "riyadh": {
+        "region": "Riyadh",
+        "title": "Real Estate Market Report — Riyadh Region 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "An in-depth look at Riyadh's 2026 property market: offices, housing, retail, hotels, regulation, deal data and ownership zones.",
+        "metaDescription": "Riyadh Region 2026 real estate market report by Takamol Advanced: office, housing, retail and hotel indicators, transaction data and non-Saudi ownership zones.",
+        "intro": "This report by Takamol Advanced offers <b>a strategic analysis of Riyadh's real estate market dynamics for 2026</b>, covering offices, housing, retail, hospitality, regulation, transaction volumes and non-Saudi ownership zones. Its scope spans Riyadh city and its suburbs (Khuzam, Al-Fursan, Qiddiya and Diriyah), drawing on first-half 2026 data from official sources including the Real Estate Registry, the Ministry of Justice and the Real Estate General Authority.",
+        "figures": [
+          {
+            "value": "8.6M+",
+            "label": "Residents in Riyadh's population base"
+          },
+          {
+            "value": "540+",
+            "label": "Global companies with regional HQs in Riyadh"
+          },
+          {
+            "value": "65%+",
+            "label": "Riyadh's share of Saudi inbound FDI"
+          },
+          {
+            "value": "18–28K",
+            "label": "Estimated annual housing gap, in units"
+          },
+          {
+            "value": "98%",
+            "label": "Grade A office occupancy"
+          },
+          {
+            "value": "SAR 50.5B",
+            "label": "Registered deal value over the last six months"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Key Performance Indicators",
+            "body": "Macro indicators point to a market running close to full capacity: a population of over 8.6 million, 63.8% of them under 35, more than 540 global companies with regional headquarters in Riyadh, and over 65% of Saudi Arabia's inbound FDI. Annual housing need is estimated at 45–55 thousand units against roughly 27 thousand delivered, <b>an estimated annual gap of 18–28 thousand units</b>. The section also maps risk against return for each sector and sets out a roadmap of milestones through the 2034 World Cup."
+          },
+          {
+            "heading": "Office and Administrative Space Sector",
+            "body": "Grade A offices are 98% occupied versus 86–88% for Grade B, with more than 5.1 million m² of existing office space and annual Grade A rent growth of 12% to 15%. KAFD leads rental growth at 18.5%, with rents of SAR 2,800–3,600 per m² a year. With net annual absorption of 350,000–400,000 m², <b>rental pressure is set to persist until at least 2028</b>, and the report expects rents to rise 7% to 10% a year as supply begins to balance slightly."
+          },
+          {
+            "heading": "Residential Sector and Housing Market",
+            "body": "Riyadh's existing housing stock exceeds 1.45 million units, 54% of them apartments, and more than 68% of young Saudi families prefer apartments in fully serviced communities. Average apartment prices rose 8.5% to SAR 5,400–6,300 per m² and apartment rents 11.2%, with net yields of 6.4%–7.2%, reaching 8.5% for small units in serviced complexes. Some 80,500 units are expected to be delivered over 2026–2028, while the market needs 45,000–55,000 new units a year."
+          },
+          {
+            "heading": "Retail and Shopping Centres Sector",
+            "body": "Existing leasable retail space exceeds 4.7 million m², with net yields of 8.2%–9.0%, vacancy of just 2.1% in super-regional malls and 97.9% occupancy at major destinations. Open-air centres outperform with 96.5% occupancy against 90.3% for regional enclosed malls, and food, beverage and entertainment account for 48% of daily footfall. The section maps the major project pipeline, including The Avenues Riyadh at over 390,000 m² in 2027, and rents by corridor ranging from SAR 1,200 to 4,200 per m²."
+          },
+          {
+            "heading": "Hospitality and Hotels Sector",
+            "body": "The market has 24,800 hotel keys at 74.5% annual occupancy, rising to 94%–98% during major conferences and Riyadh Season, with an average daily rate of SAR 865 and RevPAR growth of 19.5%. Business and MICE travel accounts for 60% of demand. Serviced apartments show the highest expected IRR at 15.5%–18.5%, while the report rates post-2030 hotel oversupply as a high-impact risk and proposes ways to hedge against it."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "The non-Saudi ownership law took effect in January 2026, with a disposal fee of up to 5% of the property value on sale and fines of up to SAR 10 million. White land fees are levied at 2.5% of market value a year; more than 65 million m² in Riyadh have been invoiced and over 22 million m² have entered development. The section also covers the Ejar network, which cut rental disputes by 82%, the 2.5% brokerage commission cap, real estate registration, and REITs with assets above SAR 35 billion."
+          },
+          {
+            "heading": "Real Estate Transaction Volumes",
+            "body": "Over the last six months Riyadh recorded 25,325 deals in the Real Estate Registry worth about SAR 50.5 billion. Residential leads by count with 19,711 deals (78%) worth SAR 28.3 billion, averaging SAR 1.44 million per deal and SAR 4,485 per m². Mixed-use deals lift total value with SAR 14.1 billion (28%), while vacant land deals average SAR 17.37 million each, <b>signalling a shift by developers and investors toward larger, longer-horizon projects</b>."
+          },
+          {
+            "heading": "Non-Saudi Ownership Zones in Riyadh",
+            "body": "The report identifies eight approved zones for non-Saudi ownership around Riyadh's giga-projects: King Salman International Airport, New Murabba (19 km²), Qiddiya, Diriyah Gate (14 km²), the Sports Boulevard, King Abdullah Financial District (1.6 million m² of buildings), King Salman Park (over 16 km²) and the Sedra project (ROSHN). It maps each zone's boundaries in detail, alongside an overview map of all approved ownership areas in the city."
+          },
+          {
+            "heading": "External Benchmarks and Takamol Platforms",
+            "body": "This section sets the report's estimates against indicators from international and official sources for 2025–2026, including a projected Riyadh population of 9.6 million by 2030, prime office rents of SAR 3,320 per m², and 200 million Riyadh Metro trips through March 2026, noting that methodologies differ. It closes with Takamol's three platforms: GeoForsa for geospatial intelligence, RealInvest for automated feasibility studies, and RealForsa for curated investment opportunities."
+          }
+        ]
+      },
+      "jeddah": {
+        "region": "Jeddah",
+        "title": "Real Estate Market Report — Jeddah Region 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "Offices, housing, retail, logistics and hospitality in Jeddah, plus regulation, transaction data and ten ranked opportunities.",
+        "metaDescription": "Jeddah property market report 2026 by Takamol Advanced: prices, rents, occupancy and yields in offices, housing, retail, logistics and hotels, plus deal data.",
+        "intro": "This Takamol Advanced report offers an institutional reading of the Jeddah Governorate property market in 2026, covering offices, residential, retail, logistics and hospitality alongside the regulatory framework, transaction data and opportunity maps. It draws on Real Estate Registry and other official data for <b>January to August 2026</b>, analysed across the city's four zones for investors, developers and decision-makers.",
+        "figures": [
+          {
+            "value": "3.75 million",
+            "label": "Residents of Jeddah Governorate"
+          },
+          {
+            "value": "95%",
+            "label": "Grade A office occupancy"
+          },
+          {
+            "value": "97%",
+            "label": "Average logistics occupancy in Jeddah"
+          },
+          {
+            "value": "7,000–13,000 units",
+            "label": "Estimated annual housing shortfall"
+          },
+          {
+            "value": "SAR 16.87 billion",
+            "label": "Residential deals, January to August 2026"
+          },
+          {
+            "value": "600,000+ sq m",
+            "label": "New retail space planned by 2030"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Performance Indicators",
+            "body": "The summary presents Jeddah as the Kingdom's commercial and logistics gateway on the Red Sea, home to 3.75 million people, 69% of them under 35. The market runs near capacity: 95% occupancy for Grade A offices, 97% for warehouses and 96% for strip centres, against 64.5% a year for hotels. Planned housing supply of about 15,000 units a year meets only part of an estimated annual need of 22,000–28,000, while giga-projects from Marafy and Jeddah Central to an airport expanded to 100–114 million passengers mark the milestones repricing the market through 2034."
+          },
+          {
+            "heading": "Office and Administrative Space",
+            "body": "Office stock exceeds 2.8 million sq m, about 55% of Riyadh's, yet Grade A vacancy is no more than 5.1% and occupancy 93–95%: a shortage of quality space, not a glut. Grade A rents are growing 7–10% a year with net yields of 7–8%, led by King Abdulaziz Road at SAR 1,250 per sq m a year versus SAR 550 on King Fahd Road. The report sets out an <b>entry window</b> ahead of a 303,000 sq m supply wave in 2028–2030, 200,000 sq m of it in KAIA City."
+          },
+          {
+            "heading": "Residential Sector and Housing Market",
+            "body": "Housing stock exceeds 1.24 million units, more than 62% of them apartments. Apartment prices average SAR 3,900–4,800 per sq m, up 4.0%, and apartment rents rose 6.3%. Some 45,000 units are scheduled for delivery in 2026–2028, with another 67,500 in planning for 2028–2030, against an annual need of 22,000–28,000 units. Prices across Jeddah's four zones differ by up to roughly a factor of two, and small investment apartments near the Corniche and the rail station achieve net yields of up to 8.5%."
+          },
+          {
+            "heading": "Retail and Shopping Centres",
+            "body": "Existing leasable area exceeds 2.78 million sq m. Major destinations are 94.5% occupied and open-air centres 96%, compared with 89% for traditional regional malls, while restaurants, entertainment and open-air frontages draw 52% of daily footfall. The open-air model commands a rent premium of up to 40% at the top of the range. More than 600,000 sq m of new space is planned by 2030, about 22% on top of current stock, concentrated in open-air and waterfront destinations and led by Westfield Jeddah at over 155,000 sq m."
+          },
+          {
+            "heading": "Warehousing and Logistics",
+            "body": "Logistics is Jeddah's highest-occupancy, highest-yield sector, with 97% occupancy and an estimated net yield of 8.5–10.0% across about 20.2 million sq m. Supply grows only about 1.4% a year while rents rise by roughly 8%. Prime sites in the port–Khumrah–airport triangle reach SAR 387 per sq m a year, against SAR 160 for traditional warehouses. Demand is fed by Jeddah Islamic Port's handling capacity of 130 million tonnes, the special logistics zones, e-commerce and a clear shortfall in cold-storage capacity."
+          },
+          {
+            "heading": "Hospitality and Hotels",
+            "body": "The market has 16,800–17,200 hotel rooms with 64.5% annual occupancy, rising to 88–94% during Ramadan, school holidays and the Formula 1 season, an average daily rate of SAR 735 and RevPAR of SAR 474. Leisure and beach seasons account for 40% of demand and Haramain-related travel for 32%. Serviced apartments stand out as the fastest to pay back, with an expected IRR of 13.5–16.0% and a 6.2–7.5-year payback, while Tourism Development Fund financing can cover up to 50% of capital costs."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "The report tracks sweeping regulatory decisions between Q3 2025 and Q1 2026 that shifted the market from speculation to operational sustainability: the non-Saudi ownership law, updated Wafi off-plan rules, wider white land fees (2.5% a year, rising to as much as 10%), and the Tawazoun platform capping residential land for eligible citizens at SAR 1,500 per sq m. Lying outside the Haramain zone, Jeddah is the natural gateway for foreign ownership in the Western Region. Transaction tax stands at 5%, with first homes exempt up to SAR 1,000,000."
+          },
+          {
+            "heading": "Real Estate Transaction Volumes",
+            "body": "Real Estate Registry data for January to August 2026 show 14,391 transactions in Jeddah Governorate. Residential accounted for 95.6% of them: 13,753 deals worth SAR 16.87 billion, averaging SAR 1.23 million per deal and SAR 2,382 per sq m. Commercial recorded 635 deals worth SAR 5.94 billion, averaging SAR 9.35 million, or 7.6 times the residential average, while agriculture saw just 3 deals. A benchmark against Riyadh puts Jeddah's Grade A office rents roughly 40–45% lower."
+          },
+          {
+            "heading": "Takamol Perspective: Opportunity Summary",
+            "body": "The report closes with ten investment opportunities ranked by strength, led by Grade A warehouses in the port–Khumrah–airport triangle (97% occupancy, 8.5–10% net yield), followed by serviced apartments near the airport and the Haramain railway with an IRR of 13.5–16%, and open-air lifestyle centres in the northern districts. An investor matrix then matches opportunities to four profiles, from individuals with SAR 0.5–3 million in capital to institutions and funds with more than SAR 300 million."
+          }
+        ]
+      },
+      "makkah": {
+        "region": "Makkah",
+        "title": "Real Estate Market Report — Makkah 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "Makkah's hospitality, housing, retail and office markets, with regulation, transaction data and ten investment opportunities.",
+        "metaDescription": "Makkah 2026 real estate report: hospitality, housing, retail, office and Hajj and Umrah indicators, regulation, transaction data and ten opportunities.",
+        "intro": "This report offers an institutional reading of Makkah's real estate market across nine themes covering offices, housing, retail, Hajj and Umrah services and hospitality, alongside the regulatory framework, transaction data and opportunity maps. It covers the city and its four zones, with a reference period of January to August 2026, and concludes with <b>ten investment opportunities ranked by strength</b> for investors, developers and decision-makers.",
+        "figures": [
+          {
+            "value": "15.23M",
+            "label": "Umrah performers in the Kingdom, Q1 2026"
+          },
+          {
+            "value": "30M",
+            "label": "Annual Umrah performers targeted by 2030"
+          },
+          {
+            "value": "392K",
+            "label": "Licensed hotel rooms in Makkah"
+          },
+          {
+            "value": "34,000",
+            "label": "Housing units planned for delivery, 2026–2028"
+          },
+          {
+            "value": "443K m²",
+            "label": "Retail gross leasable area in 2026"
+          },
+          {
+            "value": "17.0–19.5%",
+            "label": "Expected IRR for serviced apartments"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Performance Indicators",
+            "body": "Makkah is the Kingdom's main hub for religious tourism: the region has 8.02 million residents, 2.43 million of them in the city, the 2025 Hajj season drew 1.673 million pilgrims, and the target is 30 million Umrah performers by 2030. The report estimates annual housing need at 15,000–20,000 units against roughly 11,300 delivered per year, <b>an estimated annual gap of 3,700–8,700 units</b>. Serviced apartments top the risk-return matrix with an expected IRR of 17.0–19.5%, followed by 4-star hotels at 15.5–17.8%."
+          },
+          {
+            "heading": "Office and Administrative Space",
+            "body": "A specialised office market, less mature than Riyadh and Jeddah, with an indicative range of SAR 500–900 per m² a year for modern offices and estimated occupancy of 98% for modern stock versus 75% for traditional buildings. Al Aziziyah and Al Masjid Al Haram Road lead rents at SAR 900 for Grade A (+3.5%), 1.9 times the level in Al Sharaei. The report expects new supply from Masar Destination in 2027–2028 to increase competition for traditional buildings while modern ones hold their position."
+          },
+          {
+            "heading": "Residential Sector and Housing Market",
+            "body": "The existing housing stock exceeds 570,000 units, about 68% of them apartments. Apartment sale prices range from SAR 3,400 to 4,800 per m² (+3.2%), and apartment rents grew 6.2%. Around 34,000 units are planned for delivery in 2026–2028, led by the private sector (41%) and Makkah Gate and Wahat Makkah (36%). Net apartment yields are 6.4–7.4% on annual leases, <b>rising to 8.5–10.5% with seasonal letting</b> during the Hajj and Umrah seasons."
+          },
+          {
+            "heading": "Retail and Shopping Centres",
+            "body": "Retail gross leasable area stands at about 443,000 m² in 2026 and is expected to reach about 575,000 m² by 2028; upcoming projects include Al Huda Park and Masar Mall, which targets around 20 million visitors a year. Major centres record 98–99% occupancy against a market average of 86–87%. Rents near the Haram (about SAR 10,800 per m² a year) are roughly five times those of neighbourhood centres (about SAR 2,100), and pilgrims and Umrah performers account for 45% of retail demand."
+          },
+          {
+            "heading": "Hajj and Umrah Services and Logistics Infrastructure",
+            "body": "Makkah's access system carries the largest flow of people in the Kingdom: 53.4 million passengers through King Abdulaziz International Airport in 2025, 15.23 million Umrah performers in Q1 2026 (5.77 million from abroad), and a bus network of more than 580 km with 431 stations. The report treats logistics as a real estate sector in its own right: more than 392,000 rooms need central kitchens, catering warehouses and laundry and maintenance facilities, and it identifies <b>2,000–5,000 m² chilled kitchen and warehouse units</b> as the clearest gap in the market."
+          },
+          {
+            "heading": "Hospitality and Hotels",
+            "body": "Supply exceeds 392,314 licensed rooms (+5.4%), with average annual occupancy of 59.9% that jumps to 98–100% in the central area during the last ten nights of Ramadan and the Hajj season. Average daily rate reached SAR 780 (+11.5%) and RevPAR SAR 510 (+15.2%), with gross operating profit margins of 46–52%. <b>Serviced apartments offer the strongest economics</b>, with an IRR of 17.0–19.5% and a 5.2–6.5-year payback, while the ADR gap between the Haram area and the Kudai zone exceeds 16 times."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "A special framework for Makkah grants non-Saudis renewable usufruct rights of up to 99 years in major developments such as Masar Destination, Thakher Makkah and Jabal Omar, with a SAR 4 million minimum asset value for “Real Estate Owner” premium residency holders. Transaction costs total about 7.5% (5% transaction tax plus brokerage capped at 2.5%). White land fees have been invoiced on more than 28 million m², of which over 12 million m² has entered development or trading, leaving <b>about 16 million m² as a pool for development partnerships</b>."
+          },
+          {
+            "heading": "Real Estate Transaction Volumes",
+            "body": "The real estate registry recorded about 2,200 transactions worth roughly SAR 3.8 billion in Q2 2026, an average of about SAR 1.73 million per deal, while the average apartment price was about SAR 3,437 per m² in Q1. Land leads activity outside the centre, with 2,942 vacant land transactions worth SAR 2.22 billion at an average of about SAR 1,270 per m². Commercial deals are fewer but larger, with the highest recorded transaction reaching SAR 256 million in the Al Diyafah district."
+          },
+          {
+            "heading": "Takamol's View: Opportunities Summary",
+            "body": "The report closes with ten investment opportunities ranked by strength, led by usufruct-based serviced hotel apartments in Masar Destination and around the Haram (IRR 17–19.5%), followed by 4-star hotels on the Masar axis and near shuttle transport stations, and flexible ownership apartments with pilgrim housing permits. <b>An investor matrix matches each opportunity to a profile</b>, from individual investors with SAR 0.5–3 million and a target return of 6.4–10.5% to institutions and funds with more than SAR 300 million."
+          }
+        ]
+      },
+      "madinah": {
+        "region": "Madinah",
+        "title": "Real Estate Market Report — Madinah 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "An institutional read of Madinah's property sectors in 2026, with transaction data, opportunity maps and ranked investment ideas.",
+        "metaDescription": "Madinah 2026 real estate market report: housing, hospitality, retail and office indicators, 2026 transaction data and ten ranked investment opportunities.",
+        "intro": "This report offers an institutional reading of Madinah's office, residential, retail, knowledge-economy and hospitality sectors, together with the regulatory framework, transaction data and opportunity maps, for investors, developers and decision-makers. It covers the city of Madinah and its urban area over the reference period <b>January to August 2026</b>, with analysis at the level of zone, corridor and district.",
+        "figures": [
+          {
+            "value": "21 million",
+            "label": "visitors to the Madinah region in 2025"
+          },
+          {
+            "value": "SAR 9.69 billion",
+            "label": "value of 12,336 property deals in 2026"
+          },
+          {
+            "value": "+49%",
+            "label": "annual growth in residential deal value"
+          },
+          {
+            "value": "74.7%",
+            "label": "average annual hotel occupancy in 2026"
+          },
+          {
+            "value": "98,500 units",
+            "label": "estimated additional housing need by 2030"
+          },
+          {
+            "value": "47,000 rooms",
+            "label": "planned in Rua Al Madinah by 2030"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Performance Indicators",
+            "body": "The Madinah region has 2.14 million residents growing 4.1% a year, and it welcomed 21 million visitors in 2025, with tourism spending above SAR 52 billion. The stock of foreign direct investment reached SAR 60.4 billion by the end of 2024, and 213 development projects worth more than SAR 210 billion are under way. The report puts additional housing need at about 98,500 units by 2030 against planned deliveries of roughly 6,900 units a year, and maps return against risk for every sector."
+          },
+          {
+            "heading": "Office and Administrative Space",
+            "body": "Madinah's office market is still emerging and is led by the Knowledge Economic City, with modern offices averaging about SAR 850/m² a year on leases of 3 to 5 years. Grade A space runs at roughly 98% occupancy, against about 75% for traditional offices. King Abdulaziz Road and Knowledge City command the top Grade A rents at SAR 1,000/m² with 6% annual growth, versus SAR 750 on Al Hijrah Road and secondary corridors, leaving an entry window before Multaqa Al Madinah 2 and Knowledge Gardens deliver in 2027–2028."
+          },
+          {
+            "heading": "Residential Sector and Housing Market",
+            "body": "The existing housing stock stands at 458,800 units and is expected to reach 549,200 units by 2030. Average apartment prices rose 2.5% to SAR 3,835/m², while villa prices eased 0.5% to SAR 3,500/m², and apartments accounted for 58% of deals. Apartment prices range from SAR 7,500–13,500/m² in the central area to 2,700–3,500 in the new suburbs, and the report compares three investment models with gross yields of 6.0% to 9.5%."
+          },
+          {
+            "heading": "Retail and Shopping Centres",
+            "body": "Madinah has more than 260,000 m² of leasable area in its main operating and near-complete centres, where the leading malls run at 94–97% occupancy with rents of SAR 1,600–2,000+/m² a year. Open-air centres outperform with 98% occupancy and rents of SAR 3,500–4,500/m² for premium frontages near the Haram and visitor routes. With more than 150,000 m² of modern leasable space planned in Knowledge City by 2028, King Abdulaziz Road is becoming the city's new retail centre of gravity."
+          },
+          {
+            "heading": "Knowledge Economy, Industry and Logistics",
+            "body": "The Madinah region holds 25 million m² of industrial land, and its industrial city hosts 155 producing factories with 82% occupancy of allocable industrial land, pointing to a need for further expansion. The Knowledge Economic City adds 1.18 million m² of major project space, while airport capacity rises to 18 million passengers by the end of 2027. The report highlights cold storage and central catering facilities serving 661 hospitality establishments, with target yields of 7.5–8.5%."
+          },
+          {
+            "heading": "Hospitality and Hotels",
+            "body": "Existing hotel supply is estimated at 28,500–42,000 keys, with annual occupancy of 74.7% that climbs to around 100% during Ramadan and Hajj. The average daily rate reached SAR 538 (+8.5%) and RevPAR SAR 402 (+12.4%). Serviced apartments deliver the highest IRR (16.0–18.5%) and the shortest payback (5.2–6.5 years) compared with five-star hotels, while the Tourism Development Fund covers up to 60% of capital costs for eligible projects."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "This section covers the new ownership rules, which open full 100% ownership zones in Knowledge City, Rua Al Madinah, Dar Al Hijrah and investment corridors outside the Haram boundary, with direct ownership limited to citizens and non-Saudi Muslims. Transaction costs total about 7.5% (a 5% transaction tax plus brokerage capped at 2.5%). The 2.5% annual white-land fee has brought more than 32 million m² under billing, moved 8.5 million m² into development and cut land costs for developers by 10–15%."
+          },
+          {
+            "heading": "Real Estate Transaction Volumes",
+            "body": "The market recorded 12,336 property transactions worth SAR 9.69 billion in 2026. Residential trading reached SAR 3.4 billion, up 49% in value and 38% in deal count, led by Al Rumanah district with 627 deals worth SAR 594 million. The commercial segment logged 754 deals worth SAR 1.59 billion at an average of SAR 2.11 million per deal, while 149 agricultural deals totalled SAR 489.3 million."
+          },
+          {
+            "heading": "Takamol View: Opportunities Summary",
+            "body": "The report closes with ten investment opportunities ranked by strength, led by serviced hotel apartments on King Abdulaziz and Al Hijrah roads with a 16–18.5% IRR, followed by upper-midscale hotels in Knowledge City and Quba Avenue, then dual-key apartments yielding 8–11%. An investor matrix matches each opportunity to an investor profile, from individuals with SAR 0.5–2 million in capital to institutions and funds deploying more than SAR 300 million."
+          }
+        ]
+      },
+      "easternProvince": {
+        "region": "Eastern Province",
+        "title": "Real Estate Market Report — Eastern Province 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "The Eastern Province market in 2026: offices, housing, retail, industry and hospitality, plus deal data and ten opportunities.",
+        "metaDescription": "Eastern Province real estate report 2026: offices, housing, retail, industry, logistics and hospitality, with transaction data, regulation and opportunities.",
+        "intro": "The <b>Eastern Province Real Estate Market Report 2026</b> offers an institutional reading of the office, residential, retail, industrial, energy, logistics and hospitality sectors, together with the regulatory framework, transaction data and opportunity maps, for investors, developers and decision-makers. It covers the province and its governorates, with a focus on the Dammam metropolitan area (Dammam, Khobar and Dhahran), Qatif, Jubail, Al-Ahsa and Hafr Al-Batin, over a reference period of January to August 2026.",
+        "figures": [
+          {
+            "value": "5.13M",
+            "label": "Residents of the Eastern Province"
+          },
+          {
+            "value": "SAR 366bn",
+            "label": "FDI stock, 42% of the Kingdom's total"
+          },
+          {
+            "value": "34",
+            "label": "Global companies licensed for regional headquarters"
+          },
+          {
+            "value": "2,626",
+            "label": "Producing factories, 25.3% of the Kingdom's"
+          },
+          {
+            "value": "8.1M+ sq m",
+            "label": "Logistics space, the largest in the Kingdom"
+          },
+          {
+            "value": "90%+",
+            "label": "Industrial and logistics occupancy, Dammam metro"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Performance Indicators",
+            "body": "The report presents the Eastern Province as the Kingdom's centre of gravity for industry, energy and logistics, with 5.13 million residents, 5.0% annual population growth (the highest among major regions) and average household income of SAR 15,000 a month. FDI stock is about SAR 366 billion (42% of the Kingdom), and 34 global companies have chosen to open regional headquarters here. Annual housing need of 20,000 to 24,000 units compares with about 9,700 planned deliveries a year, <b>an estimated annual gap of 10,000 to 14,000 units</b>."
+          },
+          {
+            "heading": "Offices and Administrative Space",
+            "body": "The Dammam metro area has about 2.04 million sq m of lettable office space, with Grade A occupancy at 78.6% (JLL) against about 91% for prime assets (CBRE). Grade A rents rose 9.2% to about SAR 994 per sq m a year, versus SAR 840 for Grade B; a gap of only 18% makes upgrading easy for tenants, <b>the essence of the flight to quality</b>. The Khobar waterfront leads at up to SAR 1,035. With about 129,640 sq m arriving in 2026, the report expects rental growth to slow and older buildings to see higher vacancy."
+          },
+          {
+            "heading": "Residential and Housing Market",
+            "body": "Housing stock totals 1,349,769 units, about 745,000 in the Dammam metro area and 240,000 in Al-Ahsa. Apartments sell for SAR 3,300 to 4,450 per sq m (up 0.8%) and villas for SAR 4,200 to 5,600 (up 1.4%), even as transactions fell 14.2% in Q1 2026, which the report reads as <b>selectivity, not weakness</b>. About 29,000 units are due in 2026–2028, 71% from National Housing Company projects, and an illustrative model shows a 7.8% gross yield for a Khobar apartment against 5.3% for an Al-Ahsa villa."
+          },
+          {
+            "heading": "Retail and Shopping Centres",
+            "body": "Retail GLA in Greater Dammam reached about 1.42 million sq m in H1 2026, with 94% occupancy at major destinations and 95% at open-air centres such as Ajdan Walk, while regional-mall rents averaged SAR 2,198 per sq m a year, down 1.5%. More than 458,000 sq m arrives by 2028 through Al Othaim Park, The Avenues Khobar, SDC Khobar and Al Othaim Circle, about a third of existing stock and <b>the largest retail supply wave the province has seen</b>. Khobar–Dhahran rents are about 1.7 times those in Al-Ahsa."
+          },
+          {
+            "heading": "Industry, Energy and Logistics",
+            "body": "The province hosts 2,626 producing factories (25.3% of the Kingdom's), over 40 million sq m of developed industrial land and over 8.1 million sq m of logistics space, the Kingdom's largest. Industrial and logistics occupancy in the Dammam metro area exceeded 90% in Q2 2026 amid a Grade A shortage, with modern warehouses estimated at about SAR 260 per sq m against about SAR 150 for traditional stock. The sector targets <b>net yields of 8.5% to 9.5%</b>, driven by King Abdulaziz Port (3.23 million containers in 2024), SPARK and the Jafurah gas field."
+          },
+          {
+            "heading": "Hospitality and Hotels",
+            "body": "Licensed hotel supply is about 16,234 keys (up 4.8%), with annual occupancy of 58.4% rising to 82–90% in Khobar and Dammam during holidays and seasons, and an average daily rate of SAR 465. Serviced apartments lead the development economics, with <b>an expected IRR of 16.0% to 18.5%</b> and a 5.5 to 6.8-year payback, backed by demand from energy and project staff. Khobar Corniche daily rates run up to 3.7 times Jubail's, and Tourism Development Fund packages cover up to 60% of capital costs for Khobar beach resorts and Al-Ahsa heritage hotels."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "Non-Saudis can own 100% in the SPARK and Ras Al-Khair special economic zones and in approved zones on the Khobar and Dammam waterfronts and Dhahran's office towers. Transaction costs total about 7.5% (5% transaction tax plus brokerage capped at 2.5%), and first homes are exempt up to SAR 1 million. White-land fees reach 10% of land value a year; more than 95 million sq m has been invoiced and over 19 million sq m in the Dammam metro area has entered development or changed hands, opening <b>partnership opportunities with landowners</b>."
+          },
+          {
+            "heading": "Real Estate Transaction Volumes",
+            "body": "The residential sector recorded 7,772 transactions in 2026 worth SAR 6.95 billion, about 15.7% of the Kingdom's deals, averaging SAR 894,000. Khobar takes 37% of residential value with only 14% of deals, at SAR 3,549 per sq m, the province's highest. The commercial sector logged 956 deals worth SAR 3.52 billion, averaging SAR 3.68 million, <b>with value up 27.1% year on year</b>. The section also covers vacant land, industry and agriculture, including 150 agricultural deals worth SAR 175.4 million."
+          },
+          {
+            "heading": "Takamol's View: Opportunity Summary",
+            "body": "The report closes with ten investment opportunities ranked by strength, led by <b>Grade A warehouses near King Abdulaziz Port and the Second Industrial City</b> (occupancy above 90%, net yields of 8.5% to 9.5%), then serviced apartments for energy staff in Dhahran and Jubail (IRR of 16% to 18.5%) and build-to-rent housing for oil, gas and port companies (7% to 8% yield). An investor matrix matches each to capital and horizon, from individuals (SAR 0.5 to 3 million, targeting 5.5% to 7.5%) to institutional funds (over SAR 300 million, targeting 7.5% to 9.5%)."
+          }
+        ]
+      },
+      "dammam": {
+        "region": "Dammam",
+        "title": "Real Estate Market Report — Dammam 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "A sector-by-sector read of Dammam metro offices, housing, retail, logistics and hotels, with deal data and ten opportunities.",
+        "metaDescription": "Dammam 2026 real estate market report: offices, residential, retail, logistics and hospitality, plus regulation, transaction data and opportunity maps.",
+        "intro": "This Takamol Advanced report offers an institutional reading of the real estate market in <b>the Dammam metropolitan area (Dammam, Khobar and Dhahran)</b>, extending to Qatif and Ras Tanura, across the office, residential, retail, logistics and industrial, and hospitality sectors. It draws on Real Estate Registry transactions and field surveys for January to August 2026, compared with the same period of 2025, and links the figures to the regulatory framework, transaction data and opportunity maps for investors, developers and decision-makers.",
+        "figures": [
+          {
+            "value": "2.3 million",
+            "label": "Residents of the Dammam metro area"
+          },
+          {
+            "value": "34",
+            "label": "Global firms licensed for regional headquarters"
+          },
+          {
+            "value": "8.1 million m²",
+            "label": "Logistics stock in the Dammam metro"
+          },
+          {
+            "value": "8.5–9.5%",
+            "label": "Target net yield on logistics assets"
+          },
+          {
+            "value": "SAR 5.4 billion",
+            "label": "Value of residential deals in Dammam"
+          },
+          {
+            "value": "98%",
+            "label": "Occupancy of open-air retail centres"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Performance Indicators",
+            "body": "The report positions Dammam as the Kingdom's industrial and logistics centre of gravity, with a metro population of 2.3 million, annual growth of about 2.8% and average household income of SAR 15,000 a month. The Eastern Province holds 5,456 active foreign investment licences, and 34 global companies have regional headquarters licences there. Annual housing need is estimated at 9,000–11,000 units against planned deliveries of roughly 6,000–6,700 a year, and a 2026–2034 roadmap runs up to Aramco Stadium hosting World Cup 2034 matches, alongside a risk–return matrix for each sector."
+          },
+          {
+            "heading": "Office and Administrative Space Sector",
+            "body": "Office stock in the Dammam metro stands at about 2.0 million m², with Grade A occupancy of 78.6% according to JLL versus around 91% for high-quality assets in CBRE's estimate. Grade A rents reached about SAR 994/m² a year, up 9.2%+, and King Fahd Road leads the corridors at SAR 1,100/m². With roughly 130,000 m² of new space due by end-2026 and net absorption of 40,000–60,000 m² a year, the report expects rents to grow by 2%+ to 5%+ a year through 2028."
+          },
+          {
+            "heading": "Residential Sector and Housing Market",
+            "body": "The existing housing stock is about 736,000 units, with average sale prices of SAR 3,578/m² for apartments and SAR 4,917/m² for villas, showing only slight annual growth. Villas and duplexes made up 67.1% of purchase deals in Q1 2026, and 18,000–20,000 units are planned for delivery in 2026–2028, about 56% of them from National Housing Company (NHC) communities in west and central Dammam. The report compares prices across four geographic bands and models three investment cases with gross yields of 5.8% to 7.8%."
+          },
+          {
+            "heading": "Retail and Shopping Centres Sector",
+            "body": "Existing retail leasable area is about 1.42 million m² and is expected to reach around 2.0 million m² by 2028, driven by projects such as The Avenues Khobar (about 175,000 m² in phase one) and Othaim Park Dammam. Major destinations run at about 94% occupancy, open-air centres at 98% versus 92% for enclosed regional malls, and open formats command a rent premium of up to 65%+. The report targets net rental yields of 7.0–8.0% and compares rents and occupancy across four commercial corridors."
+          },
+          {
+            "heading": "Logistics and Industry",
+            "body": "The report identifies logistics as <b>Dammam's highest-yielding sector</b>, with stock above 8.1 million m², a target net yield of 8.5–9.5% and occupancy of about 93% in serviced logistics zones. Modern Grade A warehouses rent for about SAR 260/m², against roughly SAR 140/m² for conventional stock. It traces the supply chain from King Abdulaziz Port and King Fahd International Airport (targeting 19.3 million passengers by 2030) to the industrial cities and SPARK, and highlights build-to-suit warehouses and small multi-tenant logistics parks."
+          },
+          {
+            "heading": "Hospitality and Hotels Sector",
+            "body": "The Dammam metro has about 17,500 hotel keys, with annual occupancy of 55.8% rising to 80–88% during exhibition and holiday peaks, an average daily rate of SAR 447 (+5.8%) and RevPAR of SAR 249 (+8.2%). Demand comes from energy-sector business travel and Gulf visitors crossing the King Fahd Causeway. Comparing three development categories, the report finds serviced apartments offer the highest expected IRR (15.0–17.5%) and the fastest payback (5.8–7.0 years), with Tourism Development Fund financing covering up to 60% of costs."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "The report reviews the 2025–2026 regulatory changes that reshaped the market: the non-Saudi ownership law, with 100% ownership in SPARK, Ras Al-Khair and the Dammam and Khobar waterfronts, and the three-phase white land tax of up to 10% a year, with more than 85 million m² invoiced in the Dammam metro. It also covers the 5% real estate transaction tax, the first-home exemption up to SAR 1,000,000, the new real estate contributions system, the FAL licence with a 2.5% brokerage commission cap, and real estate registration."
+          },
+          {
+            "heading": "Real Estate Transaction Volume Data",
+            "body": "Drawing on 2026 Real Estate Registry data, the report breaks down deals by sector. The residential segment recorded 4,450 transactions worth SAR 5.4 billion, averaging SAR 1.226 million each, with Al Shula district alone accounting for 2,100 deals (47% of transactions and 56% of value). Commercial deals numbered 280–380, worth SAR 1.1–1.4 billion; 165 vacant-land deals absorbed SAR 2.87 billion at an average of SAR 17.37 million; and the industrial segment logged about 85 deals worth nearly SAR 210 million."
+          },
+          {
+            "heading": "The Takamol View: Opportunity Summary",
+            "body": "The report closes with ten investment opportunities ranked by strength, led by Grade A warehouses near King Abdulaziz Port and the First Industrial City at a net yield of 8.5–9.5%, followed by serviced apartments for professionals with an IRR of 15–17.5%, and open-air lifestyle centres on the Corniche and in Khobar at 98% occupancy. An investor matrix then matches each opportunity to investor type, from individuals with SAR 0.4–2 million of capital and a target yield of 5.5–8.0% to institutions and funds deploying more than SAR 250 million."
+          }
+        ]
+      },
+      "qassim": {
+        "region": "Qassim",
+        "title": "Real Estate Market Report — Qassim Region 2026",
+        "subtitle": "Strategic Analysis and Market Dynamics for 2026",
+        "cardDesc": "Qassim's 2026 property market: housing, offices, retail, industry and hotels, with transaction data and ten ranked opportunities.",
+        "metaDescription": "Qassim real estate report 2026: prices, rents and occupancy across residential, office, retail, industrial and hotel sectors, plus deal data and opportunities.",
+        "intro": "Takamol Advanced's 2026 report on the Qassim real estate market offers an institutional reading of the office, residential, retail, industrial and logistics, and hospitality sectors, together with the regulatory framework, transaction data and opportunity maps, for investors, developers and decision-makers. It covers the region and its 13 governorates, with a focus on Buraidah, Unaizah, Ar Rass, Al Bukayriyah, Al Badai and Al Mithnab, over <b>a reference period of January to August 2026</b>, and closes with ten investment opportunities ranked by strength.",
+        "figures": [
+          {
+            "value": "1.34 million",
+            "label": "Residents of the Qassim region"
+          },
+          {
+            "value": "730",
+            "label": "Producing factories, 4.7% of the Kingdom's total"
+          },
+          {
+            "value": "14,282",
+            "label": "Residential deals worth SAR 5.03 billion"
+          },
+          {
+            "value": "96%",
+            "label": "Occupancy at Buraidah's First Industrial City"
+          },
+          {
+            "value": "8.5–9.2%",
+            "label": "Target net yield, logistics and cold storage"
+          },
+          {
+            "value": "8,500",
+            "label": "Housing units due for delivery 2026–2028"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "Executive Summary and Performance Indicators",
+            "body": "Qassim has a population of 1.34 million, growing 2.31% a year, with average household income of SAR 15,470 a month. The report estimates annual need at 4,000–5,000 new homes against roughly 2,800 planned deliveries a year in 2026–2028, <b>an estimated annual shortfall of 1,200–2,200 units</b>. It also records 47 investment opportunities offered in Buraidah in Q1 2026 and places logistics and cold storage at the top of its risk-return matrix, with net yields of 8.5–9.2%."
+          },
+          {
+            "heading": "Office and Administrative Space",
+            "body": "Qassim's office market is local and specialised, driven by large family businesses and the head offices of food and healthcare companies, with a clear preference for modern buildings: 97% occupancy against 75% for traditional offices. Modern space on Buraidah's main corridors rents for SAR 400–620 per m² a year, compared with SAR 300–420 in Unaizah, and commercial lease transactions are growing 11.1% a year. Energy, industry and healthcare account for 45% of institutional demand, ahead of the roughly 1 million m² Tijan mixed-use scheme due in 2027–2028."
+          },
+          {
+            "heading": "Residential Sector and Housing Market",
+            "body": "The housing stock stands at 345,000 occupied units, with sale prices of SAR 1,900–2,850 per m² for apartments and SAR 2,300–3,600 per m² for villas, up 1.2% and 1.6% year on year respectively. Some 8,500 units are due for delivery in 2026–2028, 42% of them from NHC and Sakani, with more than 12,600 further units in planning for 2028–2030. North Buraidah leads on price at SAR 3,200–4,600 per m² for villas, while <b>modern apartments for professionals near the health cluster and university</b> offer estimated net yields of 7.5–9.0%."
+          },
+          {
+            "heading": "Retail and Shopping Centres",
+            "body": "Retail is shifting to modern destinations that blend shopping, dining and entertainment, led by U Walk Qassim (60,000 m² GLA, more than 135 stores, due Q4 2026) and the new Unaizah mall (about SAR 85 million), which together add more than 125,000 m² of modern GLA by 2028. Open-air centres outperform, with 88–94% occupancy and rents of SAR 850–1,600 per m² a year, against 82–89% for enclosed malls, and rents up to 20% higher at the top end. The northern corridor leads, at SAR 1,100–1,600 per m² and 92% occupancy."
+          },
+          {
+            "heading": "Industry, Logistics and Agriculture",
+            "body": "Industry and logistics is Qassim's highest-occupancy, highest-yield segment. The region has 730 producing factories and SAR 30.9 billion in industrial investment, and Buraidah's First Industrial City runs at 96% occupancy against a 77% average for industrial cities. Modern warehouses rent for about SAR 220 per m² versus about SAR 120 for traditional stock, with target net yields of 8.5–9.2%. Demand is fed by more than 10.87 million palm trees, over 584,000 tonnes of dates a year, the dry port and the 1,800 MW Qassim 1 solar project."
+          },
+          {
+            "heading": "Hospitality and Hotels",
+            "body": "The market has about 6,150 licensed hotel keys, with annual occupancy of 54.2% and an average daily rate of SAR 365. Occupancy rises to 85–92% at festival peaks, a gap of about 40 points between the August dates carnival and the quiet months, and business travel makes up 41% of demand. The report sees <b>serviced apartments</b> as the best fit for Qassim, with an expected IRR of 16.5–19.0% and a 5.2–6.5-year payback, while Tourism Development Fund packages can cover up to 60% of capital costs for eligible projects."
+          },
+          {
+            "heading": "Legislative and Regulatory Framework",
+            "body": "Reforms in 2025–2026 reshaped the market, notably 100% ownership for non-Saudis in approved investment and industrial zones in Buraidah and Unaizah, and a white-land fee of 2.5% of land value a year, phased in over three stages, which has brought about 15 million m² into development or ownership transfer. Transaction costs total about 7.5% (5% transaction tax plus brokerage capped at 2.5%), first homes are tax-exempt up to SAR 1,000,000, and the real estate registry covers 22,937 parcels in 28 neighbourhoods of Buraidah and Unaizah."
+          },
+          {
+            "heading": "Real Estate Transaction Volumes",
+            "body": "The residential sector recorded 14,282 transactions worth SAR 5.03 billion in 2026, about 7% of the Kingdom's total, at an average of SAR 352,000 per deal, less than a third of the Riyadh average. Commercial activity was smaller: 153 deals worth SAR 157.3 million, averaging SAR 1.03 million each. The residential price per m² in recorded deals ranges from SAR 667 in Buraidah to SAR 108 in Al Badai, and 21.36 million m² of vacant land was traded."
+          },
+          {
+            "heading": "Takamol's View: Summary of Opportunities",
+            "body": "The report ranks ten investment opportunities by strength. At the top are Grade A warehouses and cold storage near the First Industrial City and the dry port, at net yields of 8.5–9.2%, followed by serviced apartments for health and academic staff in Buraidah (IRR of 16.5–19%) and modern apartments near the university and health cluster (yields of 7.5–9%). An investor matrix matches each opportunity to capital and time horizon, from individuals with SAR 0.3–2 million targeting 6.0–9.0% to institutions with more than SAR 200 million targeting 7.5–9.5%."
+          }
+        ]
+      }
+    }
   }
 }

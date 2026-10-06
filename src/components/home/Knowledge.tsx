@@ -33,7 +33,9 @@ const REPORTS = [
   },
 ];
 
-export default function Knowledge() {
+/** On the home page it links on to the Knowledge Center; on that page
+    it lists the articles under its own heading. */
+export default function Knowledge({ variant = "home" }: { variant?: "home" | "page" }) {
   const t = useTranslations("Knowledge");
   const locale = useLocale();
 
@@ -42,13 +44,15 @@ export default function Knowledge() {
       <div className="container-tk relative">
         <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="sec-title glow-title">{t("title")}</h2>
+            <h2 className="sec-title glow-title">{variant === "page" ? t("articlesTitle") : t("title")}</h2>
             <div className="glow-bar mt-4 h-[4px] w-24 rounded-full bg-teal" />
           </div>
-          <Link href="/knowledge" className="teal-link md:pb-3">
-            {t("viewMore")}
-            <span className={`text-[30px] leading-none ${locale === 'en' ? 'rotate-180' : ''}`}>‹</span>
-          </Link>
+          {variant === "home" && (
+            <Link href="/knowledge" className="teal-link md:pb-3">
+              {t("viewMore")}
+              <span className={`text-[30px] leading-none ${locale === 'en' ? 'rotate-180' : ''}`}>‹</span>
+            </Link>
+          )}
         </div>
 
         <div className="stagger mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">

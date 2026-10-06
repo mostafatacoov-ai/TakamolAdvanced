@@ -79,7 +79,10 @@ export const CONTENT_GROUPS: { key: string; label: Localized; sections: { ns: st
   {
     key: "knowledge",
     label: { ar: "مركز المعرفة وصفحات أخرى", en: "Knowledge center & other pages" },
-    sections: [{ ns: "Pages", label: { ar: "المقالات والصفحات التفصيلية", en: "Articles & detail pages" } }],
+    sections: [
+      { ns: "Reports", label: { ar: "تقارير السوق العقاري 2026", en: "Market reports 2026" } },
+      { ns: "Pages", label: { ar: "المقالات والصفحات التفصيلية", en: "Articles & detail pages" } },
+    ],
   },
 ];
 
