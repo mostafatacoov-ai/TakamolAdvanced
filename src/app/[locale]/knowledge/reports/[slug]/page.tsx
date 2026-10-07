@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 import { DownloadIcon, ReportCard } from "@/components/knowledge/ReportCards";
 import Image from "@/components/SiteImage";
 import { Link } from "@/navigation";
-import { findReport, MARKET_REPORTS, reportMeta } from "@/lib/reports";
+import { editionFor, findReport, MARKET_REPORTS, reportMeta } from "@/lib/reports";
 
 /* One 2026 market report: its summary (key figures and the report's themes)
    with the full PDF to download. */
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t("title"),
     description: t("metaDescription"),
-    openGraph: { images: [{ url: report.cover, width: 1440, height: 810 }] },
+    openGraph: { images: [{ url: editionFor(report, locale).cover, width: 1440, height: 810 }] },
   };
 }
 
@@ -44,14 +44,15 @@ export default async function ReportPage({ params }: Props) {
   const item = `items.${report.key}`;
   const figures = t.raw(`${item}.figures`) as { value: string; label: string }[];
   const sectionCount = (t.raw(`${item}.sections`) as unknown[]).length;
-  const meta = reportMeta(report, t("pages"), locale);
+  const edition = editionFor(report, locale);
+  const meta = reportMeta(edition, t("pages"), locale);
   const others = MARKET_REPORTS.filter((r) => r.slug !== report.slug);
   const chevron = locale === "ar" ? "‹" : "›";
 
   const downloadButton = (big = false) => (
     <a
-      href={report.pdf}
-      download={report.fileName}
+      href={edition.pdf}
+      download={edition.fileName}
       className={`inline-flex items-center justify-center gap-2.5 rounded-[16px] bg-teal font-bold text-navy transition-all hover:bg-teal-cyan hover:shadow-[0_0_30px_rgba(0,180,172,.4)] ${
         big ? "px-9 py-4 text-[17px]" : "px-7 py-3.5 text-[16px]"
       }`}
@@ -79,7 +80,7 @@ export default async function ReportPage({ params }: Props) {
 
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[24px] border border-white/10 shadow-[0_24px_60px_rgba(0,10,20,.5)] lg:order-2">
-              <Image src={report.cover} alt={t(`${item}.title`)} fill priority sizes="(max-width: 1024px) 100vw, 640px" className="object-cover" />
+              <Image src={edition.cover} alt={t(`${item}.title`)} fill priority sizes="(max-width: 1024px) 100vw, 640px" className="object-cover" />
             </div>
             <div className="text-start lg:order-1">
               <span className="mb-4 inline-block rounded-full border border-teal/40 bg-teal/15 px-4 py-1.5 text-[13px] font-bold text-teal-cyan">
@@ -141,8 +142,8 @@ export default async function ReportPage({ params }: Props) {
             </div>
 
             <figure className="mt-12">
-              <a href={report.contents} target="_blank" rel="noopener noreferrer" className="relative block aspect-[16/9] overflow-hidden rounded-[18px] border border-white/10">
-                <Image src={report.contents} alt={t("contentsPreview")} fill sizes="(max-width: 1272px) 100vw, 1100px" className="object-cover" />
+              <a href={edition.contents} target="_blank" rel="noopener noreferrer" className="relative block aspect-[16/9] overflow-hidden rounded-[18px] border border-white/10">
+                <Image src={edition.contents} alt={t("contentsPreview")} fill sizes="(max-width: 1272px) 100vw, 1100px" className="object-cover" />
               </a>
               <figcaption className="mt-3 text-center text-[13px] text-white/55">{t("contentsPreview")}</figcaption>
             </figure>
@@ -153,7 +154,7 @@ export default async function ReportPage({ params }: Props) {
         <section className="container-tk relative mt-14 md:mt-20">
           <div className="flex flex-col items-center gap-8 rounded-[28px] border border-teal/30 bg-gradient-to-br from-[#0c3140] to-[#0f4a56] p-6 md:flex-row md:p-10">
             <div className="relative aspect-[16/9] w-full max-w-[340px] shrink-0 overflow-hidden rounded-[16px] shadow-[0_18px_40px_rgba(0,10,20,.45)]">
-              <Image src={report.cover} alt="" fill sizes="340px" className="object-cover" />
+              <Image src={edition.cover} alt="" fill sizes="340px" className="object-cover" />
             </div>
             <div className="text-center md:text-start">
               <h2 className="text-[22px] font-bold text-white md:text-[26px]">{t("ctaTitle")}</h2>

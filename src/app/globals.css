@@ -471,14 +471,14 @@ main {
   overflow-x: clip;
 }
 
-/* report pages in English: Latin digits (the brand font draws Arabic-Indic
-   ones), with letters unchanged */
+/* report pages in English: Latin digits and a normal hyphen (the brand font
+   draws Arabic-Indic digits and a wide dash), with letters unchanged */
 @font-face {
   font-family: "Exo2Digits";
   src: url("/fonts/Exo2.ttf") format("truetype");
   font-weight: 100 900;
   font-display: swap;
-  unicode-range: U+0030-0039, U+0025, U+002B, U+002C, U+002E;
+  unicode-range: U+0030-0039, U+0025, U+002B, U+002C, U+002D, U+002E;
 }
 .latin-digits {
   font-family: "Exo2Digits", "GESSTwo", "Exo2", system-ui, sans-serif;

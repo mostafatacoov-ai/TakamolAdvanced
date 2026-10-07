@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "@/components/SiteImage";
 import { Link } from "@/navigation";
-import { MARKET_REPORTS, reportMeta, type MarketReport } from "@/lib/reports";
+import { editionFor, MARKET_REPORTS, reportMeta, type MarketReport } from "@/lib/reports";
 
 /* The 2026 market reports: a featured card for the national report, then
    one card per region. Each offers its summary page and the PDF. */
@@ -17,13 +17,14 @@ export function DownloadIcon({ className = "h-4 w-4" }: { className?: string }) 
 async function reportText() {
   const t = await getTranslations("Reports");
   const locale = await getLocale();
-  const meta = (r: MarketReport) => reportMeta(r, t("pages"), locale);
+  const meta = (r: MarketReport) => reportMeta(editionFor(r, locale), t("pages"), locale);
   return { t, locale, meta };
 }
 
 export async function ReportCard({ report, featured = false }: { report: MarketReport; featured?: boolean }) {
   const { t, locale, meta } = await reportText();
   const item = `items.${report.key}` as const;
+  const edition = editionFor(report, locale);
   const arrow = locale === "en" ? "rotate-180" : "";
 
   return (
@@ -37,7 +38,7 @@ export async function ReportCard({ report, featured = false }: { report: MarketR
         className={`relative block aspect-[16/9] w-full shrink-0 overflow-hidden ${featured ? "lg:w-[56%]" : ""}`}
       >
         <Image
-          src={report.cover}
+          src={edition.cover}
           alt={t(`${item}.title`)}
           fill
           sizes={featured ? "(max-width: 1024px) 100vw, 700px" : "(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 320px"}
@@ -63,16 +64,16 @@ export async function ReportCard({ report, featured = false }: { report: MarketR
         <div className={`mt-auto flex gap-2 pt-5 ${featured ? "flex-wrap" : ""}`}>
           <Link
             href={`/knowledge/reports/${report.slug}`}
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-[12px] border border-teal/50 bg-teal/10 px-4 py-2.5 text-[14px] text-white transition-all hover:bg-teal hover:font-bold hover:text-navy"
+            className="inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-[12px] border border-teal/50 bg-teal/10 px-3 py-2.5 text-[14px] text-white transition-all hover:bg-teal hover:font-bold hover:text-navy"
           >
             {t("readSummary")}
             <span aria-hidden className={`text-[20px] leading-none ${arrow}`}>‹</span>
           </Link>
           <a
-            href={report.pdf}
-            download={report.fileName}
+            href={edition.pdf}
+            download={edition.fileName}
             aria-label={`${t("download")}: ${t(`${item}.title`)}`}
-            className={`inline-flex items-center justify-center gap-2 rounded-[12px] bg-teal px-4 py-2.5 text-[14px] font-bold text-navy transition-all hover:bg-teal-cyan ${featured ? "flex-1" : ""}`}
+            className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[12px] bg-teal px-3.5 py-2.5 text-[14px] font-bold text-navy transition-all hover:bg-teal-cyan ${featured ? "flex-1" : ""}`}
           >
             <DownloadIcon />
             {featured ? t("download") : "PDF"}
