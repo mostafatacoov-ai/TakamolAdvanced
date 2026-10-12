@@ -1491,7 +1491,9 @@
     "errorSalesPerson": "Please choose the sales representative from the list.",
     "errorRange": "The upper limit of the price range must be higher than the lower limit.",
     "errorFiles": "The attachments couldn't be accepted: up to 10 files of 10 MB each, as PDF, images, Word, Excel, KML, DWG or ZIP.",
-    "serviceChoose": "Choose the service type"
+    "serviceChoose": "Choose the service type",
+    "replySubject": "{title} – Takamol Advanced",
+    "replyMessage": "Dear {client},\n\nThank you for contacting Takamol Advanced. Please find our quotation attached ({title}). We would be glad to answer any questions.\n\nKind regards,\nStudies Department\nTakamol Advanced"
   },
   "Reports": {
     "badge": "Real Estate Market Reports · 2026 Edition",

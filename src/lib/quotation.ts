@@ -32,6 +32,22 @@ export const ATTACHMENT_MAX_BYTES = 10 * 1024 * 1024;
 export const ATTACHMENT_MAX_COUNT = 10;
 export const ATTACHMENT_EXTENSIONS = ["pdf", "jpg", "jpeg", "png", "webp", "doc", "docx", "xls", "xlsx", "kml", "kmz", "dwg", "dxf", "zip"] as const;
 
+/** The prepared quotation emailed to the client: a few files, small enough for any inbox. */
+export const REPLY_MAX_COUNT = 5;
+export const REPLY_MAX_BYTES = 10 * 1024 * 1024;
+
+/** A quotation emailed to the client from the admin, kept with its brief. */
+export type QuotationReply = {
+  id: number;
+  to: string;
+  cc: string;
+  subject: string;
+  message: string;
+  files: QuotationFile[];
+  sentBy: string;
+  sentAt: string;
+};
+
 /** The brief as stored, with the money figures already worked out. */
 export type QuotationRecord = {
   id: number;

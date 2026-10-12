@@ -22,7 +22,8 @@ export const DIRS = {
   assets: path.join(DATA_DIR, "uploads", "assets"),
   /** applicants' CV files (never publicly served) */
   cvs: path.join(DATA_DIR, "uploads", "cvs"),
-  /** files attached to quotation briefs (served only behind the brief's link) */
+  /** files attached to quotation briefs (served only behind the brief's link),
+      and the quotations emailed in reply (served only in the admin) */
   quotations: path.join(DATA_DIR, "uploads", "quotations"),
 };
 

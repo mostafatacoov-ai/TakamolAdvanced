@@ -7,6 +7,7 @@ import { ADMIN_ROLE, isPermission } from "@/lib/admin/permissions";
 import { done, EMAIL, failed, guard, handle, idField, localized, refreshAdmin, refreshSite, text } from "@/server/action-utils";
 import { logActivity } from "@/server/activity";
 import { run } from "@/server/db";
+import { mailService, sendTestEmail } from "@/server/mail";
 import { generatePassword, MIN_PASSWORD } from "@/server/passwords";
 import { getSiteSettings, saveSiteSettings } from "@/server/site";
 import { isAllowedImage } from "@/lib/blocks";
@@ -125,6 +126,21 @@ export async function deleteRoleAction(_state: ActionState, form: FormData): Pro
 }
 
 /* ---- site settings ----------------------------------------------------- */
+
+/** Sends the signed-in user a test email with a PDF attached, through the configured service. */
+export async function testEmailAction(_state: ActionState, _form: FormData): Promise<ActionState> {
+  return handle(async () => {
+    const user = await guard("settings.manage");
+    if (!mailService()) return failed("msg.mailOff");
+    try {
+      await sendTestEmail(user.email);
+    } catch (error) {
+      console.error("[mail] test email failed", error);
+      return failed("msg.testEmailFailed", undefined, error instanceof Error ? error.message.slice(0, 400) : String(error));
+    }
+    return done("msg.testEmailSent", user.email);
+  });
+}
 
 export async function saveSettingsAction(_state: ActionState, form: FormData): Promise<ActionState> {
   return handle(async () => {

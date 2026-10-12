@@ -462,6 +462,413 @@ body {
   }
 }
 
+/* ---- the quotation sent to clients (QuotationOfferSheet) ----
+   A copy of the company's quotation template: US Letter, in points, with
+   Arabic set in Arial and Latin letters and digits in Calibri, as the
+   template renders. Positions follow the template's PDF. */
+@font-face {
+  font-family: "QuoteDoc";
+  src: local("Arial"), local("ArialMT");
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+25CF;
+}
+@font-face {
+  font-family: "QuoteDoc";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 700;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+25CF;
+}
+@font-face {
+  font-family: "QuoteDoc";
+  src: local("Calibri");
+  unicode-range: U+0000-05FF, U+2000-206F, U+20A0-20CF, U+2100-214F;
+}
+@font-face {
+  font-family: "QuoteDoc";
+  src: local("Calibri Bold"), local("Calibri-Bold");
+  font-weight: 700;
+  unicode-range: U+0000-05FF, U+2000-206F, U+20A0-20CF, U+2100-214F;
+}
+.qo {
+  font-family: "QuoteDoc", Carlito, Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 13.5pt;
+  color: #000;
+  text-align: right;
+}
+.qo :where(p, h1, h2, ul, ol) {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.qo ul,
+.qo ol {
+  list-style: none;
+}
+.qo b,
+.qo th {
+  font-weight: 700;
+}
+/* figures read left to right ("10,000.00 SAR"), as in the template */
+.qo-latin {
+  direction: ltr;
+}
+.qo-letterhead {
+  display: none;
+}
+.qo-sheet {
+  position: relative;
+  z-index: 1;
+  width: 612pt;
+  min-height: 792pt;
+  margin: 0 auto 24px;
+  background: #fff no-repeat 0 0 / 611.2pt 797.2pt;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+.qo-frame {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.qo-frame td {
+  padding: 0;
+}
+.qo-frame-top {
+  height: 108pt;
+}
+.qo-frame-bottom {
+  height: 72pt;
+}
+.qo .qo-frame-body {
+  padding: 0 72pt;
+  vertical-align: top;
+}
+.qo-page-number {
+  position: absolute;
+  top: 730.5pt;
+  left: 0;
+  right: 0;
+  padding-left: 1.5pt;
+  text-align: center;
+}
+.qo-heading {
+  font-size: 14pt;
+  line-height: 17.25pt;
+  font-weight: 700;
+  color: #1f3864;
+}
+.qo-heading-large {
+  font-size: 16pt;
+  line-height: 19.5pt;
+}
+
+/* page 1 */
+.qo-meta {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  line-height: 9.2pt;
+  direction: ltr;
+}
+.qo-meta-row {
+  display: flex;
+  margin-top: 4.2pt;
+}
+.qo-meta-row:first-child {
+  margin-top: 15.2pt;
+  margin-bottom: 14pt;
+}
+.qo-meta-row > b {
+  width: 106pt;
+  text-align: right;
+}
+.qo-meta-row > span {
+  width: 122pt;
+  text-align: right;
+}
+.qo-meta-number {
+  color: #2f5496;
+}
+.qo-title {
+  margin-top: 57.7pt;
+  font-size: 18pt;
+  line-height: 22.5pt;
+  font-weight: 700;
+  color: #1f3864;
+  text-align: center;
+}
+.qo-from {
+  margin-top: 9.1pt;
+  padding-right: 22.5pt;
+}
+.qo-party {
+  position: relative;
+  padding-right: 31.5pt;
+}
+.qo-party-company {
+  margin-top: 6.1pt;
+}
+.qo-party-number {
+  position: absolute;
+  top: 1.25pt;
+  right: 13.5pt;
+  font-size: 9pt;
+  line-height: 17.25pt;
+  font-weight: 700;
+}
+.qo-party-name {
+  font-size: 14pt;
+  line-height: 17.25pt;
+  font-weight: 700;
+}
+.qo-party-registry {
+  margin-top: 6.4pt;
+  padding-right: 2.5pt;
+  white-space: pre-wrap;
+}
+.qo-party-dash {
+  font-size: 18pt;
+  line-height: 0;
+}
+.qo-address {
+  margin-top: 10.2pt;
+  padding-right: 22.5pt;
+}
+.qo-to {
+  margin-top: 7.8pt;
+  padding-right: 31.5pt;
+}
+.qo-party-client {
+  margin-top: 0.1pt;
+}
+.qo-intro {
+  margin-top: 14.5pt;
+  padding-right: 31.5pt;
+  font-size: 12pt;
+  line-height: 14.25pt;
+}
+.qo-documents-heading {
+  margin-top: 22.7pt;
+  font-size: 14pt;
+  line-height: 17.25pt;
+  font-weight: 700;
+}
+.qo-bullets > li {
+  position: relative;
+}
+.qo-bullets > li::before {
+  content: "●";
+  position: absolute;
+  top: 0;
+}
+.qo-documents > li {
+  margin-top: 9.9pt;
+  padding-right: 36pt;
+  font-size: 14pt;
+  line-height: 17.25pt;
+}
+.qo-documents > li::before {
+  right: 18pt;
+  font-size: 10pt;
+}
+.qo-timeline-heading {
+  margin-top: 29.9pt;
+  padding-right: 18.1pt;
+}
+.qo-timeline {
+  margin-top: 7.2pt;
+}
+.qo-timeline > li {
+  padding-right: 58.5pt;
+}
+.qo-timeline > li::before {
+  right: 40.5pt;
+}
+
+/* page 2 */
+.qo-financial-heading {
+  margin-top: 29.5pt;
+  text-align: center;
+}
+.qo-price {
+  width: 481.5pt;
+  margin: 29pt -4.5pt 0 0;
+  border-collapse: collapse;
+  text-align: center;
+}
+.qo-price-area {
+  width: 63.7pt;
+}
+.qo-price-details {
+  width: 290.3pt;
+}
+.qo-price-quantity {
+  width: 35.3pt;
+}
+.qo-price-amount {
+  width: 92.2pt;
+}
+.qo-price th,
+.qo-price td {
+  border: 1pt solid #000;
+  padding: 0 5.4pt;
+  vertical-align: middle;
+}
+.qo-price thead th {
+  height: 15.7pt;
+  background: #215c98;
+  color: #fff;
+}
+.qo-price-item td {
+  height: 66.8pt;
+}
+.qo-price-area-value {
+  font-size: 12pt;
+}
+.qo .qo-price-details-cell {
+  padding-left: 5.4pt;
+  text-align: right;
+}
+.qo-price-details-cell p {
+  position: relative;
+  padding-right: 36.6pt;
+}
+.qo-price-details-cell p::before {
+  content: "●";
+  position: absolute;
+  top: 0;
+  right: 11.9pt;
+}
+.qo-price-total th,
+.qo-price-total td {
+  height: 15.75pt;
+}
+.qo-price-total th {
+  background: #d0cece;
+}
+.qo-price-total td {
+  background: #f2f2f2;
+  font-weight: 700;
+}
+.qo-payments-heading {
+  margin-top: 37.4pt;
+  padding-right: 19pt;
+}
+.qo-payments {
+  margin-top: 9pt;
+}
+.qo-payments > li {
+  padding-right: 49.5pt;
+}
+.qo-payments > li::before {
+  right: 31.5pt;
+}
+.qo-duties-heading {
+  margin-top: 21pt;
+  padding-right: 22.5pt;
+}
+.qo-client-duties-heading {
+  margin-top: 21.5pt;
+  padding-right: 22.5pt;
+}
+.qo-duties {
+  counter-reset: qo-duty;
+}
+.qo-duties > li {
+  position: relative;
+  margin-top: 8.25pt;
+  padding-right: 58.5pt;
+  counter-increment: qo-duty;
+}
+.qo-duties > li::before {
+  content: counter(qo-duty) ".";
+  position: absolute;
+  top: 0;
+  right: 22.5pt;
+}
+.qo-confidentiality-heading {
+  margin-top: 7.4pt;
+  padding-right: 22.5pt;
+}
+.qo-paragraph {
+  margin-top: 7.9pt;
+  padding-right: 22.5pt;
+}
+
+/* page 3 */
+.qo-termination-heading {
+  margin-top: 19.9pt;
+  padding-right: 22.5pt;
+}
+.qo-termination + .qo-termination {
+  margin-top: 8pt;
+}
+.qo-bank-heading {
+  margin-top: 72.9pt;
+  font-size: 16pt;
+  line-height: 19.5pt;
+  font-weight: 700;
+  color: #1f3863;
+  text-align: center;
+}
+.qo-bank {
+  width: 447.5pt;
+  margin-right: 20.5pt;
+  border-collapse: collapse;
+  font-size: 14pt;
+  line-height: 17pt;
+  text-align: center;
+}
+.qo-bank-number {
+  width: 22.3pt;
+}
+.qo-bank-label {
+  width: 170.2pt;
+}
+.qo-bank th,
+.qo-bank td {
+  height: 18pt;
+  padding: 0 5.4pt;
+  border: 1pt solid #000;
+  vertical-align: top;
+}
+.qo-bank th {
+  background: #eaedf1;
+}
+.qo-bank-accent {
+  color: #1f3864;
+}
+.qo-signature {
+  margin-top: 27.4pt;
+  padding-right: 13.5pt;
+  font-size: 16pt;
+  line-height: 19.5pt;
+  font-weight: 700;
+}
+.qo-signature-company {
+  color: #1f3864;
+}
+@media print {
+  /* the letterhead repeats on every printed page, behind the sheets */
+  .qo-letterhead {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 611.2pt;
+    height: 797.2pt;
+  }
+  .qo-sheet {
+    margin: 0;
+    box-shadow: none;
+    background: transparent !important;
+    overflow: visible;
+  }
+  .qo-sheet + .qo-sheet {
+    break-before: page;
+  }
+}
+
 /* ---- phones: keep decorative glows from widening the page ----
    Several sections float a wide blurred glow behind their content; without
    this, the part sticking out past the screen made phones lay the whole

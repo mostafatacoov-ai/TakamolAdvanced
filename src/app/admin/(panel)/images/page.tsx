@@ -20,6 +20,7 @@ const FOLDERS: Record<string, Localized> = {
   products: { ar: "صفحات المنتجات", en: "Product pages" },
   partners: { ar: "شعارات الشركاء", en: "Partner logos" },
   "real-invest": { ar: "لقطات المنصات", en: "Platform screenshots" },
+  quotation: { ar: "ورق عرض السعر الرسمي", en: "Quotation letterhead" },
 };
 
 export default async function ImagesPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {

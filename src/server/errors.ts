@@ -5,6 +5,8 @@ export class UserError extends Error {
   constructor(
     public key: AdminKey,
     public errors?: Record<string, AdminKey>,
+    /** technical detail shown under the message, e.g. what the mail service answered */
+    public detail?: string,
   ) {
     super(key);
     this.name = "UserError";

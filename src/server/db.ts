@@ -249,6 +249,32 @@ const MIGRATIONS: (string | ((db: DatabaseSync) => void))[] = [
     // the departments, team and August 2026 reports the module was built from
     seedKpi(db);
   },
+  `
+  CREATE TABLE quotation_replies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    quotation_id INTEGER NOT NULL REFERENCES quotations(id) ON DELETE CASCADE,
+    to_address TEXT NOT NULL,
+    cc TEXT NOT NULL DEFAULT '',
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL DEFAULT '',
+    sent_by INTEGER,
+    sent_by_name TEXT NOT NULL DEFAULT '',
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+  CREATE INDEX quotation_replies_quotation ON quotation_replies(quotation_id);
+  CREATE TABLE quotation_reply_files (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    reply_id INTEGER NOT NULL REFERENCES quotation_replies(id) ON DELETE CASCADE,
+    file TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    mime TEXT NOT NULL,
+    size INTEGER NOT NULL
+  );
+  CREATE INDEX quotation_reply_files_reply ON quotation_reply_files(reply_id);
+  -- the quotation document drafted from the brief and edited in the admin (JSON)
+  ALTER TABLE quotations ADD COLUMN offer TEXT NOT NULL DEFAULT '';
+  ALTER TABLE quotations ADD COLUMN offer_updated_at TEXT;
+  `,
 ];
 
 type Connection = { db: DatabaseSync; statements: Map<string, StatementSync> };

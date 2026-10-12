@@ -5,8 +5,9 @@ import { Card, cx, Field, inputClass, PageHeader } from "@/components/admin/ui";
 import { getAdminT } from "@/server/admin-lang";
 import { can, requirePermission } from "@/server/auth";
 import { listMedia, listSiteImages } from "@/server/images";
+import { MAIL_FROM, mailService } from "@/server/mail";
 import { getSiteSettings } from "@/server/site";
-import { saveSettingsAction } from "../../_actions/people";
+import { saveSettingsAction, testEmailAction } from "../../_actions/people";
 
 export const metadata = { title: "Site settings" };
 
@@ -15,6 +16,7 @@ export default async function SettingsPage() {
   const t = await getAdminT();
   const s = getSiteSettings();
   const ltr = cx(inputClass, "text-left font-exo");
+  const service = mailService();
 
   const input = (name: string, label: string, value: string, hint?: string) => (
     <Field label={label} hint={hint} htmlFor={name}>
@@ -49,6 +51,20 @@ export default async function SettingsPage() {
           <SubmitButton pendingLabel="common.saving">{t("common.save")}</SubmitButton>
         </ActionForm>
       </MediaLibraryProvider>
+
+      <Card title={t("settings.mail")} description={t("settings.mailHint", { from: MAIL_FROM })} className="mt-8">
+        <p className="mb-4 text-[14px] text-white/85">
+          {t("settings.mailService")}:{" "}
+          <b className={service ? "text-teal" : "text-amber-200"}>
+            {t(service === "zoho-mail" ? "settings.mailZoho" : service === "zeptomail" ? "settings.mailZepto" : service === "smtp" ? "settings.mailSmtp" : "settings.mailNone")}
+          </b>
+        </p>
+        <ActionForm action={testEmailAction} notice="bottom">
+          <SubmitButton variant="secondary" pendingLabel="settings.mailTesting" disabled={!service}>
+            {t("settings.mailTest", { email: user.email })}
+          </SubmitButton>
+        </ActionForm>
+      </Card>
     </>
   );
 }

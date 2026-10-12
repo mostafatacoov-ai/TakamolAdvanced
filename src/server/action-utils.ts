@@ -21,8 +21,8 @@ export const done = (message: AdminKey = "msg.saved", detail?: string): ActionSt
   ok: true, message, detail, at: Date.now(),
 });
 
-export const failed = (message: AdminKey, errors?: Record<string, AdminKey>): ActionState => ({
-  ok: false, message, errors, at: Date.now(),
+export const failed = (message: AdminKey, errors?: Record<string, AdminKey>, detail?: string): ActionState => ({
+  ok: false, message, errors, detail, at: Date.now(),
 });
 
 /** Runs an action body, turning expected problems into a form message. */
@@ -32,7 +32,7 @@ export async function handle(body: () => Promise<ActionState>): Promise<ActionSt
   } catch (error) {
     unstable_rethrow(error);
     if (error instanceof UserError) {
-      return failed(error.errors ? "msg.invalid" : error.key, error.errors);
+      return failed(error.errors ? "msg.invalid" : error.key, error.errors, error.detail);
     }
     console.error("[admin action]", error);
     return failed("msg.error");

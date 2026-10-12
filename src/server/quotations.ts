@@ -4,11 +4,15 @@ import fs from "node:fs";
 import path from "node:path";
 import {
   ATTACHMENT_EXTENSIONS, ATTACHMENT_MAX_BYTES, ATTACHMENT_MAX_COUNT, CLIENT_TYPES, computeTotals, DOCUMENTS, FORMATS,
-  isQuotationStatus, QUOTATION_STATUSES, round2, SALES_PEOPLE, SERVICES,
-  type ClientType, type DocumentKey, type FormatKey, type QuotationFile, type QuotationRecord, type QuotationStatus, type ServiceKey,
+  isQuotationStatus, QUOTATION_STATUSES, REPLY_MAX_BYTES, REPLY_MAX_COUNT, round2, SALES_PEOPLE, SERVICES,
+  type ClientType, type DocumentKey, type FormatKey, type QuotationFile, type QuotationRecord, type QuotationReply,
+  type QuotationStatus, type ServiceKey,
 } from "@/lib/quotation";
+import { draftOffer, parseOffer, type QuotationOffer } from "@/lib/quotation-offer";
 import { hashIp } from "./applications";
 import { all, one, run, transaction } from "./db";
+import { UserError } from "./errors";
+import { sendQuotationEmail } from "./mail";
 import { DIRS, within } from "./paths";
 
 export { QUOTATION_STATUSES, isQuotationStatus, type QuotationStatus };
@@ -154,13 +158,37 @@ export function updateQuotation(id: number, status: QuotationStatus, adminNotes:
 export function deleteQuotation(id: number) {
   const q = getQuotation(id);
   if (!q) return null;
-  const stored = all<{ file: string }>("SELECT file FROM quotation_files WHERE quotation_id = ?", id);
+  const stored = all<{ file: string }>(
+    `SELECT file FROM quotation_files WHERE quotation_id = ?
+     UNION ALL
+     SELECT f.file FROM quotation_reply_files f JOIN quotation_replies r ON r.id = f.reply_id WHERE r.quotation_id = ?`,
+    id, id,
+  );
   run("DELETE FROM quotations WHERE id = ?", id);
   for (const { file } of stored) {
     const full = within(DIRS.quotations, file);
     if (full && fs.existsSync(full)) fs.unlinkSync(full);
   }
   return q;
+}
+
+/** The quotation document of a brief: as last saved, else drafted from the brief. */
+export function quotationOffer(q: QuotationRecord): { offer: QuotationOffer; savedAt: string | null } {
+  const row = one<{ offer: string; offer_updated_at: string | null }>(
+    "SELECT offer, offer_updated_at FROM quotations WHERE id = ?", q.id,
+  );
+  const saved = row ? parseOffer(row.offer) : null;
+  return saved ? { offer: saved, savedAt: row?.offer_updated_at ?? null } : { offer: draftOffer(q), savedAt: null };
+}
+
+/** Saves the quotation document (null drops it, so it is drafted from the brief again). */
+export function saveQuotationOffer(id: number, offer: QuotationOffer | null) {
+  run(
+    `UPDATE quotations SET offer = ?, offer_updated_at = CASE WHEN ? THEN datetime('now') END,
+       status = CASE WHEN ? AND status = 'new' THEN 'preparing' ELSE status END, updated_at = datetime('now')
+     WHERE id = ?`,
+    offer ? JSON.stringify(offer) : "", offer !== null, offer !== null, id,
+  );
 }
 
 export function countNewQuotations() {
@@ -216,6 +244,10 @@ async function detectAttachment(file: File): Promise<{ ext: string; mime: string
   // kml, dwg and dxf have no reliable signature; keep them by extension
   return ["kml", "dwg", "dxf"].includes(ext) ? { ext, mime: MIMES[ext] } : null;
 }
+
+/** An uploaded file's name, safe to store and to send back in a header. */
+const safeName = (name: string, ext: string) =>
+  path.basename(name).replace(/[^\p{L}\p{N}._ -]/gu, "_").slice(0, 150) || `file.${ext}`;
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -312,9 +344,8 @@ export async function submitQuotation(input: QuotationInput): Promise<
   const stored: { file: string; name: string; mime: string; size: number }[] = [];
   for (const [i, f] of files.entries()) {
     const file = `${randomUUID()}.${kinds[i].ext}`;
-    const name = path.basename(f.name).replace(/[^\p{L}\p{N}._ -]/gu, "_").slice(0, 150) || `file.${kinds[i].ext}`;
     fs.writeFileSync(path.join(DIRS.quotations, file), Buffer.from(await f.arrayBuffer()));
-    stored.push({ file, name, mime: kinds[i].mime, size: f.size });
+    stored.push({ file, name: safeName(f.name, kinds[i].ext), mime: kinds[i].mime, size: f.size });
   }
 
   const result = transaction(() => {
@@ -342,4 +373,95 @@ export async function submitQuotation(input: QuotationInput): Promise<
     return inserted;
   });
   return { ok: true, token, id: result.id };
+}
+
+/* ---- quotations emailed in reply ---------------------------------------- */
+
+type ReplyRow = {
+  id: number; quotation_id: number; to_address: string; cc: string; subject: string; message: string;
+  sent_by_name: string; created_at: string;
+};
+type ReplyFileRow = { id: number; reply_id: number; file: string; name: string; mime: string; size: number };
+
+/** What was sent to the client for a brief, newest first. */
+export function listQuotationReplies(quotationId: number): QuotationReply[] {
+  const files = all<ReplyFileRow>(
+    "SELECT f.* FROM quotation_reply_files f JOIN quotation_replies r ON r.id = f.reply_id WHERE r.quotation_id = ? ORDER BY f.id",
+    quotationId,
+  );
+  return all<ReplyRow>("SELECT * FROM quotation_replies WHERE quotation_id = ? ORDER BY id DESC", quotationId).map((r) => ({
+    id: r.id,
+    to: r.to_address,
+    cc: r.cc,
+    subject: r.subject,
+    message: r.message,
+    files: files.filter((f) => f.reply_id === r.id).map((f) => ({ id: f.id, name: f.name, mime: f.mime, size: f.size })),
+    sentBy: r.sent_by_name,
+    sentAt: r.created_at,
+  }));
+}
+
+/** The kept copy of a file sent in reply, if it still exists. */
+export function quotationReplyFile(fileId: number) {
+  const row = one<ReplyFileRow>("SELECT * FROM quotation_reply_files WHERE id = ?", fileId);
+  if (!row) return null;
+  const file = within(DIRS.quotations, row.file);
+  return file && fs.existsSync(file) ? { file, name: row.name, mime: row.mime } : null;
+}
+
+/** Emails the prepared quotation to the client and keeps a copy with the
+    brief. Nothing is kept unless the email went out. */
+export async function sendQuotationReply(
+  quotation: QuotationRecord,
+  reply: { to: string[]; cc: string[]; subject: string; message: string; files: File[] },
+  user: { id: number; name: string },
+) {
+  const files = reply.files.filter((f) => f.size > 0);
+  if (files.length > REPLY_MAX_COUNT || files.reduce((sum, f) => sum + f.size, 0) > REPLY_MAX_BYTES) {
+    throw new UserError("msg.invalid", { files: "err.replyFiles" });
+  }
+  const attachments: { ext: string; name: string; mime: string; content: Buffer }[] = [];
+  for (const f of files) {
+    const kind = await detectAttachment(f);
+    if (!kind) throw new UserError("msg.invalid", { files: "err.replyFiles" });
+    attachments.push({ ext: kind.ext, name: safeName(f.name, kind.ext), mime: kind.mime, content: Buffer.from(await f.arrayBuffer()) });
+  }
+
+  // the copy is written first, so a full disk stops the email rather than the record
+  const stored = attachments.map((a) => {
+    const file = `${randomUUID()}.${a.ext}`;
+    fs.writeFileSync(path.join(DIRS.quotations, file), a.content);
+    return { file, name: a.name, mime: a.mime, size: a.content.length };
+  });
+  const discard = () => {
+    for (const f of stored) fs.rmSync(path.join(DIRS.quotations, f.file), { force: true });
+  };
+
+  let sent: boolean;
+  try {
+    sent = await sendQuotationEmail({ to: reply.to, cc: reply.cc, subject: reply.subject, message: reply.message, attachments });
+  } catch (error) {
+    discard();
+    console.error("[mail] quotation reply failed", `#${quotation.id}`, error);
+    // what the mail service answered, so a wrong setting can be put right
+    throw new UserError("msg.mailFailed", undefined, error instanceof Error ? error.message.slice(0, 400) : String(error));
+  }
+  if (!sent) {
+    discard();
+    throw new UserError("msg.mailOff");
+  }
+
+  return transaction(() => {
+    const inserted = run(
+      `INSERT INTO quotation_replies (quotation_id, to_address, cc, subject, message, sent_by, sent_by_name)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      quotation.id, reply.to.join(", "), reply.cc.join(", "), reply.subject, reply.message, user.id, user.name,
+    );
+    for (const f of stored) {
+      run("INSERT INTO quotation_reply_files (reply_id, file, name, mime, size) VALUES (?, ?, ?, ?, ?)", inserted.id, f.file, f.name, f.mime, f.size);
+    }
+    // a brief still in the works now has its quotation out
+    run("UPDATE quotations SET status = 'sent', updated_at = datetime('now') WHERE id = ? AND status IN ('new', 'preparing')", quotation.id);
+    return inserted.id;
+  });
 }

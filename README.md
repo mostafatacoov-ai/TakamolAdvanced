@@ -31,6 +31,8 @@ Open `/admin`. The first time, it offers to create the first administrator.
   Every new application and quotation brief is also emailed to the team (see `NOTIFY_EMAIL` below).
 - **Quotation briefs**: the intake forms sales people fill in at `/quotation-request` (unlisted, not in the menu), with a fixed list of sales people, a price range and file attachments.
   Each brief opens as a printable sheet that the browser saves as a PDF; the admin can filter, update the status, add notes and open the PDF.
+  From a brief, **Create quotation** drafts the client's quotation in the company's own template (US Letter, on the letterhead), filled in from the brief. Every word of it can be edited for that quotation, down to the company details, headings, responsibilities, confidentiality, termination terms, bank details and signature; a section left empty is left out. It can be viewed, downloaded as a PDF (through the browser's print window) or downloaded as a Word file in the same layout for further editing. The letterhead is under *Images › Quotation letterhead*; the wording a new quotation starts from is in `src/lib/quotation-offer.ts`.
+  **Send the quotation** then emails the uploaded PDF to the client (with an optional CC), keeps a copy with the brief and marks it *Quotation sent*. The email's default subject and message are under *Texts › Sales*. Nothing is kept if the email can't be sent, and the notice shows what the mail service answered. *Site settings › Email* shows which mail service is in use and sends a test email with a PDF attached to the signed-in user.
 - **Knowledge Center reports**: the 2026 real-estate market reports (national and seven regions) each have a summary page at `/knowledge/reports/{slug}` and a PDF to download: the Arabic site offers the Arabic edition, the English site the English one. Their texts are under *Texts › Market reports 2026*, their covers under *Images*. To publish a new edition of a PDF, replace the file in `public/reports/` under the same name (English editions end in `-en.pdf`), and update its page count and size in `src/lib/reports.ts`.
 - **KPI reports**: monthly performance reports per department, with a weighted KPI card for every employee, a printable PDF in the style of the company's reports, and each employee's score history. Departments and the team are managed under *Departments & team*.
 - **Users / Roles & permissions**: add people and choose what each role can do.
@@ -72,7 +74,7 @@ Environment variables:
 | `SMTP_PORT` | optional | Defaults to `465` (SSL). Use `587` for STARTTLS. |
 | `SMTP_USER` | optional | The mailbox to sign in as. Defaults to `MAIL_FROM`. |
 | `SMTP_PASS` | with `SMTP_HOST` | That mailbox's password (for Zoho Mail, an app-specific password). |
-| `MAIL_FROM` | optional | The sender address, default `info@takamoladvanced.sa`. |
+| `MAIL_FROM` | optional | The sender address, default `info@takamoladvanced.sa`. Quotations sent to clients come from it too. |
 | `NOTIFY_EMAIL` | optional | Who receives a notification for every new job application and quotation brief, default `pm@takamoladvanced.sa`. |
 | `SERVER_ACTIONS_ORIGINS` | only if saving fails behind a proxy | Comma-separated host names allowed to submit admin forms, e.g. `takamoladvanced.sa,www.takamoladvanced.sa`. |
 
