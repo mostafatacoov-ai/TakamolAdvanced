@@ -127,7 +127,8 @@ async function sendWithZohoMail(m: Message) {
 /* ---- Zoho ZeptoMail ---------------------------------------------------- */
 
 /** Zoho ZeptoMail: a "Send Mail Token" from the ZeptoMail console. */
-const ZOHO_API_KEY = process.env.ZOHO_API_KEY;
+// the console shows the token as "Zoho-enczapikey …": accept it pasted either way
+const ZOHO_API_KEY = process.env.ZOHO_API_KEY?.trim().replace(/^Zoho-enczapikey\s+/i, "");
 const ZOHO_API_URL = process.env.ZOHO_API_URL || "https://api.zeptomail.com/v1.1/email";
 
 async function sendWithZoho(m: Message) {

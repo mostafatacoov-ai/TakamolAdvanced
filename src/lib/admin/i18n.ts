@@ -413,7 +413,7 @@ const en = {
   "offer.overflow": "Page {pages} runs longer than one page and will continue on an extra page. Shorten the text or remove a row to keep the three pages of the template.",
   "msg.offerReset": "The quotation was drafted again from the brief.",
   "err.offerItems": "Add at least one row with the service details.",
-  "err.offerPrice": "Enter each price as a number, e.g. 10000.",
+  "err.offerPrice": "Enter each price, and any quantity, as a number of zero or more, e.g. 10000.",
 
   "users.subtitle": "People who can sign in to this control panel, and the role that decides what each can do.",
   "users.new": "Add user",
@@ -1056,7 +1056,7 @@ const ar: Record<AdminKey, string> = {
   "offer.overflow": "الصفحة {pages} أطول من صفحة واحدة وستكمل في صفحة إضافية. اختصر النص أو احذف صفًا للحفاظ على صفحات القالب الثلاث.",
   "msg.offerReset": "تمت إعادة إعداد عرض السعر من بيانات النموذج.",
   "err.offerItems": "أضف صفًا واحدًا على الأقل فيه تفاصيل الخدمة.",
-  "err.offerPrice": "أدخل كل سعر رقمًا، مثل 10000.",
+  "err.offerPrice": "أدخل كل سعر وكل عدد رقمًا لا يقل عن صفر، مثل 10000.",
 
   "users.subtitle": "الأشخاص المصرّح لهم بالدخول إلى لوحة التحكم، والدور الذي يحدد صلاحيات كل منهم.",
   "users.new": "إضافة مستخدم",

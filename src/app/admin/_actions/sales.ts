@@ -39,8 +39,11 @@ export async function deleteQuotationAction(_state: ActionState, form: FormData)
 
 /* ---- the quotation document ------------------------------------------- */
 
-const isAmount = (v: string) =>
-  Number.isFinite(Number(v.replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d))).replace(/[,\s]/g, "")));
+/** A price or quantity as typed ("10,000", Arabic digits): a number, not below zero. */
+const isAmount = (v: string) => {
+  const n = Number(v.replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d))).replace(/[,\s]/g, ""));
+  return Number.isFinite(n) && n >= 0;
+};
 
 export async function saveOfferAction(id: number, _state: ActionState, form: FormData): Promise<ActionState> {
   return handle(async () => {
@@ -62,7 +65,11 @@ export async function saveOfferAction(id: number, _state: ActionState, form: For
     const accented = new Set(column("bankAccent"));
 
     const errors: Record<string, AdminKey> = {};
-    if (prices.some((p, i) => (p || details[i]) && !isAmount(p || "x"))) errors.items = "err.offerPrice";
+    // every row in use needs a price, and a quantity if one is typed
+    const used = (i: number) => Boolean(prices[i] || details[i]);
+    if (prices.some((p, i) => used(i) && (!isAmount(p || "x") || (quantities[i] && !isAmount(quantities[i]))))) {
+      errors.items = "err.offerPrice";
+    }
     const offer = normalizeOffer({
       number: text(form, "number", 40),
       date: text(form, "date", 10),
@@ -117,7 +124,7 @@ export async function replyQuotationAction(id: number, _state: ActionState, form
     if (!q) return failed("msg.error");
     const to = addresses(text(form, "to", 2000));
     const cc = addresses(text(form, "cc", 2000));
-    const subject = text(form, "subject", 200);
+    const subject = text(form, "subject", 200).replace(/[\r\n]+/g, " ");
     const message = text(form, "message", 5000);
     const files = form.getAll("files").filter((f): f is File => f instanceof File && f.size > 0);
 

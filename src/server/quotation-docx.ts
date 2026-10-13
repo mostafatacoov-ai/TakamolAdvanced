@@ -21,7 +21,15 @@ const NS =
   'xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"';
 const XML = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
 
-const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c] ?? c);
+/** Text for XML: escaped, and without the control characters XML can't hold (pasted text sometimes has them). */
+const esc = (s: string) =>
+  [...s]
+    .filter((c) => {
+      const n = c.codePointAt(0) ?? 0;
+      return n === 9 || n === 10 || n === 13 || (n >= 32 && n !== 0xfffe && n !== 0xffff);
+    })
+    .join("")
+    .replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c] ?? c);
 /** points → twentieths of a point */
 const tw = (pt: number) => Math.round(pt * 20);
 
